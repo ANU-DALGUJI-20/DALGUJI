@@ -19,6 +19,13 @@ namespace Dalgucci.Controllers
            
             return View();
         }
+
+        public IActionResult Join()
+        {
+
+            return View();
+        }
+
         public string Index()
         {
             return "This is my <b>default</b> action...";
