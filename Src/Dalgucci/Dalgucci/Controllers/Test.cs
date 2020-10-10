@@ -6,7 +6,7 @@ using System.Data.OracleClient;
 using Oracle.ManagedDataAccess.Client;
 using System.Security.Cryptography;
 
-namespace dbtest01.Controllers
+namespace Dalgucci.Controllers
 {
     
     public class Test

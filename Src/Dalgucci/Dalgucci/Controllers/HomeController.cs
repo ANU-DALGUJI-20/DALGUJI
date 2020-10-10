@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using dbtest01.Models;
+using Dalgucci.Models;
 
-namespace dbtest01.Controllers
+namespace Dalgucci.Controllers
 {
     public class HomeController : Controller
     {

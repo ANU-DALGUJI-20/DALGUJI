@@ -1,6 +1,6 @@
 using System;
 
-namespace dbtest01.Models
+namespace Dalgucci.Models
 {
     public class ErrorViewModel
     {
