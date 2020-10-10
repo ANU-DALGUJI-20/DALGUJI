@@ -46,6 +46,8 @@ namespace Dalgucci
 
             app.UseAuthorization();
 
+            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
