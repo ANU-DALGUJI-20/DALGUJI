@@ -11,7 +11,7 @@ namespace dbtest01.Controllers
     
     public class Test
     {
-        private string strConn = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)));User Id=scott;Password=TIGER;";
+        private string strConn = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)));User Id=SF1team;Password=1234;";
 
         public void update()
         {
@@ -26,7 +26,7 @@ namespace dbtest01.Controllers
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
 
-                cmd.CommandText = "update emp set ename = 'pch' where empno = 9999";
+                cmd.CommandText = "insert into product values (1236,'bbbb','205',1)";
                 cmd.ExecuteNonQuery();
 
                 conn.Close();
