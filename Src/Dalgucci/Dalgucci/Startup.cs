@@ -52,7 +52,7 @@ namespace dbtest01
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Web}/{action=Sign_up}/{id?}");
             });
         }
     }

@@ -8,11 +8,15 @@
 <body>
     <h1>회원가입</h1>
     <form action="/Home/RegisterForm" method="post">
-        <p>아이디: <input type="text" name="MemberID" /></p>
+        <p>아이디: <input type="text" name="MemberID" id="ID" /></p>
         <p>비밀번호: <input type="password" name="Password" /></p>
         <p>닉네임: <input type="text" name="NickName" /></p>
         <p>이메일: <input type="text" name="Email" /></p>
         <input type="submit" value="가입하기" />
+        
+         <asp:Button ID="btnClick" runat="server" Text="클릭" OnClick="btnClick_Click"/>
+ 
+       
     </form>
 </body>
 
