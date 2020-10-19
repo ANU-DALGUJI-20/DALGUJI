@@ -50,20 +50,6 @@ namespace Dalgucci.Models
         public string Manager_Email { get; set; }
     }
 
-    public class Product
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Product_No { get; set; }
-        [Required]
-        public string Product_Code { get; set; }
-        [Required]
-        public string Product_Name { get; set; }
-        [Required]
-        public string Place { get; set; }
-        [Required]
-        public string Quantity { get; set; }
-       
-    }
+   
 
 }
