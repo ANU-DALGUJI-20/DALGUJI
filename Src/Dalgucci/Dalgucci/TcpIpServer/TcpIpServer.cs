@@ -16,11 +16,10 @@ namespace Dalgucci
 
         static Thread InProdThread = new Thread(new ThreadStart(InProdDataProc));    // 입고 송수신 스레드
         static Thread OutProdTread = new Thread(new ThreadStart(OutProdDataProc));   // 출고 송수신 스레드
-
         Thread connThread = new Thread(new ThreadStart(ConnectProc));                // 연결 처리 스레드
 
-        static TcpClient in_client;  // 입고 로봇
-        static TcpClient out_client; // 출고 로봇
+        public static TcpClient in_client;  // 입고 로봇
+        public static TcpClient out_client; // 출고 로봇
 
         public static ManualResetEvent tcpClientConnected = new ManualResetEvent(false);
 
@@ -29,14 +28,24 @@ namespace Dalgucci
             bool bServerStart = ServStart();
             if(bServerStart)
             {
-                connThread.Start();
+                // 서버 시작
+                connThread.Start(); 
             }
+        }
+
+        public static TcpClient GetInClientClient()
+        {
+            return in_client;
+        }
+
+        public static TcpClient GetOutClientClient()
+        {
+            return out_client;
         }
         public static void ConnectProc()
         {
             while(true)
             {
-                // todo
                 Thread.Sleep(1);
 
                 tcpClientConnected.Reset();
@@ -72,28 +81,10 @@ namespace Dalgucci
         {
             while (true)
             {
-                // todo
-                Thread.Sleep(20);
+                Thread.Sleep(1);
 
-                // TcpClient client = server.AcceptTcpClient();
-                Console.WriteLine("클라이언트 접속 :{0}", ((IPEndPoint)in_client.Client.RemoteEndPoint).Address.ToString());
-                NetworkStream stream = in_client.GetStream();
-
-                int length;
-                string data = null;
-                byte[] bytes = new byte[256];
-
-                while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
-                {
-                    data = Encoding.Default.GetString(bytes, 0, length);
-                    Console.WriteLine(String.Format("수신 : {0}", data));
-
-                    byte[] msg = Encoding.Default.GetBytes(data);
-                    stream.Write(msg, 0, msg.Length);
-                    Console.WriteLine(String.Format("송신: {0}", data));
-                }
-                stream.Close();
-                in_client.Close();
+                InProdWorking ipw = new InProdWorking();
+                ipw.ProcMessage();
             }
         }
 
@@ -101,28 +92,10 @@ namespace Dalgucci
         {
             while (true)
             {
-                // todo
-                Thread.Sleep(20);
+                Thread.Sleep(1);
 
-                // TcpClient client = server.AcceptTcpClient();
-                Console.WriteLine("클라이언트 접속 :{0}", ((IPEndPoint)out_client.Client.RemoteEndPoint).Address.ToString());
-                NetworkStream stream = out_client.GetStream();
-
-                int length;
-                string data = null;
-                byte[] bytes = new byte[256];
-
-                while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
-                {
-                    data = Encoding.Default.GetString(bytes, 0, length);
-                    Console.WriteLine(String.Format("수신 : {0}", data));
-
-                    byte[] msg = Encoding.Default.GetBytes(data);
-                    stream.Write(msg, 0, msg.Length);
-                    Console.WriteLine(String.Format("송신: {0}", data));
-                }
-                stream.Close();
-                out_client.Close();
+                OutProdWorking opw = new OutProdWorking();
+                opw.ProcMessage();
             }
         }
 
