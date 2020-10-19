@@ -1,0 +1,18 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<body>
+
+    <h1>로그인 성공</h1>
+    <div>@ViewData["User"]</div>
+    <form method="post" asp-controller="Web" asp-action="Main">
+        <h2 name="MemberID">@ViewData["User"]</h2>
+       
+        <input type="submit" value="쇼핑하기" />
+    </form>
+       
+</body>

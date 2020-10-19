@@ -1,6 +1,6 @@
 using System;
 
-namespace dbtest01.Models
+namespace Dalgucci.Models
 {
     public class ErrorViewModel
     {
@@ -8,4 +8,5 @@ namespace dbtest01.Models
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
+
 }

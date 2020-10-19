@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dalgucci.DB;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace dbtest01
+namespace Dalgucci
 {
     public class Startup
     {
@@ -24,10 +25,13 @@ namespace dbtest01
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //services.AddTransient<DbSeeder>();
+            services.AddSession();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) //,DbSeeder seeder//
         {
             if (env.IsDevelopment())
             {
@@ -41,7 +45,7 @@ namespace dbtest01
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
@@ -52,7 +56,7 @@ namespace dbtest01
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Web}/{action=Sign_up}/{id?}");
+                    pattern: "{controller=Web}/{action=Main}/{id?}");
             });
         }
     }

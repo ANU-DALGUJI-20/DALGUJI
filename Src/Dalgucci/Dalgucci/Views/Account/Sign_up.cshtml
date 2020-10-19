@@ -1,0 +1,84 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*<body>
+    <h1>회원가입</h1>
+    <form action="/Account/Register" method="post">
+        <p>아이디: <input type="text" name="MemberID" /></p>
+        <p>비밀번호: <input type="password" name="Password" /></p>
+        <p>닉네임: <input type="text" name="NickName" /></p>
+        <p>이메일: <input type="text" name="Email" /></p>
+        <input type="submit" value="가입하기" />
+    </form>
+</body>*@
+
+<body>
+    <h1>회원가입</h1>
+
+    <form method="post" asp-controller="Account" asp-action="Sign_up">
+        <p>아이디: <input type="text" name="MemberID" /></p>
+        <p>비밀번호: <input type="password" name="Password" /></p>
+        <p>이름: <input type="text" name="User_name" /></p>
+        <p>전화번호: <input type="text" name="Tel" /></p>
+        <p>주민등록번호: <input type="password" name="RRN" /></p>
+        <p>주소: <input type="text" name="Address" /></p>
+        <p>이메일: <input type="text" name="Email" /></p>
+        <input type="submit" value="가입하기" />
+    </form>
+
+    @model Dalgucci.Models.Member
+
+    <h1>회원가입</h1>
+    <form class="form-horizontal" method="post" asp-controller="Account" asp-action="Sign_up">
+        <div class="form-group">
+            <label>아이디</label>
+            <input type="text" class="form-control" asp-for="User_ID" placeholder="사용하실 ID를 입력하세요" />
+            <span class="text-danger" asp-validation-for="User_ID"></span>
+        </div>
+
+        <div class="form-group">
+            <label>비밀번호</label>
+            <input type="text" class="form-control" asp-for="Pwd" placeholder="사용하실 ID를 입력하세요" />
+            <span class="text-danger" asp-validation-for="Pwd"></span>
+        </div>
+
+        <div class="form-group">
+            <label>이름</label>
+            <input type="text" class="form-control" asp-for="User_name" placeholder="사용하실 ID를 입력하세요" />
+            <span class="text-danger" asp-validation-for="User_name"></span>
+        </div>
+
+        <div class="form-group">
+            <label>전화번호</label>
+            <input type="text" class="form-control" asp-for="Tel"  placeholder="사용하실 ID를 입력하세요" />
+            <span class="text-danger" asp-validation-for="Tel"></span>
+        </div>
+
+        <div class="form-group">
+            <label>주소</label>
+            <input type="text" class="form-control" asp-for="Address" placeholder="사용하실 ID를 입력하세요" />
+            <span class="text-danger" asp-validation-for="Address"></span>
+        </div>
+
+        <div class="form-group">
+            <label>주민등록번호</label>
+            <input type="text" class="form-control" asp-for="RRN" placeholder="사용하실 ID를 입력하세요" />
+            <span class="text-danger" asp-validation-for="RRN"></span>
+        </div>
+
+        <div class="form-group">
+            <label>이메일</label>
+            <input type="text" class="form-control" asp-for="Email" placeholder="사용하실 ID를 입력하세요" />
+            <span class="text-danger" asp-validation-for="Email"></span>
+        </div>
+
+        <div class="form-group">
+            
+            <button type="submit" class="btn btn-primary">회원가입</button>           
+        </div>
+    </form>
+</body>
+
+

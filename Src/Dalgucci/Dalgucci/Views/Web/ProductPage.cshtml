@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<body>
+    <h1>주문</h1>
+
+    <form method="post" asp-controller="Web" asp-action="ProductPage">
+        <select name="Color1">
+            <option value=1 selected>빨강</option>
+            <option value=2 selected>핑크</option>
+            <option value=3 selected>연두</option>
+        </select>
+
+        <select name="Color2">
+            <option value=1 selected>빨강</option>
+            <option value=2 selected>핑크</option>
+            <option value=3 selected>연두</option>
+        </select>
+
+        <select name="Size">
+            <option value=1 selected>대</option>
+            <option value=2 selected>중</option>
+            <option value=3 selected>소</option>
+        </select>
+        <input type="submit" value="구매"/>
+    </form>
+
+
+
+</body>

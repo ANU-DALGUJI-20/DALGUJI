@@ -6,7 +6,7 @@ using System.Data.OracleClient;
 using Oracle.ManagedDataAccess.Client;
 using System.Security.Cryptography;
 
-namespace dbtest01.Controllers
+namespace Dalgucci.Controllers
 {
     
     public class Test
@@ -29,7 +29,7 @@ namespace dbtest01.Controllers
                 cmd.CommandText = "insert into product values (1236,'bbbb','205',1)";
                 cmd.ExecuteNonQuery();
 
-                conn.Close();
+                //conn.Close();
             }
             catch( Exception ex )
             {
