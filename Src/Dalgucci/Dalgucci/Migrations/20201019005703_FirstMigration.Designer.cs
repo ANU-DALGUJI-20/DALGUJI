@@ -12,6 +12,7 @@ namespace Dalgucci.Migrations
     [Migration("20201019005703_FirstMigration")]
     partial class FirstMigration
     {
+
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

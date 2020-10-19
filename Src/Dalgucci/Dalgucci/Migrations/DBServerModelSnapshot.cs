@@ -10,6 +10,7 @@ namespace Dalgucci.Migrations
     [DbContext(typeof(DBServer))]
     partial class DBServerModelSnapshot : ModelSnapshot
     {
+
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

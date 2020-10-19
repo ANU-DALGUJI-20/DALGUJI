@@ -39,6 +39,7 @@ namespace Dalgucci.Migrations
                     Address = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: false)
                 },
+
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Members", x => x.User_No);

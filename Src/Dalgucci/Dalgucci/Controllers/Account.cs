@@ -76,6 +76,7 @@ namespace Dalgucci.Controllers
                 ModelState.AddModelError(string.Empty, "회원정보가 올바르지 않아");
             }
             return View(model);
+
         }
         public IActionResult Logout()
         {

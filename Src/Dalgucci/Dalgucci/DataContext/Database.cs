@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Dalgucci
 {
+
     public class Database 
     {
         OracleConnection conn = null;
