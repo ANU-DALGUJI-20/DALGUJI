@@ -33,6 +33,5 @@ namespace Dalgucci.ViewModel
         [Required]
         public string Quantity { get; set; }
 
-
     }
 }

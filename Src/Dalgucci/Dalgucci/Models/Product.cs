@@ -20,5 +20,6 @@ namespace Dalgucci.Models
         public string Place { get; set; }
         [Required]
         public string Quantity { get; set; }
+
     }
 }

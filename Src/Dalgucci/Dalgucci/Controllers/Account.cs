@@ -51,6 +51,7 @@ namespace Dalgucci.Controllers
         //    //return MemberID + Password + User_name + Tel + RRN + Address + Email;
         //    return View("Sign_upComplete");
         //}
+
         [HttpGet]
         public IActionResult Login()
         {

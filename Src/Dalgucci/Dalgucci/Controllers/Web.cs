@@ -37,7 +37,6 @@ namespace Dalgucci.Controllers
         }
 
 
-
         [HttpPost]
         public IActionResult Login(Product_Select model)
         {
