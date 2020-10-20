@@ -7,25 +7,6 @@ namespace Dalgucci.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Managers",
-                columns: table => new
-                {
-                    Manager_No = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Manager_ID = table.Column<string>(nullable: false),
-                    Manager_Pwd = table.Column<string>(nullable: false),
-                    Manager_name = table.Column<string>(nullable: false),
-                    Manager_Tel = table.Column<string>(nullable: false),
-                    Manager_RRN = table.Column<string>(nullable: false),
-                    Manager_Address = table.Column<string>(nullable: false),
-                    Manager_Email = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Managers", x => x.Manager_No);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Members",
                 columns: table => new
                 {
@@ -39,7 +20,6 @@ namespace Dalgucci.Migrations
                     Address = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: false)
                 },
-
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Members", x => x.User_No);
@@ -48,9 +28,6 @@ namespace Dalgucci.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Managers");
-
             migrationBuilder.DropTable(
                 name: "Members");
         }
