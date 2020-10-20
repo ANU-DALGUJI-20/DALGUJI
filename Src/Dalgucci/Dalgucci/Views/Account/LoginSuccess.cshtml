@@ -12,8 +12,23 @@
     <div>@ViewData["User"]</div>
     <form method="post" asp-controller="Web" asp-action="Main">
         <h2 name="MemberID">@ViewData["User"]</h2>
-       
+
         <input type="submit" value="쇼핑하기" />
     </form>
-       
+    @*<ul class="nav navbar-nav navbar-right">
+        @if (Context.Session.GetInt32("User_Login_Key") == null)
+        {
+            <li><a asp-area="" asp-controller="Account" asp-action="Login">로그인</a></li>
+            <li><a asp-area="" asp-controller="Account" asp-action="Sign_up">회원가입</a></li>
+        }
+        else
+        {
+            <li><a asp-area="" asp-controller="Account" asp-action="Logout">로그아웃</a></li>
+        }
+
+
+
+
+
+    </ul>*@
 </body>

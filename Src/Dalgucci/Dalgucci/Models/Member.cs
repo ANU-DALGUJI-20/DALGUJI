@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dalgucci.Models
 {
+   
     public class Member
     {
         [Key]
@@ -49,8 +50,40 @@ namespace Dalgucci.Models
         [Required]
         public string Manager_Email { get; set; }
     }
-
    
+    public class Product
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Product_No { get; set; }
+        [Required]
+        public string Product_Code { get; set; }
+        [Required]
+        public string Product_Name { get; set; }
+        [Required]
+        public string Place { get; set; }
+        [Required]
+        public string Quantity { get; set; }
+
+    }
+ 
+    public class Order
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Order_No { get; set; }
+        [Required]
+        public string Product_Code { get; set; }
+     
+        public virtual Product Product { get; set; }
+        [Required]
+        public int User_No { get; set; }
+       
+        public virtual Member Member { get; set; }
+
+       
+        public DateTime Order_Time { get; set; }
+    }
 
 
 }

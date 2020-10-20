@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Http;
 using Dalgucci.DB;
 
 using Dalgucci.ViewModel;
+using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.Data.SqlClient;
+using Member = Dalgucci.Models.Member;
 
 namespace Dalgucci.Controllers
 {
@@ -61,23 +64,27 @@ namespace Dalgucci.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel model)
         {
+
+
             if (ModelState.IsValid)
             {
                 using (var db = new DBServer())
                 {
                     var user = db.Members.FirstOrDefault(u => u.User_ID.Equals(model.User_ID) && u.Pwd.Equals(model.Pwd));
 
-                    if(user != null)
+                    if (user != null)
                     {
                         HttpContext.Session.SetInt32("User_Login_Key", user.User_No);
+
                         return RedirectToAction("LoginSuccess");
                     }
                 }
                 ModelState.AddModelError(string.Empty, "회원정보가 올바르지 않아");
             }
             return View(model);
-
         }
+
+
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("User_Login_key");
@@ -86,6 +93,7 @@ namespace Dalgucci.Controllers
         }
         public IActionResult LoginSuccess()
         {
+           
             return View();
         }
 
