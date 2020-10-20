@@ -29,7 +29,7 @@ namespace Dalgucci.Controllers
                 cmd.CommandText = "insert into product values (1236,'bbbb','205',1)";
                 cmd.ExecuteNonQuery();
 
-                conn.Close();
+                //conn.Close();
             }
             catch( Exception ex )
             {
