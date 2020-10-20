@@ -36,7 +36,6 @@ namespace Dalgucci.Controllers
             return View();
         }
 
-
         [HttpPost]
         public IActionResult Login(Product_Select model)
         {
