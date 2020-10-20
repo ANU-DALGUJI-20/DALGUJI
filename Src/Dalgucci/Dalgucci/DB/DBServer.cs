@@ -15,7 +15,7 @@ namespace Dalgucci.DB
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=192.168.30;Database=SF1team;User Id=sa;Password=0924;");
+            optionsBuilder.UseSqlServer("Server=192.168.0.30;Database=SF1team;User Id=sa;Password=0924;");
         }
 
 

@@ -8,7 +8,7 @@ namespace Dalgucci.ViewModel
 {
     public class LoginViewModel
     {
-       
+
         [Required]
         public string User_ID { get; set; }
         [Required]

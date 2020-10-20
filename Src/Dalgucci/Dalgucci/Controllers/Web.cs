@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Dalgucci.ViewModel;
 using Dalgucci.Models;
-using LibGit2Sharp;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
 using Dalgucci.DB;

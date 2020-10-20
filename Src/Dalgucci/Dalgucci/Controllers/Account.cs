@@ -8,7 +8,7 @@ using Dalgucci.Models;
 using System.Diagnostics.Eventing.Reader;
 using Microsoft.AspNetCore.Http;
 using Dalgucci.DB;
-using Microsoft.SqlServer.Management.Smo;
+
 using Dalgucci.ViewModel;
 
 namespace Dalgucci.Controllers
