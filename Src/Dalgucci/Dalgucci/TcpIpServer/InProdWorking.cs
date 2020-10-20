@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-
+// 확인
 namespace Dalgucci
 {
     public class InProdWorking
