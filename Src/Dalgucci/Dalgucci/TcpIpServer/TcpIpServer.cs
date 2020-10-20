@@ -23,6 +23,8 @@ namespace Dalgucci
 
         public static ManualResetEvent tcpClientConnected = new ManualResetEvent(false);
 
+
+
         public TcpIpServer()
         {
             bool bServerStart = ServStart();
