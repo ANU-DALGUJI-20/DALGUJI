@@ -12,8 +12,20 @@ namespace Dalgucci
     {
         public void ProcMessage()
         {
-            TcpClient client = TcpIpServer.GetOutClientClient();
-            Console.WriteLine("클라이언트 접속 :{0}", ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
+            TcpClient client = TcpIpServer.GetOutClient();
+
+            if (client == null)
+            {
+                client = TcpIpServer.GetInClient();
+            }
+            else
+            {
+                client = TcpIpServer.GetOutClient();
+            }
+
+            Console.WriteLine("출고 로봇 :{0}", ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
+            Console.WriteLine();
+
             NetworkStream stream = client.GetStream();
 
             int length;

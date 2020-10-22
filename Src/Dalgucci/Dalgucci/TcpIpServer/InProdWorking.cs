@@ -5,15 +5,25 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-// test
+
 namespace Dalgucci
 {
     public class InProdWorking
     {
         public void ProcMessage()
         {
-            TcpClient client = TcpIpServer.GetInClientClient();
-            Console.WriteLine("클라이언트 접속 :{0}", ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
+            TcpClient client = TcpIpServer.GetInClient();
+            if (client == null)
+            {
+                client = TcpIpServer.GetOutClient();
+            }
+            else
+            {
+                client = TcpIpServer.GetInClient();
+            }
+            Console.WriteLine("입고 로봇 :{0}", ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
+            Console.WriteLine();
+
             NetworkStream stream = client.GetStream();
 
             int length;
