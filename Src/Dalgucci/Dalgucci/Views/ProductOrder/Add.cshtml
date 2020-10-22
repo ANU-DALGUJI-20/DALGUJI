@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Dalgucci.Models.Order
+
+<div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+        <form class="form-horizontal" method="post" asp-controller="ProductOrder" asp-action="Add">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            @*<div class="form-group">
+                <label>title</label>
+                <input type="text" class="form-control" asp-for="Product_Code" />
+                <span class="text-danger" asp-validation-for="Product_Code"></span>
+            </div>*@
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">저장</button>
+               
+            </div>
+          
+        </form>
+    </div>
+</div>

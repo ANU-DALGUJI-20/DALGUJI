@@ -10,8 +10,10 @@ namespace Dalgucci.DB
     public class DBServer : DbContext
     {
         public DbSet<Member> Members { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Product> Products { get; set; }
+       
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

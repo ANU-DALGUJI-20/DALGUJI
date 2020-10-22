@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Oracle.ManagedDataAccess.Client;
 using System;
@@ -12,12 +13,12 @@ namespace Dalgucci
 
     public class Database 
     {
-        OracleConnection conn = null;
+        SqlConnection conn = null;
 
         public  Database()
         {
-            string strConn = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)));User Id=SF1team;Password=1234;";
-            conn = new OracleConnection(strConn);
+            string strConn = "Server=192.168.0.30;Database=SF1team;User Id=sa;Password=0924;";
+            conn = new SqlConnection(strConn);
             conn.Open();
         }
 
@@ -26,7 +27,7 @@ namespace Dalgucci
             try
             {
                 // 명령 객체 생성
-                OracleCommand cmd = new OracleCommand();
+                SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
 
                 cmd.CommandText = $"insert into user_table values ('{MemberID}','{Password}','{User_name}','{Tel}','{RRN}','{Address}','{Email}')";
@@ -45,12 +46,12 @@ namespace Dalgucci
             try
             {
                 // 명령 객체 생성
-                OracleCommand cmd = new OracleCommand();
+                SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
 
                 cmd.CommandText = $"select count(*) from user_table where user_id = '{MemberID}' and pwd = '{Password}'";
                 //int r = cmd.ExecuteNonQuery();
-                OracleDataReader rdr = cmd.ExecuteReader();
+                SqlDataReader rdr = cmd.ExecuteReader();
                 rdr.Read();
                 var s = rdr["COUNT(*)"];
                 int o = Convert.ToInt32(s);
@@ -69,7 +70,7 @@ namespace Dalgucci
             try
             {
                 // 명령 객체 생성
-                OracleCommand cmd = new OracleCommand();
+                SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
 
                 cmd.CommandText = $"insert into user_table values ('{MemberID}','{Password}','{User_name}','{Tel}','{RRN}','{Address}','{Email}')";
@@ -89,10 +90,10 @@ namespace Dalgucci
             //
             try
             {
-                
+
 
                 // 명령 객체 생성
-                OracleCommand cmd = new OracleCommand();
+                SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
 
                 cmd.CommandText = "insert into product values (1236,'bbbb','205',1)";

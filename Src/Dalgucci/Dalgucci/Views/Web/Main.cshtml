@@ -1,15 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-   
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
     <title>선바람</title>
     <style>
-        * {
-            font-family: "제주명조";
+      @@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+        body {
+         font-family: 'Jeju Myeongjo', serif;
         }
 
         .container {
@@ -435,16 +437,27 @@
             color: white;
         }
     </style>
-    
+
 </head>
+@using Microsoft.AspNetCore.Http;
 <body>
     <div class="container">
         <div class="my_menu">
             <ul>
-                <a href="#"><li>로그인</li></a>
-                <a href="#"><li>회원가입</li></a>
-                <a href="#"><li>장바구니</li></a>
-                <a href="#"><li>주문조회</li></a>
+                @if (Context.Session.GetInt32("User_Login_Key") == null)
+                {
+                    <a asp-area="" asp-controller="Account" asp-action="Login"><li>로그인</li></a>
+                    <a asp-area="" asp-controller="Account" asp-action="Sign_up"><li>회원가입</li></a>
+                    <a href="#"><li>장바구니</li></a>
+                    <a href="#"><li>주문조회</li></a>
+                }
+                else
+                {
+                    <a asp-area="" asp-controller="Account" asp-action="Logout"><li>로그아웃</li></a>
+                    <a href="#"><li>장바구니</li></a>
+                    <a href="#"><li>주문조회</li></a>
+                }
+
             </ul>
         </div>
         <div class="menu">
@@ -736,7 +749,13 @@
         $(".nav>ul>a>li").mouseleave(function () {
             $(this).children(".submenu").stop().slideUp();
         });
-        
+
+
+
+
+
+
+
     </script>
 </body>
 </html>

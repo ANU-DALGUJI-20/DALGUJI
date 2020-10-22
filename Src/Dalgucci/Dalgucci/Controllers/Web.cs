@@ -18,15 +18,6 @@ namespace Dalgucci.Controllers
 
         public IActionResult Main()
         {
-            ViewData["User"] = "로그인을 해줘";
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Main(string MemberID)
-        {
-            ViewData["User"] = MemberID;
-            
             return View();
         }
 
@@ -35,7 +26,10 @@ namespace Dalgucci.Controllers
         {
             return View();
         }
-
+        public IActionResult ManagerPage()
+        {
+            return View();
+        }
       
 
     }

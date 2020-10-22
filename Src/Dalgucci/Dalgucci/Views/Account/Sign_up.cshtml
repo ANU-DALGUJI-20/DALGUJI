@@ -1,85 +1,353 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@*<body>
-    <h1>회원가입</h1>
-    <form action="/Account/Register" method="post">
-        <p>아이디: <input type="text" name="MemberID" /></p>
-        <p>비밀번호: <input type="password" name="Password" /></p>
-        <p>닉네임: <input type="text" name="NickName" /></p>
-        <p>이메일: <input type="text" name="Email" /></p>
-        <input type="submit" value="가입하기" />
-    </form>
-</body>*@
+﻿@model Dalgucci.Models.Member
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <title>선바람-회원가입페이지</title>
+    <style rel="stylesheet" type="text/css">
+        @@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+        body {
+            font-family: 'Jeju Myeongjo', serif;
+        }
+
+        .wrapper {
+            width: 1520px;
+            height: 705px;
+            outline: 1px solid rgb(239,211,210);
+            margin: 0 auto;
+            position: absolute;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+            .wrapper img {
+                width: 100%;
+                height: auto;
+                filter: brightness(98%);
+            }
+
+        .background {
+            width: 1300px;
+            height: 705px;
+            background-color: white;
+            margin: 0 auto;
+            text-align: center;
+            overflow: hidden;
+            position: absolute;
+            z-index: 100;
+            margin-left: 100px;
+        }
+
+        .container {
+            width: 1300px;
+            height: 100px;
+            position: absolute;
+            z-index: 200;
+            margin-left: 100px;
+        }
+        /*상단메뉴*/
+        .my_menu {
+            width: 360px;
+            height: 30px;
+            margin-left: 940px;
+            margin-bottom: 0;
+            position: absolute;
+            z-index: 2;
+        }
+
+            .my_menu > ul {
+                height: 30px;
+                padding: 0;
+            }
+
+                .my_menu > ul > a {
+                    color: black;
+                    text-decoration: none;
+                    float: left;
+                    margin-top: -15px;
+                    font-size: 10pt;
+                }
+
+                    .my_menu > ul > a > li {
+                        list-style: none;
+                        height: 30px;
+                        width: 90px;
+                        line-height: 30px;
+                    }
+
+                        .my_menu > ul > a > li:hover {
+                            text-decoration: underline;
+                        }
+
+        /*메인메뉴*/
+        .menu {
+            width: 1300px;
+            height: 70px;
+            background-color: rgba(255,255,255,0.5);
+            box-shadow: 0px 3px 6px 1px rgba(0,0,0,0.1);
+            position: absolute;
+            margin-top: 30px;
+            z-index: 10;
+        }
+
+        .logo {
+            width: 250px;
+            height: 70px;
+            float: left;
+            margin-right: 246px;
+            text-align: center;
+            display: block;
+        }
+
+            .logo img {
+                width: auto;
+                height: 100%;
+                display: inline;
+            }
+
+        .nav {
+            width: 804px;
+            height: 70px;
+            float: left;
+            text-align: center;
+        }
+
+            .nav > ul {
+                width: 804px;
+                height: 70px;
+                list-style: none;
+                margin-top: 0px;
+                padding: 0;
+            }
+
+                .nav > ul > a {
+                    color: black;
+                    text-decoration: none;
+                    float: left;
+                    font-size: 15pt;
+                }
+
+                    .nav > ul > a > li {
+                        line-height: 70px;
+                        width: 134px;
+                    }
+
+                        .nav > ul > a > li:hover {
+                            background-color: rgba(0,0,0,0.3);
+                            color: white;
+                            height: 70px;
+                        }
+        /*메인메뉴-서브메뉴*/
+        .submenu {
+            margin: 0 auto;
+            padding: 0;
+            width: 134px;
+            height: 250px;
+            background-color: rgba(255,255,255,0.8);
+            box-shadow: 0px 3px 6px 3px rgba(0,0,0,0.16);
+            display: none;
+        }
+
+            .submenu li {
+                list-style: none;
+                text-decoration: none;
+                line-height: 50px;
+                color: black;
+                font-size: 13pt;
+            }
+
+                .submenu li:hover {
+                    color: pink;
+                    text-decoration: underline;
+                }
+
+        .info {
+            width: 850px;
+            height: 500px;
+            position: absolute;
+            z-index: 180;
+            background-color: white;
+            margin-left: 325px;
+            margin-top: 125.5px;
+            outline: 1px solid rgb(122,122,122);
+        }
+
+            .info ul {
+                width: 850px;
+                height: 500px;
+                margin: 0;
+                padding: 0;
+            }
+
+                .info ul > li {
+                    list-style: none;
+                    line-height: 62px;
+                    border-bottom: 1px solid rgb(122,122,122);
+                    font-size: 12pt;
+                }
+
+                    .info ul > li > p {
+                        width: 100px;
+                        display: inline-block;
+                        margin-left: 20px;
+                        margin-right: 70px;
+                        margin-top: 0;
+                        margin-bottom: 0;
+                    }
+
+                    .info ul > li > input {
+                        width: 520px;
+                        font-size: 12pt;
+                        border: none;
+                        border-right: 0px;
+                        border-top: 0px;
+                        border-left: 0px;
+                        border-bottom: 0px;
+                        border-radius: 0 0 0 0;
+                    }
+
+                .info ul > button {
+                    width: 200px;
+                    height: 45px;
+                    font-size: 14pt;
+                    margin-top: 15px;
+                    background-color: white;
+                    border-color: rgb(104,104,104);
+                }
+
+                .info ul > li:hover {
+                    outline: 2px solid rgb(253, 108, 158);
+                    box-shadow: 0 0 6px 3px rgba(253, 108, 158,0.3);
+                }
+
+                .info ul > button:hover {
+                    transition: 0.15s;
+                    color: white;
+                    background-color: rgb(122,122,122);
+                    border: none;
+                    box-shadow: 0 0 5px 3px rgba(0,0,0,0.2);
+                }
+    </style>
+</head>
 
 <body>
-    <h1>회원가입</h1>
-
-    <form method="post" asp-controller="Account" asp-action="Sign_up">
-        <p>아이디: <input type="text" name="MemberID" /></p>
-        <p>비밀번호: <input type="password" name="Password" /></p>
-        <p>이름: <input type="text" name="User_name" /></p>
-        <p>전화번호: <input type="text" name="Tel" /></p>
-        <p>주민등록번호: <input type="password" name="RRN" /></p>
-        <p>주소: <input type="text" name="Address" /></p>
-        <p>이메일: <input type="text" name="Email" /></p>
-        <input type="submit" value="가입하기" />
-    </form>
-
-    @model Dalgucci.Models.Member
-
-    <h1>회원가입</h1>
-    <form class="form-horizontal" method="post" asp-controller="Account" asp-action="Sign_up">
-        <div class="form-group">
-            <label>아이디</label>
-            <input type="text" class="form-control" asp-for="User_ID" placeholder="사용하실 ID를 입력하세요" />
-            <span class="text-danger" asp-validation-for="User_ID"></span>
+    <div class="wrapper">
+        <div class="container">
+            <div class="my_menu">
+                <ul>
+                    <a href="#"><li>로그인</li></a>
+                    <a href="#"><li>회원가입</li></a>
+                    <a href="#"><li>장바구니</li></a>
+                    <a href="#"><li>주문조회</li></a>
+                </ul>
+            </div>
+            <div class="menu">
+                <div class="logo">
+                    <img src="https://i.ibb.co/SV5mmV5/image.png" alt="로고">
+                </div>
+                <div class="nav">
+                    <ul>
+                        <a href="#"><li>남자한복</li></a>
+                        <a href="#"><li>여자한복</li></a>
+                        <a href="#"><li>남아한복</li></a>
+                        <a href="#"><li>여아한복</li></a>
+                        <a href="#">
+                            <li>
+                                한복소품
+                                <ul class="submenu">
+                                    <li>노리개</li>
+                                    <li>모자</li>
+                                    <li>가방</li>
+                                    <li>헤어</li>
+                                    <li>보자기</li>
+                                </ul>
+                            </li>
+                        </a>
+                        <a href="#"><li>한복대여</li></a>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label>비밀번호</label>
-            <input type="text" class="form-control" asp-for="Pwd" placeholder="사용하실 ID를 입력하세요" />
-            <span class="text-danger" asp-validation-for="Pwd"></span>
+       
+
+
+        <div class="info">
+            <form class="form-horizontal" method="post" asp-controller="Account" asp-action="Sign_up">
+
+                <ul>
+
+                    <li style="text-align:center; background-color:rgb(122,122,122); color:white; font-size:15pt;">회원정보입력</li>
+
+                    <li>
+                        <li class="form-group">
+                            <p>아이디</p>
+                            <input type="text" class="form-control" asp-for="User_ID" placeholder="사용하실 ID를 입력하세요" />
+                            <span class="text-danger" asp-validation-for="User_ID"></span>
+                        </li>
+
+                        <li class="form-group">
+                            <p>비밀번호</p>
+                            <input type="text" class="form-control" asp-for="Pwd" placeholder="사용하실 ID를 입력하세요" />
+                            <span class="text-danger" asp-validation-for="Pwd"></span>
+                        </li>
+
+                        <li class="form-group">
+                            <p>이름</p>
+                            <input type="text" class="form-control" asp-for="User_name" placeholder="사용하실 ID를 입력하세요" />
+                            <span class="text-danger" asp-validation-for="User_name"></span>
+                        </li>
+
+                        <li class="form-group">
+                            <p>전화번호</p>
+                            <input type="text" class="form-control" asp-for="Tel" placeholder="사용하실 ID를 입력하세요" />
+                            <span class="text-danger" asp-validation-for="Tel"></span>
+                        </li>
+
+                        <li class="form-group">
+                            <p>주소</p>
+                            <input type="text" class="form-control" asp-for="Address" placeholder="사용하실 ID를 입력하세요" />
+                            <span class="text-danger" asp-validation-for="Address"></span>
+                        </li>
+
+                        <li class="form-group">
+                            <p>주민등록번호</p>
+                            <input type="text" class="form-control" asp-for="RRN" placeholder="사용하실 ID를 입력하세요" />
+                            <span class="text-danger" asp-validation-for="RRN"></span>
+                        </li>
+
+
+                        <li class="form-group">
+                            <p>이메일</p>
+                            <input type="text" class="form-control" asp-for="Email" placeholder="사용하실 ID를 입력하세요" />
+                            <span class="text-danger" asp-validation-for="Email"></span>
+                        </li>
+
+
+                      
+                            <button type="button" style="margin-left:222px; margin-right:12px;">다시  입력</button>
+                           
+                            <button type="submit" class="btn btn-primary">회원가입</button>
+                      
+                    </li>
+
+
+                </ul>
+            </form>
         </div>
 
-        <div class="form-group">
-            <label>이름</label>
-            <input type="text" class="form-control" asp-for="User_name" placeholder="사용하실 ID를 입력하세요" />
-            <span class="text-danger" asp-validation-for="User_name"></span>
+        <div class="background">
         </div>
-
-        <div class="form-group">
-            <label>전화번호</label>
-            <input type="text" class="form-control" asp-for="Tel"  placeholder="사용하실 ID를 입력하세요" />
-            <span class="text-danger" asp-validation-for="Tel"></span>
-        </div>
-
-        <div class="form-group">
-            <label>주소</label>
-            <input type="text" class="form-control" asp-for="Address" placeholder="사용하실 ID를 입력하세요" />
-            <span class="text-danger" asp-validation-for="Address"></span>
-        </div>
-
-        <div class="form-group">
-            <label>주민등록번호</label>
-            <input type="text" class="form-control" asp-for="RRN" placeholder="사용하실 ID를 입력하세요" />
-            <span class="text-danger" asp-validation-for="RRN"></span>
-        </div>
-
-        <div class="form-group">
-            <label>이메일</label>
-            <input type="text" class="form-control" asp-for="Email" placeholder="사용하실 ID를 입력하세요" />
-            <span class="text-danger" asp-validation-for="Email"></span>
-        </div>
-
-        <div class="form-group">
-            
-            <button type="submit" class="btn btn-primary">회원가입</button>           
-        </div>
-    </form>
+        <img src="https://cdn.sanity.io/images/uts15r52/production/c58274d44c4a92867df5258f642cadcb068930d5-1995x1336.jpg?max-h=650&max-w=650&q=100&auto=format" alt="배경">
+    </div>
+    <script>
+        $(".nav>ul>a>li").mouseover(function () {
+            $(this).children(".submenu").stop().slideDown();
+        });
+        $(".nav>ul>a>li").mouseleave(function () {
+            $(this).children(".submenu").stop().slideUp();
+        });
+    </script>
 </body>
-
-
-
+</html>

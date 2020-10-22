@@ -75,8 +75,56 @@ namespace Dalgucci.Controllers
                     if (user != null)
                     {
                         HttpContext.Session.SetInt32("User_Login_Key", user.User_No);
+                       
+                        return RedirectToAction("LoginSuccess","Account");
+                    }
+                   
+                }
+                ModelState.AddModelError(String.Empty, "올바르지 않음");
+            }
+            return View(model);
+        }
+        public IActionResult LoginSuccess()
+        {
 
-                        return RedirectToAction("LoginSuccess");
+            return View();
+
+        }
+        public IActionResult LoginFails()
+        {
+
+            return View();
+
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("User_Login_Key");
+            return RedirectToAction("Main", "Web");
+
+        }
+        [HttpGet]
+        public IActionResult Manager_Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Manager_Login(Manager_LoginViewModel model)
+
+        {
+            if (ModelState.IsValid)
+            {
+                using (var db = new DBServer())
+                {
+                    var user = db.Managers.FirstOrDefault(u => u.Manager_ID.Equals(model.Manager_ID) &&
+                    u.Manager_Pwd.Equals(model.Manager_Pwd));
+
+                    if (user != null)
+                    {
+                        HttpContext.Session.SetInt32("User_Login_Key", user.Manager_No);
+
+                        return RedirectToAction("ManagerPage","Web");
                     }
                 }
                 ModelState.AddModelError(string.Empty, "회원정보가 올바르지 않아");
@@ -84,18 +132,14 @@ namespace Dalgucci.Controllers
             return View(model);
         }
 
+        public IActionResult ManagerLogout()
+        {
+            HttpContext.Session.Remove("Manager_Login_key");
+            return RedirectToAction("ManagerPage", "Web");
 
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Remove("User_Login_key");
-            return RedirectToAction("Main", "Web");
-         
         }
-        public IActionResult LoginSuccess()
-        {
-           
-            return View();
-        }
+
+       
 
 
         //[HttpPost]
