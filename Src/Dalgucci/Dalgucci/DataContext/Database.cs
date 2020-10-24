@@ -15,12 +15,12 @@ namespace Dalgucci
     {
         //    SqlConnection conn = null;
 
-        //    public  Database()
-        //    {
-        //        string strConn = "Server=192.168.0.3;Database=SF1team;User Id=sa;Password=0924;";
-        //        conn = new SqlConnection(strConn);
-        //        conn.Open();
-        //    }
+        public  Database()
+        {
+            string strConn = "Server=192.168.134.124;Database=SF1team;User Id=sa;Password=0924;";
+            conn = new SqlConnection(strConn);
+            conn.Open();
+        }
 
         //    public void InsertMember(string MemberID, string Password, string User_name, string Tel, string RRN, string Address, string Email)
         //    {
