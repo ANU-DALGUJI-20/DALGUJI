@@ -228,6 +228,7 @@
                     border: none;
                     box-shadow: 0 0 5px 3px rgba(0,0,0,0.2);
                 }
+           
     </style>
 </head>
 
@@ -283,50 +284,50 @@
                     <li>
                         <li class="form-group">
                             <p>아이디</p>
-                            <input type="text" class="form-control" asp-for="User_ID" placeholder="사용하실 ID를 입력하세요" />
+                            <input type="text" class="form-control" style="width: 400px;" asp-for="User_ID" placeholder="아이디를 입력해주세요" />
                             <span class="text-danger" asp-validation-for="User_ID"></span>
                         </li>
 
                         <li class="form-group">
                             <p>비밀번호</p>
-                            <input type="text" class="form-control" asp-for="Pwd" placeholder="사용하실 ID를 입력하세요" />
+                            <input type="password" class="form-control" style="width: 400px;" asp-for="Pwd" placeholder="영어,숫자를 조합하여 입력해주세요" />
                             <span class="text-danger" asp-validation-for="Pwd"></span>
                         </li>
 
                         <li class="form-group">
                             <p>이름</p>
-                            <input type="text" class="form-control" asp-for="User_name" placeholder="사용하실 ID를 입력하세요" />
+                            <input type="text" class="form-control" style="width: 400px;" asp-for="User_name" placeholder="이름을 입력해주세요" />
                             <span class="text-danger" asp-validation-for="User_name"></span>
                         </li>
 
                         <li class="form-group">
                             <p>전화번호</p>
-                            <input type="text" class="form-control" asp-for="Tel" placeholder="사용하실 ID를 입력하세요" />
+                            <input type="text" class="form-control" style="width: 400px;" asp-for="Tel" placeholder="휴대폰 번호를 입력해주세요" />
                             <span class="text-danger" asp-validation-for="Tel"></span>
                         </li>
 
                         <li class="form-group">
                             <p>주소</p>
-                            <input type="text" class="form-control" asp-for="Address" placeholder="사용하실 ID를 입력하세요" />
+                            <input type="text" class="form-control" style="width: 400px;" asp-for="Address" placeholder="주소를 입력해주세요" />
                             <span class="text-danger" asp-validation-for="Address"></span>
                         </li>
 
                         <li class="form-group">
                             <p>주민등록번호</p>
-                            <input type="text" class="form-control" asp-for="RRN" placeholder="사용하실 ID를 입력하세요" />
+                            <input type="password" class="form-control" style="width: 400px;" asp-for="RRN" placeholder="주민등록번호를 입력해주세요" />
                             <span class="text-danger" asp-validation-for="RRN"></span>
                         </li>
 
 
                         <li class="form-group">
                             <p>이메일</p>
-                            <input type="text" class="form-control" asp-for="Email" placeholder="사용하실 ID를 입력하세요" />
+                            <input type="text" class="form-control" style="width: 400px;" asp-for="Email" placeholder="Email을 입력해주세요" />
                             <span class="text-danger" asp-validation-for="Email"></span>
                         </li>
 
 
                       
-                            <button type="button" style="margin-left:222px; margin-right:12px;">다시  입력</button>
+                            <button class="erase" type="reset"  style="margin-left:222px; margin-right:12px;" >다시  입력</button>
                            
                             <button type="submit" class="btn btn-primary">회원가입</button>
                       
@@ -335,6 +336,8 @@
 
                 </ul>
             </form>
+            
+           
         </div>
 
         <div class="background">
@@ -348,6 +351,8 @@
         $(".nav>ul>a>li").mouseleave(function () {
             $(this).children(".submenu").stop().slideUp();
         });
+
+       
     </script>
 </body>
 </html>

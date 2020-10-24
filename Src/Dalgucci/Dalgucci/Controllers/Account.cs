@@ -22,7 +22,7 @@ namespace Dalgucci.Controllers
         [HttpGet]
         public IActionResult Sign_up()
         {
-           // Program.data.InsertMember(MemberID, Password, User_name, Tel, RRN, Address, Email);
+            //Program.data.InsertMember(MemberID, Password, User_name, Tel, RRN, Address, Email);
             return View();
         }
 
@@ -63,27 +63,27 @@ namespace Dalgucci.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel model)
+        public IActionResult Login(LoginViewModel models)
         {
-
+            
 
             if (ModelState.IsValid)
             {
                 using (var db = new DBServer())
                 {
-                    var user = db.Members.FirstOrDefault(u => u.User_ID.Equals(model.User_ID) && u.Pwd.Equals(model.Pwd));
+                    var user = db.Members.FirstOrDefault(u => u.User_ID.Equals(models.User_ID) && u.Pwd.Equals(models.Pwd));
 
                     if (user != null)
                     {
                         HttpContext.Session.SetInt32("User_Login_Key", user.User_No);
-                       
+
                         return RedirectToAction("LoginSuccess","Account");
                     }
                    
                 }
                 ModelState.AddModelError(String.Empty, "올바르지 않음");
             }
-            return View(model);
+            return View(models);
         }
         public IActionResult LoginSuccess()
         {
