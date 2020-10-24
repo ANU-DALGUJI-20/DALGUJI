@@ -12,11 +12,11 @@ namespace Dalgucci
     public class Program
     {
         static TcpIpServer server = null;
-        static public Database data = null;
+       // static public Database data = null;
         public static void Main(string[] args)
         {
             server = new TcpIpServer();
-            data = new Database();
+            //data = new Database();
             CreateHostBuilder(args).Build().Run();
         }
 

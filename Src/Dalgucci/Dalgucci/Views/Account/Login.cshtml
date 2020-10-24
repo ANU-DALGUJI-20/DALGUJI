@@ -1,6 +1,4 @@
 ﻿@model Dalgucci.ViewModel.LoginViewModel
-
-<!DOCTYPE html>
 <html>
 <head>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -10,17 +8,17 @@
 
         body {
             font-family: 'Jeju Myeongjo', serif;
+            margin-top:0;
         }
-
         .wrapper {
             width: 1500px;
-            height: 705px;
-            
+            height: 720px;
+            margin-left:-100px;
         }
 
         .background {
             width: 1300px;
-            height: 705px;
+            height: 720px;
             margin: 0 auto;
             text-align: center;
             overflow: hidden;
@@ -264,24 +262,24 @@
                 </div>
             </div>
         </div>
-        <form class="form-horizontal" method="post" asp-controller="Account" asp-action="Login" style="margin:0; padding:0;">
-            <div class="info">
-                <p>LOGIN</p>
-                <input type="text" asp-for="User_ID" class="form-control" placeholder="아이디 입력해">
-                <span class="text-danger" asp-validation-for="User_ID"></span>
+    <form class="form-horizontal" method="post" asp-controller="Account" asp-action="Login">
+        <div class="info">
+            <p>LOGIN</p>
+            <input type="text" asp-for="User_ID" class="form-control" placeholder="아이디 입력해">
+            <span class="text-danger" asp-validation-for="User_ID"></span>
 
-                <input type="text" asp-for="Pwd" class="form-control" placeholder="비밀번호 입력해">
-                <span class="text-danger" asp-validation-for="Pwd"></span>
+            <input type="text" asp-for="Pwd" class="form-control" placeholder="비밀번호 입력해">
+            <span class="text-danger" asp-validation-for="Pwd"></span>
 
-                <button type="submit" class="btn btn-success">로그인</button>
-                <span style="padding-left:175px;"><a href="#">아이디 찾기</a>|</span>
-                <span><a href="#">비밀번호 찾기</a>|</span>
-                <span><a href="#">회원가입</a></span>
-            </div>
-            <div class="background">
-                <img src="https://cdn.sanity.io/images/uts15r52/production/c58274d44c4a92867df5258f642cadcb068930d5-1995x1336.jpg?max-h=650&max-w=650&q=100&auto=format" alt="배경">
-            </div>
-            </form>
+            <button type="submit" class="btn btn-success">로그인</button>
+            <span style="padding-left:175px;"><a href="#">아이디 찾기</a>|</span>
+            <span><a href="#">비밀번호 찾기</a>|</span>
+            <span><a href="#">회원가입</a></span>
+        </div>
+        <div class="background">
+            <img src="https://cdn.sanity.io/images/uts15r52/production/c58274d44c4a92867df5258f642cadcb068930d5-1995x1336.jpg?max-h=650&max-w=650&q=100&auto=format" alt="배경">
+        </div>
+    </form>
     </div>
     
     <script>
