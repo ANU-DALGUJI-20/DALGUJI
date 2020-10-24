@@ -300,14 +300,14 @@
                     cursor: pointer;
                 }
 
-                    .items > ul > li:hover > img {
+                    .items > ul > li:hover > a > img {
                         filter: brightness(50%);
                         -webkit-transform: scale(1.15);
                         transform: scale(1.15);
                         transition: 0.5s;
                     }
 
-                    .items > ul > li:hover > .item_hover {
+                    .items > ul > li:hover > a > .item_hover {
                         width: 230px;
                         height: 120px;
                         position: absolute;
@@ -547,22 +547,28 @@
         <div class="items">
             <ul>
                 <li style="margin-right:26px;">
+                    <a href="#">
                     <img src="https://ifh.cc/g/lYmAfe.jpg" alt="여자한복1">
                     <div class="item_hover">
                         <span>KL101<br>매화당의</span>
                     </div>
+                    </a>
                 </li>
                 <li style="margin-right:26px;">
-                    <img src="https://ifh.cc/g/7YBj22.jpg" alt="여자한복2">
-                    <div class="item_hover">
-                        <span>KL104<br>은비당의 옥색</span>
-                    </div>
+                    <a href="#">
+                        <img src="https://ifh.cc/g/7YBj22.jpg" alt="여자한복2">
+                        <div class="item_hover">
+                            <span>KL104<br>은비당의 옥색</span>
+                        </div>
+                    </a>
                 </li>
                 <li>
-                    <img src="https://ifh.cc/g/KqyjfQ.jpg" alt="여자한복3">
-                    <div class="item_hover">
-                        <span>KL132<br>설중산호</span>
-                    </div>
+                    <a href="#">
+                        <img src="https://ifh.cc/g/KqyjfQ.jpg" alt="여자한복3">
+                        <div class="item_hover">
+                            <span>KL132<br>설중산호</span>
+                        </div>
+                    </a>
                 </li>
             </ul>
             <div class="content">
@@ -592,22 +598,28 @@
         <div class="items" style="margin-top:88px;">
             <ul>
                 <li style="margin-right:26px;">
-                    <img src="https://ifh.cc/g/Tmb3cp.jpg" alt="여아한복1">
-                    <div class="item_hover">
-                        <span>CL089<br>산호핑크</span>
-                    </div>
+                    <a href="#">
+                        <img src="https://ifh.cc/g/Tmb3cp.jpg" alt="여아한복1">
+                        <div class="item_hover">
+                            <span>CL089<br>산호핑크</span>
+                        </div>
+                    </a>
                 </li>
                 <li style="margin-right:26px;">
-                    <img src="https://ifh.cc/g/jbS2qa.jpg" alt="여아한복2">
-                    <div class="item_hover">
-                        <span>CL172<br>베리예빔</span>
-                    </div>
+                    <a href="#">
+                        <img src="https://ifh.cc/g/jbS2qa.jpg" alt="여아한복2">
+                        <div class="item_hover">
+                            <span>CL172<br>베리예빔</span>
+                        </div>
+                    </a>
                 </li>
                 <li>
-                    <img src="https://ifh.cc/g/lfgrlu.jpg" alt="여아한복3">
-                    <div class="item_hover">
-                        <span>CL142<br>민달레</span>
-                    </div>
+                    <a href="#">
+                        <img src="https://ifh.cc/g/lfgrlu.jpg" alt="여아한복3">
+                        <div class="item_hover">
+                            <span>CL142<br>민달레</span>
+                        </div>
+                    </a>
                 </li>
             </ul>
             <div class="content">
@@ -637,22 +649,28 @@
         <div class="items" style="margin-top:88px;">
             <ul>
                 <li style="margin-right:26px;">
-                    <img src="https://ifh.cc/g/fKxA3t.jpg" alt="남자한복1">
-                    <div class="item_hover">
-                        <span>KM220<br>보라쾌자</span>
-                    </div>
+                    <a href="#">
+                        <img src="https://ifh.cc/g/fKxA3t.jpg" alt="남자한복1">
+                        <div class="item_hover">
+                            <span>KM220<br>보라쾌자</span>
+                        </div>
+                    </a>
                 </li>
                 <li style="margin-right:26px;">
-                    <img src="https://ifh.cc/g/8D4NJ8.jpg" alt="남자한복2">
-                    <div class="item_hover">
-                        <span>KM101<br>다운블루쾌자</span>
-                    </div>
+                    <a href="#">
+                        <img src="https://ifh.cc/g/8D4NJ8.jpg" alt="남자한복2">
+                        <div class="item_hover">
+                            <span>KM101<br>다운블루쾌자</span>
+                        </div>
+                    </a>
                 </li>
                 <li>
-                    <img src="https://ifh.cc/g/c3ZT3W.jpg" alt="남자한복3">
-                    <div class="item_hover">
-                        <span>KM046<br>옥색쾌자</span>
-                    </div>
+                    <a href="#">
+                        <img src="https://ifh.cc/g/c3ZT3W.jpg" alt="남자한복3">
+                        <div class="item_hover">
+                            <span>KM046<br>옥색쾌자</span>
+                        </div>
+                    </a>
                 </li>
             </ul>
             <div class="content">
@@ -682,7 +700,7 @@
     <footer>
         <div class="undermenu">
             <div class="undermenu_logo">
-                <img src="C:\Users\Admin\Desktop\선바람\로고.png" alt="로고">
+                <img src="https://ifh.cc/g/BRtrlx.png" alt="로고">
             </div>
             <div class="undermenu_content">
                 <ul>
@@ -749,12 +767,6 @@
         $(".nav>ul>a>li").mouseleave(function () {
             $(this).children(".submenu").stop().slideUp();
         });
-
-
-
-
-
-
 
     </script>
 </body>
