@@ -81,7 +81,10 @@ namespace Dalgucci.Controllers
                     }
                    
                 }
-                ModelState.AddModelError(String.Empty, "올바르지 않음");
+                // return RedirectToAction("LoginFails","Account");
+                return Content("<script language='javascript' type='text/javascript'> alert('에러다.'); </script>");
+
+           
             }
             return View(models);
         }
