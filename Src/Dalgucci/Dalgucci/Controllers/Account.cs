@@ -86,8 +86,7 @@ namespace Dalgucci.Controllers
             return View(models);
         }
         public IActionResult LoginSuccess()
-        {
-
+        { 
             return View();
 
         }
