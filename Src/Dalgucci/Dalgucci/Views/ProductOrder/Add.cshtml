@@ -416,24 +416,23 @@
                             <option value="L">L</option>
                         </select>
                     </div>
-                    @model Dalgucci.Models.Order
+
                     <div class="price">
                         <span style="font-size:18pt; margin-right:252px;">총 가격</span>
                         <span style="font-size:27pt; font-weight:bold; display:none; color:rgb(159,117,0);">89,000원</span>
                     </div>
-
+                    @model Dalgucci.Models.Order
+                <form class="form-horizontal" method="post" asp-controller="ProductOrder" asp-action="Add">
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                     <div class="buy_btn">
                         <button type="button" style="margin-right:10px; background-color:rgba(168,63,63,0.5);"><a href="#">장바구니</a></button>
-						</div>
-					<div class="buy_btn">
-                        <form class="form-horizontal" method="post" asp-controller="ProductOrder" asp-action="Add">
-                            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-                            <button type="submit" style="margin-right:10px; background-color:rgba(168,63,63,0.5);">구매하기</button>
-                        </form>
-						
+                        <button type="submit">구매하기</button>
                     </div>
-                </div>
+                </form>
+                    </div>
+				
             </div>
+
             <img src="https://ifh.cc/g/CLUmUL.jpg" alt="배경">
         </div>
         <div class="contents">
@@ -487,21 +486,21 @@
         </footer>
     </div>
     <script>
-		$(".nav>ul>a>li").mouseover(function() {
-			$(this).children(".submenu").stop().slideDown();
-		});
-		$(".nav>ul>a>li").mouseleave(function() {
-			$(this).children(".submenu").stop().slideUp();
-		});
-		$('#select3').change(function() {
-			var state = $('#select3 option:selected').val();
-			if ( state == 'S' || state == 'M' || state == 'L') {
-				$('.price > span').show();
-			}
-			else {
-				$('.price > span').hide();
-			}
-		});
+        $(".nav>ul>a>li").mouseover(function () {
+            $(this).children(".submenu").stop().slideDown();
+        });
+        $(".nav>ul>a>li").mouseleave(function () {
+            $(this).children(".submenu").stop().slideUp();
+        });
+        $('#select3').change(function () {
+            var state = $('#select3 option:selected').val();
+            if (state == 'S' || state == 'M' || state == 'L') {
+                $('.price > span').show();
+            }
+            else {
+                $('.price > span').hide();
+            }
+        });
     </script>
 </body>
 </html>

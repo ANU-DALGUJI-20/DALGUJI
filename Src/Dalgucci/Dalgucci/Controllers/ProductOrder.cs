@@ -55,7 +55,7 @@ namespace Dalgucci.Controllers
                     db.Orders.Add(model);
                     if (db.SaveChanges() > 0)
                     {
-                        return Redirect("Sign_upComplete");
+                        return RedirectToAction("OrderSuccess","ProductOrder");
                     }
                 
                 
