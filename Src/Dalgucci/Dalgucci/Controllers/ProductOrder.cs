@@ -64,15 +64,13 @@ namespace Dalgucci.Controllers
         }
 
 
-        public IActionResult Edit()
+
+        public IActionResult OrderSuccess()
         {
             return View();
         }
 
-        public IActionResult Delete()
-        {
-            return View();
-        }
+      
         public IActionResult Product_Order()
         {
             return View();
