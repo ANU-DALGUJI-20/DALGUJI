@@ -1,7 +1,7 @@
 ﻿@model Dalgucci.ViewModel.LoginViewModel
 <html>
 <head>
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <title>선바람-로그인페이지</title>
     <style>
         @@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
@@ -176,7 +176,6 @@
                 display: block;
                 width: 450px;
                 height: 40px;
-                margin-bottom: 10px;
                 margin-left: auto;
                 margin-right: auto;
                 border-radius: 0 0 0 0;
@@ -190,7 +189,6 @@
                 display: block;
                 width: 464px;
                 height: 50px;
-                margin-top: 20px;
                 margin-left: auto;
                 margin-right: auto;
                 border-radius: 0 0 0 0;
@@ -222,6 +220,14 @@
                 text-decoration: underline;
                 outline: none;
             }
+
+        .text-danger{
+            font-size:10pt;
+            margin-left:70px;
+            color:red;
+            display:inline-block;
+        }
+
     </style>
 </head>
 <body>
@@ -277,7 +283,7 @@
             <span><a href="#">회원가입</a></span>
         </div>
         <div class="background">
-            <img src="https://cdn.sanity.io/images/uts15r52/production/c58274d44c4a92867df5258f642cadcb068930d5-1995x1336.jpg?max-h=650&max-w=650&q=100&auto=format" alt="배경">
+            <img src="https://www.childrensalonoutlet.com/media/catalog/product/cache/0/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/i/d/ido-girls-white-chiffon-dress-322170-f1585fe0eb8b813b1ae6730ff3ad424cfb6fe3a8.jpg" alt="배경">
         </div>
     </form>
     </div>
@@ -290,11 +296,6 @@
             $(this).children(".submenu").stop().slideUp();
         });
 
-        $.post("@Url.Action("~~~","!!!"),
-            function (result) {
-                if (result == 1) { }
-                else if (result == -1{ alert("~~"); }
-            });
     </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 ﻿@model Dalgucci.Models.Member
 <html>
 <head>
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <title>선바람-회원가입페이지</title>
     <style rel="stylesheet" type="text/css">
         @@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
@@ -228,7 +228,6 @@
                     border: none;
                     box-shadow: 0 0 5px 3px rgba(0,0,0,0.2);
                 }
-           
     </style>
 </head>
 
@@ -282,67 +281,60 @@
                     <li style="text-align:center; background-color:rgb(122,122,122); color:white; font-size:15pt;">회원정보입력</li>
 
                     <li>
-                        <li class="form-group">
-                            <p>아이디</p>
-                            <input type="text" class="form-control" style="width: 400px;" asp-for="User_ID" placeholder="아이디를 입력해주세요" />
-                            <span class="text-danger" asp-validation-for="User_ID"></span>
-                        </li>
+                    <li class="form-group">
+                        <p>아이디</p>
+                        <input type="text" class="form-control" style="width: 400px;" asp-for="User_ID" placeholder="아이디를 입력해주세요" />
+                        <span class="text-danger" asp-validation-for="User_ID"></span>
+                    </li>
 
-                        <li class="form-group">
-                            <p>비밀번호</p>
-                            <input type="password" class="form-control" style="width: 400px;" asp-for="Pwd" placeholder="영어,숫자를 조합하여 입력해주세요" />
-                            <span class="text-danger" asp-validation-for="Pwd"></span>
-                        </li>
+                    <li class="form-group">
+                        <p>비밀번호</p>
+                        <input type="password" class="form-control" style="width: 400px;" asp-for="Pwd" placeholder="영어,숫자를 조합하여 입력해주세요" />
+                        <span class="text-danger" asp-validation-for="Pwd"></span>
+                    </li>
 
-                        <li class="form-group">
-                            <p>이름</p>
-                            <input type="text" class="form-control" style="width: 400px;" asp-for="User_name" placeholder="이름을 입력해주세요" />
-                            <span class="text-danger" asp-validation-for="User_name"></span>
-                        </li>
+                    <li class="form-group">
+                        <p>이름</p>
+                        <input type="text" class="form-control" style="width: 400px;" asp-for="User_name" placeholder="이름을 입력해주세요" />
+                        <span class="text-danger" asp-validation-for="User_name"></span>
+                    </li>
 
-                        <li class="form-group">
-                            <p>전화번호</p>
-                            <input type="text" class="form-control" style="width: 400px;" asp-for="Tel" placeholder="휴대폰 번호를 입력해주세요" />
-                            <span class="text-danger" asp-validation-for="Tel"></span>
-                        </li>
+                    <li class="form-group">
+                        <p>전화번호</p>
+                        <input type="text" class="form-control" style="width: 400px;" asp-for="Tel" placeholder="휴대폰 번호를 입력해주세요" />
+                        <span class="text-danger" asp-validation-for="Tel"></span>
+                    </li>
 
-                        <li class="form-group">
-                            <p>주소</p>
-                            <input type="text" class="form-control" style="width: 400px;" asp-for="Address" placeholder="주소를 입력해주세요" />
-                            <span class="text-danger" asp-validation-for="Address"></span>
-                        </li>
+                    <li class="form-group">
+                        <p>주소</p>
+                        <input type="text" class="form-control" style="width: 400px;" asp-for="Address" placeholder="주소를 입력해주세요" />
+                        <span class="text-danger" asp-validation-for="Address"></span>
+                    </li>
 
-                        <li class="form-group">
-                            <p>주민등록번호</p>
-                            <input type="password" class="form-control" style="width: 400px;" asp-for="RRN" placeholder="주민등록번호를 입력해주세요" />
-                            <span class="text-danger" asp-validation-for="RRN"></span>
-                        </li>
-
-
-                        <li class="form-group">
-                            <p>이메일</p>
-                            <input type="text" class="form-control" style="width: 400px;" asp-for="Email" placeholder="Email을 입력해주세요" />
-                            <span class="text-danger" asp-validation-for="Email"></span>
-                        </li>
-
-
-                      
-                            <button class="erase" type="reset"  style="margin-left:222px; margin-right:12px;" >다시  입력</button>
-                           
-                            <button type="submit" class="btn btn-primary">회원가입</button>
-                      
+                    <li class="form-group">
+                        <p>주민등록번호</p>
+                        <input type="password" class="form-control" style="width: 400px;" asp-for="RRN" placeholder="주민등록번호를 입력해주세요" />
+                        <span class="text-danger" asp-validation-for="RRN"></span>
                     </li>
 
 
+                    <li class="form-group">
+                        <p>이메일</p>
+                        <input type="text" class="form-control" style="width: 400px;" asp-for="Email" placeholder="Email을 입력해주세요" />
+                        <span class="text-danger" asp-validation-for="Email"></span>
+                    </li>
+
+                    <button class="erase" type="reset" style="margin-left:222px; margin-right:12px;">다시  입력</button>
+                    <button type="submit" class="btn btn-primary">회원가입</button>
+
                 </ul>
             </form>
-            
-           
+
         </div>
 
         <div class="background">
         </div>
-        <img src="https://cdn.sanity.io/images/uts15r52/production/c58274d44c4a92867df5258f642cadcb068930d5-1995x1336.jpg?max-h=650&max-w=650&q=100&auto=format" alt="배경">
+        <img src="https://www.childrensalonoutlet.com/media/catalog/product/cache/0/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/i/d/ido-girls-white-chiffon-dress-322170-f1585fe0eb8b813b1ae6730ff3ad424cfb6fe3a8.jpg" alt="배경">
     </div>
     <script>
         $(".nav>ul>a>li").mouseover(function () {
@@ -351,8 +343,7 @@
         $(".nav>ul>a>li").mouseleave(function () {
             $(this).children(".submenu").stop().slideUp();
         });
-
-       
+  
     </script>
 </body>
 </html>
