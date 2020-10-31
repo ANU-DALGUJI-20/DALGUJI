@@ -28,19 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Order_View = new System.Windows.Forms.DataGridView();
             this.Robot_View = new System.Windows.Forms.DataGridView();
-            this.Input = new System.Windows.Forms.Button();
-            this.Output = new System.Windows.Forms.Button();
-            this.Data = new System.Windows.Forms.Button();
             this.Robot_No = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Robot_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Robot_Part = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Robot_State = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Order_No = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Product_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.User_No = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Order_Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Input = new System.Windows.Forms.Button();
+            this.Output = new System.Windows.Forms.Button();
+            this.Data = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Order_View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Robot_View)).BeginInit();
             this.SuspendLayout();
@@ -48,16 +46,11 @@
             // Order_View
             // 
             this.Order_View.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Order_View.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Order_No,
-            this.Product_Code,
-            this.User_No,
-            this.Order_Time});
             this.Order_View.Location = new System.Drawing.Point(16, 384);
             this.Order_View.Name = "Order_View";
             this.Order_View.RowHeadersWidth = 51;
             this.Order_View.RowTemplate.Height = 27;
-            this.Order_View.Size = new System.Drawing.Size(512, 320);
+            this.Order_View.Size = new System.Drawing.Size(456, 320);
             this.Order_View.TabIndex = 0;
             this.Order_View.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Order_View_CellContentClick);
             // 
@@ -73,37 +66,9 @@
             this.Robot_View.Name = "Robot_View";
             this.Robot_View.RowHeadersWidth = 51;
             this.Robot_View.RowTemplate.Height = 27;
-            this.Robot_View.Size = new System.Drawing.Size(512, 152);
+            this.Robot_View.Size = new System.Drawing.Size(456, 152);
             this.Robot_View.TabIndex = 1;
             this.Robot_View.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Robot_View_CellContentClick);
-            // 
-            // Input
-            // 
-            this.Input.Location = new System.Drawing.Point(32, 104);
-            this.Input.Name = "Input";
-            this.Input.Size = new System.Drawing.Size(75, 23);
-            this.Input.TabIndex = 2;
-            this.Input.Text = "입고";
-            this.Input.UseVisualStyleBackColor = true;
-            // 
-            // Output
-            // 
-            this.Output.Location = new System.Drawing.Point(32, 144);
-            this.Output.Name = "Output";
-            this.Output.Size = new System.Drawing.Size(75, 23);
-            this.Output.TabIndex = 3;
-            this.Output.Text = "출고";
-            this.Output.UseVisualStyleBackColor = true;
-            // 
-            // Data
-            // 
-            this.Data.Location = new System.Drawing.Point(1448, 16);
-            this.Data.Name = "Data";
-            this.Data.Size = new System.Drawing.Size(104, 32);
-            this.Data.TabIndex = 4;
-            this.Data.Text = "입출고 내역";
-            this.Data.UseVisualStyleBackColor = true;
-            this.Data.Click += new System.EventHandler(this.Data_Click);
             // 
             // Robot_No
             // 
@@ -133,33 +98,38 @@
             this.Robot_State.MinimumWidth = 6;
             this.Robot_State.Name = "Robot_State";
             // 
-            // Order_No
+            // Input
             // 
-            this.Order_No.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Order_No.HeaderText = "주문번호";
-            this.Order_No.MinimumWidth = 6;
-            this.Order_No.Name = "Order_No";
+            this.Input.Location = new System.Drawing.Point(32, 104);
+            this.Input.Name = "Input";
+            this.Input.Size = new System.Drawing.Size(75, 23);
+            this.Input.TabIndex = 2;
+            this.Input.Text = "입고";
+            this.Input.UseVisualStyleBackColor = true;
             // 
-            // Product_Code
+            // Output
             // 
-            this.Product_Code.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Product_Code.HeaderText = "제품코드";
-            this.Product_Code.MinimumWidth = 6;
-            this.Product_Code.Name = "Product_Code";
+            this.Output.Location = new System.Drawing.Point(32, 144);
+            this.Output.Name = "Output";
+            this.Output.Size = new System.Drawing.Size(75, 23);
+            this.Output.TabIndex = 3;
+            this.Output.Text = "출고";
+            this.Output.UseVisualStyleBackColor = true;
             // 
-            // User_No
+            // Data
             // 
-            this.User_No.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.User_No.HeaderText = "구매자 번호";
-            this.User_No.MinimumWidth = 6;
-            this.User_No.Name = "User_No";
+            this.Data.Location = new System.Drawing.Point(1448, 16);
+            this.Data.Name = "Data";
+            this.Data.Size = new System.Drawing.Size(104, 32);
+            this.Data.TabIndex = 4;
+            this.Data.Text = "입출고 내역";
+            this.Data.UseVisualStyleBackColor = true;
+            this.Data.Click += new System.EventHandler(this.Data_Click);
             // 
-            // Order_Time
+            // timer1
             // 
-            this.Order_Time.HeaderText = "주문시간";
-            this.Order_Time.MinimumWidth = 6;
-            this.Order_Time.Name = "Order_Time";
-            this.Order_Time.Width = 160;
+            this.timer1.Interval = 2000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -191,10 +161,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Robot_Name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Robot_Part;
         private System.Windows.Forms.DataGridViewTextBoxColumn Robot_State;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Order_No;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Product_Code;
-        private System.Windows.Forms.DataGridViewTextBoxColumn User_No;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Order_Time;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

@@ -46,19 +46,17 @@ namespace Dalgucci.Controllers
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Product_Code = "1001";
-            //model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Order_Time = DateTime.Now;
-            ViewBag.Message = "성공";
+           
             using (var db = new DBServer())
                 {
                    
                     db.Orders.Add(model);
                     if (db.SaveChanges() > 0)
                     {
-
+                    return Content("<script language='javascript' type='text/javascript'> alert('에러다.'); </script>");
+                    //return RedirectToAction("Order1","ProductOrder");
                     
-                    return RedirectToAction("Order1","ProductOrder");
-                   
                 }
                
 
@@ -75,7 +73,6 @@ namespace Dalgucci.Controllers
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Product_Code = "1002";
-            //model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Order_Time = DateTime.Now;
 
             using (var db = new DBServer())
@@ -84,7 +81,7 @@ namespace Dalgucci.Controllers
                 db.Orders.Add(model);
                 if (db.SaveChanges() > 0)
                 {
-                    ViewBag.Message = "성공";
+                    return RedirectToAction("OrderSuccess", "ProductOrder");
                 }
 
 
@@ -101,7 +98,6 @@ namespace Dalgucci.Controllers
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Product_Code = "1003";
-            //model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Order_Time = DateTime.Now;
 
             using (var db = new DBServer())
@@ -110,7 +106,7 @@ namespace Dalgucci.Controllers
                 db.Orders.Add(model);
                 if (db.SaveChanges() > 0)
                 {
-                    ViewBag.Message = "성공";
+                    return RedirectToAction("OrderSuccess", "ProductOrder");
                 }
 
 
@@ -127,7 +123,6 @@ namespace Dalgucci.Controllers
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Product_Code = "2001";
-            //model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Order_Time = DateTime.Now;
 
             using (var db = new DBServer())
@@ -136,7 +131,7 @@ namespace Dalgucci.Controllers
                 db.Orders.Add(model);
                 if (db.SaveChanges() > 0)
                 {
-                    ViewBag.Message = "성공";
+                    return RedirectToAction("OrderSuccess", "ProductOrder");
                 }
 
 
@@ -153,7 +148,6 @@ namespace Dalgucci.Controllers
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Product_Code = "2002";
-            //model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Order_Time = DateTime.Now;
 
             using (var db = new DBServer())
@@ -162,7 +156,7 @@ namespace Dalgucci.Controllers
                 db.Orders.Add(model);
                 if (db.SaveChanges() > 0)
                 {
-                    ViewBag.Message = "성공";
+                    return RedirectToAction("OrderSuccess", "ProductOrder");
                 }
 
 
@@ -179,7 +173,6 @@ namespace Dalgucci.Controllers
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Product_Code = "2003";
-            //model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Order_Time = DateTime.Now;
 
             using (var db = new DBServer())
@@ -188,7 +181,7 @@ namespace Dalgucci.Controllers
                 db.Orders.Add(model);
                 if (db.SaveChanges() > 0)
                 {
-                    ViewBag.Message = "성공";
+                    return RedirectToAction("OrderSuccess", "ProductOrder");
                 }
 
 

@@ -8,51 +8,85 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
+using MaterialSkin;
 
 
 
 
 namespace Dalgucci_ManagerPage
 {
-    public partial class Form1 : Form
+    public partial class Form1 : MaterialForm
     {
-        string strConn = "Server=192.168.0.30;Database=SF1team;User Id=sa;Password=0924;";
-        
+        string strConn = "Server=192.168.131.13;Database=SF1team;User Id=sa;Password=0924;";
+        DataTable table = new DataTable();
+        BindingSource bs = new BindingSource();
+
         public void Orders()
         {
+            // List<Donation> donationList = new List<Donation>();
+
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();
 
+            if (table != null)
+                table.Clear();
             try
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
-              
-               
-          
 
                 cmd.CommandText = "select * from Orders";
-               
+
                 SqlDataReader rdr = cmd.ExecuteReader();
+
+                if (table.Columns.Count == 0)
+                {
+                    table.Columns.Add("주문번호");
+                    table.Columns.Add("제품코드");
+                    table.Columns.Add("사용자번호");
+                    table.Columns.Add("주문시간");
+                }
 
                 while (rdr.Read())
                 {
+
                     string Order_No = rdr["Order_No"].ToString();
                     string Product_Code = rdr["Product_Code"] as string;
                     string User_No = rdr["User_No"].ToString();
-                    string Order_Time = rdr["Order_Time"].ToString();                  
+                    string Order_Time = rdr["Order_Time"].ToString();
 
                     string[] Order = new string[] { Order_No, Product_Code, User_No, Order_Time };
-                    Order_View.Rows.Add(Order);
+
+                    table.Rows.Add(Order);
                 }
+
+                Order_View.DataSource = bs;
+                bs.DataSource = table;
+                //Order_View.CurrentCell = Order_View.SelectedRows[0].Cells[0]
             }
+
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
-        }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+            }
 
+        }
+        //class Donation
+        //{
+        //    public int Order_No { get; set; }
+        //    public string Product_Code { get; set; }
+
+        //    public int User_No { get; set; }
+
+        //    public DateTime Order_Time { get; set; }
+        //}
         public void Robot()
         {
             SqlConnection conn = new SqlConnection(strConn);
@@ -94,35 +128,38 @@ namespace Dalgucci_ManagerPage
             Robot_View.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             //Order_View.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            Robot_View.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //Robot_View.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             Order_View.AllowUserToAddRows = false;
             Robot_View.AllowUserToAddRows = false;
+
+
+            //AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
         }
 
-  
+
 
         public Form1()
         {
             InitializeComponent();
+
+
         }
 
 
 
         private void Form1_Load(object sender, EventArgs e)
-       {
-
+        {
+            timer1.Start();
             Grid_Style();
             Orders();
             Robot();
-          
+
 
         }
 
         private void Order_View_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
-
         }
 
         private void Data_Click(object sender, EventArgs e)
@@ -133,8 +170,13 @@ namespace Dalgucci_ManagerPage
 
         private void Robot_View_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
-    
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            Orders();
+        }
     }
 }
+

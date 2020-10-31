@@ -65,7 +65,7 @@ namespace Dalgucci.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel models, Message_View message)
+        public IActionResult Login(LoginViewModel models )
         {
             
 
