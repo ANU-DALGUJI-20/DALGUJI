@@ -13,6 +13,8 @@ using Dalgucci.ViewModel;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.Data.SqlClient;
 using Member = Dalgucci.Models.Member;
+using Newtonsoft.Json.Converters;
+
 
 // test
 namespace Dalgucci.Controllers
@@ -63,7 +65,7 @@ namespace Dalgucci.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel models)
+        public IActionResult Login(LoginViewModel models, Message_View message)
         {
             
 
@@ -81,10 +83,10 @@ namespace Dalgucci.Controllers
                     }
                    
                 }
-                return RedirectToAction("LoginFails","Account");
-               
-
-           
+                //return RedirectToAction("LoginFails","Account");
+                //message.JavascriptToRun = "ShowError()";
+                ViewBag.Message = "실패";
+                //ViewData["message"] = "잘못되었음";
             }
             return View(models);
         }

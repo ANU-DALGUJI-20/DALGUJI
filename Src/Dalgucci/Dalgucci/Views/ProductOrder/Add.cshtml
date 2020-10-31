@@ -422,15 +422,15 @@
                         <span style="font-size:27pt; font-weight:bold; display:none; color:rgb(159,117,0);">89,000원</span>
                     </div>
                     @model Dalgucci.Models.Order
-                <form class="form-horizontal" method="post" asp-controller="ProductOrder" asp-action="Add">
-                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-                    <div class="buy_btn">
-                        <button type="button" style="margin-right:10px; background-color:rgba(168,63,63,0.5);"><a href="#">장바구니</a></button>
-                        <button type="submit">구매하기</button>
-                    </div>
-                </form>
-                    </div>
-				
+                    <form class="form-horizontal" method="post" asp-controller="ProductOrder" asp-action="Add">
+                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                        <div class="buy_btn">
+                            <button type="button" style="margin-right:10px; background-color:rgba(168,63,63,0.5);"><a href="#">장바구니</a></button>
+                            <button type="submit">구매하기</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
 
             <img src="https://ifh.cc/g/CLUmUL.jpg" alt="배경">
@@ -502,5 +502,14 @@
             }
         });
     </script>
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("구매가 완료되었습니다.");
+            };
+        </script>
+    }
 </body>
 </html>

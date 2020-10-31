@@ -1,9 +1,8 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html>
 <head>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
     <title>선바람</title>
     <style>
@@ -271,10 +270,12 @@
                 }
         /*아이템*/
         .wrap {
-            width: 100%;
+            width: 1500px;
             height: 2064px;
             background-color: rgba(244,244,244,0.7);
-            margin: 0 auto;
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: -100px;
             padding-top: 88px;
         }
 
@@ -369,7 +370,7 @@
             width: 1500px;
             height: 361px;
             margin-left: -100px;
-            border: 1px solid rgba(112,112,112);
+            border: 1px solid rgb(112,112,112);
         }
 
         .undermenu {
@@ -549,15 +550,19 @@
         <div class="items">
             <ul>
                 <li style="margin-right:26px;">
-                    <a asp-area="" asp-controller="ProductOrder" asp-action="Add">
+
+
+
+                    <a asp-area="" asp-controller="ProductOrder" asp-action="Order1">
                         <img src="https://ifh.cc/g/lYmAfe.jpg" alt="여자한복1">
                         <div class="item_hover">
                             <span>KL101<br>매화당의</span>
                         </div>
+
                     </a>
                 </li>
                 <li style="margin-right:26px;">
-                    <a href="#">
+                    <a asp-area="" asp-controller="ProductOrder" asp-action="Order2">
                         <img src="https://ifh.cc/g/7YBj22.jpg" alt="여자한복2">
                         <div class="item_hover">
                             <span>KL104<br>은비당의 옥색</span>
@@ -565,7 +570,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a asp-area="" asp-controller="ProductOrder" asp-action="Order3">
                         <img src="https://ifh.cc/g/KqyjfQ.jpg" alt="여자한복3">
                         <div class="item_hover">
                             <span>KL132<br>설중산호</span>
@@ -576,21 +581,21 @@
             <div class="content">
                 <ul>
                     <li style="margin-right:26px;">
-                        <a href>
+                        <a href="#">
                             <p>[여자한복]<br>KL101 매화당의<br></p>
-                            <span>109,000원</span>
+                            <span>89,000원</span>
                         </a>
                     </li>
                     <li style="margin-right:26px;">
-                        <a href>
+                        <a href="#">
                             <p>[여자한복]<br>KL104 은비당의 옥색<br></p>
                             <span>109,000원</span>
                         </a>
                     </li>
                     <li>
-                        <a href>
+                        <a href="#">
                             <p>[여자한복]<br>KL132 설중산호<br></p>
-                            <span>109,000원</span>
+                            <span>99,000원</span>
                         </a>
                     </li>
                 </ul>
@@ -600,7 +605,7 @@
         <div class="items" style="margin-top:88px;">
             <ul>
                 <li style="margin-right:26px;">
-                    <a href="#">
+                    <a asp-area="" asp-controller="ProductOrder" asp-action="Order4">
                         <img src="https://ifh.cc/g/Tmb3cp.jpg" alt="여아한복1">
                         <div class="item_hover">
                             <span>CL089<br>산호핑크</span>
@@ -608,7 +613,7 @@
                     </a>
                 </li>
                 <li style="margin-right:26px;">
-                    <a href="#">
+                    <a asp-area="" asp-controller="ProductOrder" asp-action="Order5">
                         <img src="https://ifh.cc/g/jbS2qa.jpg" alt="여아한복2">
                         <div class="item_hover">
                             <span>CL172<br>베리예빔</span>
@@ -616,7 +621,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a asp-area="" asp-controller="ProductOrder" asp-action="Order6">
                         <img src="https://ifh.cc/g/lfgrlu.jpg" alt="여아한복3">
                         <div class="item_hover">
                             <span>CL142<br>민달레</span>
@@ -627,19 +632,19 @@
             <div class="content">
                 <ul>
                     <li style="margin-right:26px;">
-                        <a href>
+                        <a href="#">
                             <p>[여아한복]<br>CL089 산호핑크<br></p>
-                            <span>109,000원</span>
+                            <span>99,000원</span>
                         </a>
                     </li>
                     <li style="margin-right:26px;">
-                        <a href>
+                        <a href="#">
                             <p>[여아한복]<br>CL172 베리예빔<br></p>
-                            <span>109,000원</span>
+                            <span>119,000원</span>
                         </a>
                     </li>
                     <li>
-                        <a href>
+                        <a href="#">
                             <p>[여아한복]<br>CL142 민달레<br></p>
                             <span>109,000원</span>
                         </a>
@@ -651,7 +656,7 @@
         <div class="items" style="margin-top:88px;">
             <ul>
                 <li style="margin-right:26px;">
-                    <a href="#">
+                    <a asp-area="" asp-controller="ProductOrder" asp-action="Order7">
                         <img src="https://ifh.cc/g/fKxA3t.jpg" alt="남자한복1">
                         <div class="item_hover">
                             <span>KM220<br>보라쾌자</span>
@@ -659,16 +664,16 @@
                     </a>
                 </li>
                 <li style="margin-right:26px;">
-                    <a href="#">
-                        <img src="https://ifh.cc/g/8D4NJ8.jpg" alt="남자한복2">
+                    <a asp-area="" asp-controller="ProductOrder" asp-action="Order8">
+                        <img src="https://i.ibb.co/6Ps82qd/56.png" alt="남자한복2">
                         <div class="item_hover">
                             <span>KM101<br>다운블루쾌자</span>
                         </div>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <img src="https://ifh.cc/g/c3ZT3W.jpg" alt="남자한복3">
+                    <a asp-area="" asp-controller="ProductOrder" asp-action="Order9">
+                        <img src="https://i.ibb.co/F7HxKrL/55.png" alt="남자한복3">
                         <div class="item_hover">
                             <span>KM046<br>옥색쾌자</span>
                         </div>
@@ -678,21 +683,21 @@
             <div class="content">
                 <ul>
                     <li style="margin-right:26px;">
-                        <a href>
-                            <p>[여아한복]<br>KM220 보라쾌자<br></p>
+                        <a href="#">
+                            <p>[남자한복]<br>KM220 보라쾌자<br></p>
                             <span>109,000원</span>
                         </a>
                     </li>
                     <li style="margin-right:26px;">
-                        <a href>
-                            <p>[여아한복]<br>KM101 다운블루쾌자<br></p>
+                        <a href="#">
+                            <p>[남자한복]<br>KM101 다운블루쾌자<br></p>
                             <span>109,000원</span>
                         </a>
                     </li>
                     <li>
-                        <a href>
-                            <p>[여아한복]<br>KM046 옥색쾌자<br></p>
-                            <span>109,000원</span>
+                        <a href="#">
+                            <p>[남자한복]<br>KM046 옥색쾌자<br></p>
+                            <span>119,000원</span>
                         </a>
                     </li>
                 </ul>
@@ -740,6 +745,7 @@
     </footer>
 
     <script>
+        //이미지 슬라이드
         var swiper = new Swiper('.swiper-container', {
             // 스크롤바 설정하기
             autoplay: {
@@ -763,6 +769,7 @@
             speed: 1000,
         });
 
+        //서브메뉴
         $(".nav>ul>a>li").mouseover(function () {
             $(this).children(".submenu").stop().slideDown();
         });

@@ -1,4 +1,6 @@
 ﻿@model Dalgucci.ViewModel.LoginViewModel
+
+
 <html>
 <head>
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -8,12 +10,13 @@
 
         body {
             font-family: 'Jeju Myeongjo', serif;
-            margin-top:0;
+            margin-top: 0;
         }
+
         .wrapper {
             width: 1500px;
             height: 720px;
-            margin-left:-100px;
+            margin-left: -100px;
         }
 
         .background {
@@ -221,13 +224,12 @@
                 outline: none;
             }
 
-        .text-danger{
-            font-size:10pt;
-            margin-left:70px;
-            color:red;
-            display:inline-block;
+        .text-danger {
+            font-size: 10pt;
+            margin-left: 70px;
+            color: red;
+            display: inline-block;
         }
-
     </style>
 </head>
 <body>
@@ -268,26 +270,26 @@
                 </div>
             </div>
         </div>
-    <form class="form-horizontal" method="post" asp-controller="Account" asp-action="Login">
-        <div class="info">
-            <p>LOGIN</p>
-            <input type="text" asp-for="User_ID" class="form-control" placeholder="아이디 입력해주세요">
-            <span class="text-danger" asp-validation-for="User_ID"></span>
+        <form class="form-horizontal" method="post" asp-controller="Account" asp-action="Login">
+            <div class="info">
+                <p>LOGIN</p>
+                <input type="text" asp-for="User_ID" class="form-control" placeholder="아이디 입력해주세요">
+                <span class="text-danger" asp-validation-for="User_ID"></span>
 
-            <input type="text" asp-for="Pwd" class="form-control" placeholder="비밀번호 입력해주세요">
-            <span class="text-danger" asp-validation-for="Pwd"></span>
+                <input type="text" asp-for="Pwd" class="form-control" placeholder="비밀번호 입력해주세요">
+                <span class="text-danger" asp-validation-for="Pwd"></span>
 
-            <button type="submit" class="btn btn-success">로그인</button>
-            <span style="padding-left:175px;"><a href="#">아이디 찾기</a>|</span>
-            <span><a href="#">비밀번호 찾기</a>|</span>
-            <span><a href="#">회원가입</a></span>
-        </div>
-        <div class="background">
-            <img src="https://www.childrensalonoutlet.com/media/catalog/product/cache/0/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/i/d/ido-girls-white-chiffon-dress-322170-f1585fe0eb8b813b1ae6730ff3ad424cfb6fe3a8.jpg" alt="배경">
-        </div>
-    </form>
+                <button type="submit" class="btn btn-success">로그인</button>
+                <span style="padding-left:175px;"><a href="#">아이디 찾기</a>|</span>
+                <span><a href="#">비밀번호 찾기</a>|</span>
+                <span><a href="#">회원가입</a></span>
+            </div>
+            <div class="background">
+                <img src="https://www.childrensalonoutlet.com/media/catalog/product/cache/0/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/i/d/ido-girls-white-chiffon-dress-322170-f1585fe0eb8b813b1ae6730ff3ad424cfb6fe3a8.jpg" alt="배경">
+            </div>
+        </form>
     </div>
-    
+
     <script>
         $(".nav>ul>a>li").mouseover(function () {
             $(this).children(".submenu").stop().slideDown();
@@ -296,6 +298,18 @@
             $(this).children(".submenu").stop().slideUp();
         });
 
+
+
     </script>
+    @if (ViewBag.Message != null)
+    {
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("아이디 비밀번호가 일치하지 않습니다");
+        };
+    </script>
+    }
+
+    
 </body>
 </html>
