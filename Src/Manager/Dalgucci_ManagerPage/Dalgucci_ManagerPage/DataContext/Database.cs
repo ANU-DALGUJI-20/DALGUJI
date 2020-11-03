@@ -19,7 +19,7 @@ namespace Dalgucci
 
         public Database()
         {
-            string strConn = "Server=192.168.131.13;Database=SF1team;User Id=sa;Password=0924;";
+            string strConn = "Server=192.168.0.30;Database=SF1team;User Id=sa;Password=0924;";
             conn = new SqlConnection(strConn);
             conn.Open();
         }
