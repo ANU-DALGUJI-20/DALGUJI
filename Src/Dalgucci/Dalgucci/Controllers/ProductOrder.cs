@@ -50,14 +50,14 @@ namespace Dalgucci.Controllers
            
             using (var db = new DBServer())
                 {
-                   
+                    
                     db.Orders.Add(model);
                     if (db.SaveChanges() > 0)
                     {
-                    
+                        
                     message.JavascriptToRun = "ShowError()";
                     return RedirectToAction("Order1","ProductOrder");
-
+                     
                 }
                
 

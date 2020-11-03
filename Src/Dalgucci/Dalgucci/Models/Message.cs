@@ -9,7 +9,7 @@ namespace Dalgucci.Models
     {
        
             public string JavascriptToRun { get; set; }
-        
+            
 
     }
 }
