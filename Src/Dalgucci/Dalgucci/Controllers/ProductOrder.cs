@@ -38,7 +38,7 @@ namespace Dalgucci.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Order1_Add(Order model)
+        public IActionResult Order1_Add(Order model, Message message)
         {
             if (HttpContext.Session.GetInt32("User_Login_Key") == null)
             {
@@ -54,9 +54,10 @@ namespace Dalgucci.Controllers
                     db.Orders.Add(model);
                     if (db.SaveChanges() > 0)
                     {
-                    return Content("<script language='javascript' type='text/javascript'> alert('에러다.'); </script>");
-                    //return RedirectToAction("Order1","ProductOrder");
                     
+                    message.JavascriptToRun = "ShowError()";
+                    return RedirectToAction("Order1","ProductOrder");
+
                 }
                
 
@@ -81,6 +82,7 @@ namespace Dalgucci.Controllers
                 db.Orders.Add(model);
                 if (db.SaveChanges() > 0)
                 {
+                    
                     return RedirectToAction("OrderSuccess", "ProductOrder");
                 }
 

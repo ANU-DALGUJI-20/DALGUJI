@@ -7,5 +7,9 @@ namespace Dalgucci.Models
 {
     public class Message
     {
+       
+            public string JavascriptToRun { get; set; }
+        
+
     }
 }
