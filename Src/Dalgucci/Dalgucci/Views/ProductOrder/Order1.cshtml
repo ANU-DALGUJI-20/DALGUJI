@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <title>선바람-상세페이지</title>
     <style>
         @@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
@@ -429,9 +429,9 @@
         <div class="detail_img">
             <div class="order">
                 <div class="item_name">
-                    <p>[여자한복] KM102 연살구분홍</p>
-                    <span style="margin-right:290px;">판매가</span>
-                    <span style="font-size:30pt; font-weight:bold; margin-bottom:15px;">89,000원</span>
+                    <p>[여자한복] KL101 매화당의</p>
+                    <span style="margin-right:270px;">판매가</span>
+                    <span style="font-size:30pt; font-weight:bold; margin-bottom:15px;">109,000원</span>
                 </div>
                 <div class="detail_order">
                     <div class="select1">
@@ -464,8 +464,8 @@
                     </div>
 
                     <div class="price">
-                        <span style="font-size:18pt; margin-right:252px;">총 가격</span>
-                        <span style="font-size:27pt; font-weight:bold; display:none; color:rgb(159,117,0);">89,000원</span>
+                        <span style="font-size:18pt; margin-right:232px;">총 가격</span>
+                        <span style="font-size: 27pt; font-weight: bold; display: none; color: rgb(159,117,0);">109,000원</span>
                     </div>
                     @model Dalgucci.Models.Order
                     <form class="form-horizontal" method="post" asp-controller="ProductOrder" asp-action="Order1_Add">
@@ -483,7 +483,7 @@
         </div>
         <div class="contents">
             <ul>
-                <li style="background-color:rgba(112,112,112);"><a href="#" style="color:white;">상품상세정보</a></li>
+                <li style="background-color:rgb(112,112,112);"><a href="#" style="color:white;">상품상세정보</a></li>
                 <li style="border-right-style:none;"><a href="#">사용후기</a></li>
                 <li><a href="#">상품문의</a></li>
             </ul>
@@ -548,14 +548,5 @@
             }
         });
     </script>
-
-    @if (ViewBag.Message != null)
-    {
-        <script type="text/javascript">
-            window.onload = function () {
-                alert("구매가 완료되었습니다.");
-            };
-        </script>
-    }
 </body>
 </html>
