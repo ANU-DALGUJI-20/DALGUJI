@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.Order_View = new System.Windows.Forms.DataGridView();
             this.Robot_View = new System.Windows.Forms.DataGridView();
             this.Robot_No = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,9 +40,13 @@
             this.Data = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Robot1 = new System.Windows.Forms.PictureBox();
+            this.Robot2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Order_View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Robot_View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Robot1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Robot2)).BeginInit();
             this.SuspendLayout();
             // 
             // Order_View
@@ -53,7 +56,7 @@
             this.Order_View.Name = "Order_View";
             this.Order_View.RowHeadersWidth = 51;
             this.Order_View.RowTemplate.Height = 27;
-            this.Order_View.Size = new System.Drawing.Size(456, 320);
+            this.Order_View.Size = new System.Drawing.Size(440, 320);
             this.Order_View.TabIndex = 0;
             this.Order_View.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Order_View_CellContentClick);
             // 
@@ -69,7 +72,7 @@
             this.Robot_View.Name = "Robot_View";
             this.Robot_View.RowHeadersWidth = 51;
             this.Robot_View.RowTemplate.Height = 27;
-            this.Robot_View.Size = new System.Drawing.Size(456, 152);
+            this.Robot_View.Size = new System.Drawing.Size(440, 152);
             this.Robot_View.TabIndex = 1;
             this.Robot_View.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Robot_View_CellContentClick);
             // 
@@ -118,6 +121,7 @@
             this.Output.TabIndex = 3;
             this.Output.Text = "출고";
             this.Output.UseVisualStyleBackColor = true;
+            this.Output.Click += new System.EventHandler(this.Output_Click);
             // 
             // Data
             // 
@@ -136,18 +140,46 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(512, 152);
+            this.pictureBox1.ErrorImage = null;
+            this.pictureBox1.Image = global::Dalgucci_ManagerPage.Properties.Resources.productMap1;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(496, 200);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1032, 552);
+            this.pictureBox1.Size = new System.Drawing.Size(860, 404);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // Robot1
+            // 
+            this.Robot1.Image = global::Dalgucci_ManagerPage.Properties.Resources.iconmonstr_delivery_15_2402;
+            this.Robot1.Location = new System.Drawing.Point(1256, 376);
+            this.Robot1.Name = "Robot1";
+            this.Robot1.Size = new System.Drawing.Size(45, 40);
+            this.Robot1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Robot1.TabIndex = 6;
+            this.Robot1.TabStop = false;
+            this.Robot1.Click += new System.EventHandler(this.Robot1_Click);
+            // 
+            // Robot2
+            // 
+            this.Robot2.Image = global::Dalgucci_ManagerPage.Properties.Resources.iconmonstr_delivery_15_2402;
+            this.Robot2.Location = new System.Drawing.Point(1256, 536);
+            this.Robot2.Name = "Robot2";
+            this.Robot2.Size = new System.Drawing.Size(45, 40);
+            this.Robot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.Robot2.TabIndex = 7;
+            this.Robot2.TabStop = false;
+            this.Robot2.Click += new System.EventHandler(this.Robot2_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1567, 728);
+            this.ClientSize = new System.Drawing.Size(1579, 746);
+            this.Controls.Add(this.Robot2);
+            this.Controls.Add(this.Robot1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Data);
             this.Controls.Add(this.Output);
@@ -160,7 +192,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.Order_View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Robot_View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Robot1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Robot2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -177,6 +212,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Robot_State;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox Robot1;
+        private System.Windows.Forms.PictureBox Robot2;
     }
 }
 

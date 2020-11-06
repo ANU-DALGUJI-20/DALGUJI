@@ -389,15 +389,26 @@
         }
     </style>
 </head>
+@using Microsoft.AspNetCore.Http;
+
 <body>
     <div class="wrapper">
         <div class="container">
             <div class="my_menu">
                 <ul>
-                    <a href="#"><li>로그인</li></a>
-                    <a href="#"><li>회원가입</li></a>
-                    <a href="#"><li>장바구니</li></a>
-                    <a href="#"><li>주문조회</li></a>
+                    @if (Context.Session.GetInt32("User_Login_Key") == null)
+                    {
+                        <a asp-area="" asp-controller="Account" asp-action="Login"><li>로그인</li></a>
+                        <a asp-area="" asp-controller="Account" asp-action="Sign_up"><li>회원가입</li></a>
+                        <a href="#"><li>장바구니</li></a>
+                        <a href="#"><li>주문조회</li></a>
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="Account" asp-action="Logout"><li>로그아웃</li></a>
+                        <a href="#"><li>장바구니</li></a>
+                        <a href="#"><li>주문조회</li></a>
+                    }
                 </ul>
             </div>
             <div class="menu">
@@ -468,7 +479,7 @@
                         <span style="font-size:18pt; margin-right:252px;">총 가격</span>
                         <span style="font-size:27pt; font-weight:bold; display:none; color:rgb(159,117,0);">89,000원</span>
                     </div>
-                    
+
                     <form class="form-horizontal" method="post" asp-controller="ProductOrder" asp-action="Order1_Add">
                         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                         <div class="buy_btn">
@@ -550,13 +561,13 @@
         });
     </script>
     <script type="text/javascript">
-        
+
 
         function ShowError() {
             alert("잘못되었음");
         }
     </script>
-   
+
     }
 </body>
 </html>

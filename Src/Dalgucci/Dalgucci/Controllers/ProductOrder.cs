@@ -53,13 +53,10 @@ namespace Dalgucci.Controllers
                     
                     db.Orders.Add(model);
                     if (db.SaveChanges() > 0)
-                    {
-                        
+                    {   
                     message.JavascriptToRun = "ShowError()";
-                    return RedirectToAction("Order1","ProductOrder");
-                     
+                    return RedirectToAction("Order1","ProductOrder");               
                 }
-               
 
             }
             return View();
