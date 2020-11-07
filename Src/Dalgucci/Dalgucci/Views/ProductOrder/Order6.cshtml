@@ -9,7 +9,6 @@
         * {
             font-family: 'Jeju Myeongjo', serif;
         }
-
         .wrapper {
             margin-left: -100px;
             width: 1500px;
@@ -78,7 +77,7 @@
             display: block;
         }
 
-            .logo img {
+            .logo a > img {
                 width: auto;
                 height: 100%;
                 display: inline;
@@ -251,6 +250,7 @@
                 font-size: 22pt;
                 border-style: none;
                 outline: none;
+                color: white;
                 cursor: pointer;
                 background-color: rgba(0,0,0,0.5);
             }
@@ -282,7 +282,7 @@
                     line-height: 80px;
                     list-style: none;
                     float: left;
-                    border: 1px solid rgb(110,98,89);
+                    border: 1px solid rgb(112,112,112);
                     text-align: center;
                 }
 
@@ -293,7 +293,7 @@
                     }
 
                     .contents ul > li:hover {
-                        background-color: rgb(110,98,89);
+                        background-color: rgb(112,112,112);
                     }
 
                         .contents ul > li:hover a {
@@ -388,31 +388,20 @@
         }
     </style>
 </head>
-@using Microsoft.AspNetCore.Http;
-
 <body>
     <div class="wrapper">
         <div class="container">
             <div class="my_menu">
                 <ul>
-                    @if (Context.Session.GetInt32("User_Login_Key") == null)
-                    {
-                        <a asp-area="" asp-controller="Account" asp-action="Login"><li>로그인</li></a>
-                        <a asp-area="" asp-controller="Account" asp-action="Sign_up"><li>회원가입</li></a>
-                        <a href="#"><li>장바구니</li></a>
-                        <a href="#"><li>주문조회</li></a>
-                    }
-                    else
-                    {
-                        <a asp-area="" asp-controller="Account" asp-action="Logout"><li>로그아웃</li></a>
-                        <a href="#"><li>장바구니</li></a>
-                        <a href="#"><li>주문조회</li></a>
-                    }
+                    <a href="#"><li>로그인</li></a>
+                    <a href="#"><li>회원가입</li></a>
+                    <a href="#"><li>장바구니</li></a>
+                    <a href="#"><li>주문조회</li></a>
                 </ul>
             </div>
             <div class="menu">
                 <div class="logo">
-                    <img src="https://i.ibb.co/SV5mmV5/image.png" alt="로고">
+                    <a href="/Web/Main"><img src="https://ifh.cc/g/vjMHmu.png" alt="로고"></a>
                 </div>
                 <div class="nav">
                     <ul>
@@ -440,9 +429,9 @@
         <div class="detail_img">
             <div class="order">
                 <div class="item_name">
-                    <p>[여자한복] KM102 연살구분홍</p>
-                    <span style="margin-right:290px;">판매가</span>
-                    <span style="font-size:30pt; font-weight:bold; margin-bottom:15px;">89,000원</span>
+                    <p>[여아한복] CL142 민달레</p>
+                    <span style="margin-right:270px;">판매가</span>
+                    <span style="font-size:30pt; font-weight:bold; margin-bottom:15px;">109,000원</span>
                 </div>
                 <div class="detail_order">
                     <div class="select1">
@@ -475,14 +464,14 @@
                     </div>
 
                     <div class="price">
-                        <span style="font-size:18pt; margin-right:252px;">총 가격</span>
-                        <span style="font-size:27pt; font-weight:bold; display:none; color:rgb(159,117,0);">89,000원</span>
+                        <span style="font-size:18pt; margin-right:232px;">총 가격</span>
+                        <span style="font-size:27pt; font-weight:bold; display:none; color:rgb(159,117,0);">109,000원</span>
                     </div>
                     @model Dalgucci.Models.Order
                     <form class="form-horizontal" method="post" asp-controller="ProductOrder" asp-action="Order6_Add">
                         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                         <div class="buy_btn">
-                            <button type="button" style="margin-right: 10px; background-color: rgb(110,98,89);"><a href="#">장바구니</a></button>
+                            <button type="button" style="margin-right:10px; background-color: rgba(168,63,63,0.5);"><a href="#">장바구니</a></button>
                             <button type="submit">구매하기</button>
                         </div>
                     </form>
@@ -490,22 +479,22 @@
 
             </div>
 
-            <img src="https://i.ibb.co/zVY2cvT/background.jpg" alt="배경">
+            <img src="https://ifh.cc/g/4h0h4e.jpg" alt="배경">
         </div>
         <div class="contents">
             <ul>
-                <li style="background-color:rgba(0,0,0,0.5);"><a href="#" style="color:white;">상품상세정보</a></li>
-                <li><a href="#">사용후기</a></li>
+                <li style="background-color:rgba(112,112,112);"><a href="#" style="color:white;">상품상세정보</a></li>
+                <li style="border-right-style:none;"><a href="#">사용후기</a></li>
                 <li><a href="#">상품문의</a></li>
             </ul>
         </div>
         <div class="imgs">
-            <img src="https://i.ibb.co/wh2Hgmr/image.png" alt="상세페이지">
+            <img src="https://ifh.cc/g/NyNt5h.jpg" alt="상세페이지">
         </div>
         <footer>
             <div class="undermenu">
                 <div class="undermenu_logo">
-                    <img src="C:\Users\Admin\Desktop\선바람\로고.png" alt="로고">
+                    <img src="https://ifh.cc/g/vjMHmu.png" alt="로고">
                 </div>
                 <div class="undermenu_content">
                     <ul>
