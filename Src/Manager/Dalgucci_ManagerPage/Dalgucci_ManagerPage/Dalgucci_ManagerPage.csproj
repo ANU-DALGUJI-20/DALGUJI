@@ -73,7 +73,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TcpIpServer.cs" />
+    <Compile Include="TcpIpServer\TcpIpServer.cs" />
+    <Compile Include="TcpIpServer\TcpIpServer.Man.cs" />
+    <Compile Include="TcpIpServer\TcpIpServer.Woman.cs" />
     <EmbeddedResource Include="formMain.resx">
       <DependentUpon>formMain.cs</DependentUpon>
     </EmbeddedResource>
