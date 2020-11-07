@@ -46,7 +46,7 @@ namespace Dalgucci_ManagerPage
             byte[] bytes = new byte[256];
             string cmd_in_order = "IN_ORDER";
 
-            if (stream.CanRead != true)
+            if (stream.DataAvailable != true)
                 return;
 
             while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
@@ -111,6 +111,7 @@ namespace Dalgucci_ManagerPage
 
                 Woman_InOrder(stream);
             }
+
             stream.Close();
             client.Close();
         }
