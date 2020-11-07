@@ -19,21 +19,21 @@ namespace Dalgucci_ManagerPage
             if (nOrderCnt > 0)
             {
                 string strProductCode = Program.data.SqlOrderResult();
-                if (strProductCode == "1001")
+                if (strProductCode == "2001")
                 {
-                    string out_prod_pos = "WSTG01";
+                    string out_prod_pos = "MSTG01";
                     SendCmdProdOut(ref stream, cmd__out_order, out_prod_pos);
                     Program.data.SqlDeleteResult();
                 }
-                else if (strProductCode == "1002")
+                else if (strProductCode == "2002")
                 {
-                    string out_prod_pos = "WSTG02";
+                    string out_prod_pos = "MSTG02";
                     SendCmdProdOut(ref stream, cmd__out_order, out_prod_pos);
                     Program.data.SqlDeleteResult();
                 }
-                else if (strProductCode == "1003")
+                else if (strProductCode == "2003")
                 {
-                    string out_prod_pos = "WSTG03";
+                    string out_prod_pos = "MSTG03";
                     SendCmdProdOut(ref stream, cmd__out_order, out_prod_pos);
                     Program.data.SqlDeleteResult();
                 }
@@ -60,41 +60,21 @@ namespace Dalgucci_ManagerPage
                     Console.WriteLine("작업 완료");
                 }
 
-                if (data.Contains("1001"))
+                if (data.Contains("2001"))
                 {
-                    string in_prod_pos = "WSTG01";
+                    string in_prod_pos = "MSTG01";
                     SendCmdProdOut(ref stream, cmd_in_order, in_prod_pos);
                 }
-                else if (data.Contains("1002"))
+                else if (data.Contains("2002"))
                 {
-                    string in_prod_pos = "WSTG02";
+                    string in_prod_pos = "MSTG02";
                     SendCmdProdOut(ref stream, cmd_in_order, in_prod_pos);
                 }
-                else if (data.Contains("1003"))
+                else if (data.Contains("2003"))
                 {
-                    string in_prod_pos = "WSTG03";
+                    string in_prod_pos = "MSTG03";
                     SendCmdProdOut(ref stream, cmd_in_order, in_prod_pos);
                 }
-                // string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "POS" }, StringSplitOptions.RemoveEmptyEntries);
-
-                //for (int i = 0; i < sRcvMessage.Length; i++)
-                //{
-                //    Console.WriteLine(String.Format("수신 : {0}", sRcvMessage[i]));
-                //}
-
-                // 출고 시나리오 시작 검사
-                //if (구매내역테이블.신규구매요청() > 0)
-                //{
-                //    제품정보 = 구매내역테이블.신규구매요청(0);
-                //    string out_prod_pos = "WSTG01"; // 제품정보.창고에 제품이 있는 위치 정보;
-                //    string out_order = "OUT_ORDER";
-                //    SendCmdProdOut(ref stream, out_order, out_prod_pos);
-                //    string ack_code = wait_robot_ack_code();
-                //}
-
-
-                // 입고 시나리오 시작 검사
-
             }
         }
 

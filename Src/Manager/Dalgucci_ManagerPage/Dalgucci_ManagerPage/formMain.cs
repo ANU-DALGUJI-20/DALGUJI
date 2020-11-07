@@ -428,6 +428,7 @@ namespace Dalgucci_ManagerPage
         {
             Order_View.DataSource = Program.data.Orders();
 
+            Robot_View.Rows.Clear();
             List<string[]> robot_list = Program.data.Robot();
             foreach (var item in robot_list)
             {
