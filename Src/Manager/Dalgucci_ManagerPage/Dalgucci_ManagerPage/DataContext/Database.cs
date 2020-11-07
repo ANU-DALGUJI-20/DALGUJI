@@ -46,7 +46,6 @@ namespace Dalgucci
                         string cnt = rdr["count"].ToString();
                         OrderCnt = Convert.ToInt32(cnt);
                     }
-
                     rdr.Close();
                 }
                 catch (Exception ex)

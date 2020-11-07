@@ -19,9 +19,6 @@ namespace Dalgucci.DB
         {
             optionsBuilder.UseSqlServer("Server=127.0.0.1;Database=SF1team;User Id=sa;Password=1234;");
         }
-
-
-
     }
 
 }
