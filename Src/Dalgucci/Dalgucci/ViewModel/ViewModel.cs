@@ -38,9 +38,5 @@ namespace Dalgucci.ViewModel
     }
 
 
-    public class Message_View
-    {
-        public string JavascriptToRun { get; set; }
-    }
-
+ 
 }

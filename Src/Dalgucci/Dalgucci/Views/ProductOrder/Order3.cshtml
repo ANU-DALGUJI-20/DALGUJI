@@ -388,15 +388,26 @@
         }
     </style>
 </head>
+@using Microsoft.AspNetCore.Http;
+
 <body>
     <div class="wrapper">
         <div class="container">
             <div class="my_menu">
                 <ul>
-                    <a href="#"><li>로그인</li></a>
-                    <a href="#"><li>회원가입</li></a>
-                    <a href="#"><li>장바구니</li></a>
-                    <a href="#"><li>주문조회</li></a>
+                    @if (Context.Session.GetInt32("User_Login_Key") == null)
+                    {
+                        <a asp-area="" asp-controller="Account" asp-action="Login"><li>로그인</li></a>
+                        <a asp-area="" asp-controller="Account" asp-action="Sign_up"><li>회원가입</li></a>
+                        <a href="#"><li>장바구니</li></a>
+                        <a href="#"><li>주문조회</li></a>
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="Account" asp-action="Logout"><li>로그아웃</li></a>
+                        <a href="#"><li>장바구니</li></a>
+                        <a href="#"><li>주문조회</li></a>
+                    }
                 </ul>
             </div>
             <div class="menu">

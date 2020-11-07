@@ -1,9 +1,6 @@
-﻿
-
-
-
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
@@ -19,36 +16,66 @@ namespace Dalgucci
 
         public Database()
         {
-            string strConn = "Server=192.168.0.30;Database=SF1team;User Id=sa;Password=0924;";
+            string strConn = "Server=127.0.0.1;Database=SF1team;User Id=sa;Password=1234;";
             conn = new SqlConnection(strConn);
             conn.Open();
         }
 
-        public void Order_View()
+        public int OrdersCountResult()
         {
+            int OrderCnt = 0;
+
             try
-            {
+			{
                 SqlCommand cmd = new SqlCommand();
-                cmd.Connection = conn;
-                cmd.CommandText = "select * from Orders";
+
+                cmd.CommandText = "select count(*) from Orders;";
                 SqlDataReader rdr = cmd.ExecuteReader();
 
                 while (rdr.Read())
                 {
-                    string Order_No = rdr["Order_No"].ToString();
-                    string Product_Code = rdr["Product_Code"] as string;
-                    string User_No = rdr["User_No"].ToString();
-                    string Order_Time = rdr["Order_Time"].ToString();
-
-                    string[] Order = new string[] { Order_No, Product_Code, User_No, Order_Time };
-
+                    OrderCnt = Convert.ToInt32(rdr["count(*)"].ToString());
                 }
 
+                return OrderCnt;
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+			catch (Exception)
+			{
+                return OrderCnt;
             }
+        }
+
+
+        public string SqlOrderResult()
+        {
+            string result = null;
+
+			try
+			{
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandText = "select Product_Code from Orders where Order_No = (select min(Order_No) from Orders);";
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    result = rdr["Product_Code"].ToString();
+                }
+
+                return result;
+            }
+			catch (Exception)
+			{
+                return result;
+			}
+        }
+
+        public void SqlDeleteResult()
+        {
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "delete from Orders where Order_No = (select min(Order_No) from Orders);";
+            cmd.ExecuteNonQuery();
         }
 
 
@@ -114,28 +141,87 @@ namespace Dalgucci
             }
 
         }
-        public void update()
+
+        public DataTable Orders()
         {
-            // 오라클 연결
-            //
+            DataTable table = new DataTable();
+
+            if (table != null)
+                table.Clear();
+
             try
             {
-
-
-                // 명령 객체 생성
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
 
-                cmd.CommandText = "insert into product values (1236,'bbbb','205',1)";
-                cmd.ExecuteNonQuery();
+                cmd.CommandText = "select * from Orders";
 
-                //conn.Close();
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                if (table.Columns.Count == 0)
+                {
+                    table.Columns.Add("주문번호");
+                    table.Columns.Add("제품코드");
+                    table.Columns.Add("사용자번호");
+                    table.Columns.Add("주문시간");
+                }
+
+                while (rdr.Read())
+                {
+
+                    string Order_No = rdr["Order_No"].ToString();
+                    string Product_Code = rdr["Product_Code"] as string;
+                    string User_No = rdr["User_No"].ToString();
+                    string Order_Time = rdr["Order_Time"].ToString();
+
+                    string[] Order = new string[] { Order_No, Product_Code, User_No, Order_Time };
+
+                    table.Rows.Add(Order);
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+            }
+
+            return table;
+        }
+
+        public List<string[]> Robot()
+        {
+            List<string[]> list = new List<string[]>();
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "select Robot_No, Robot_Name, Robot_Part, Robot_State from Robot_i";
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    string Robot_No = rdr["Robot_No"].ToString();
+                    string Robot_Code = rdr["Robot_Name"] as string;
+                    string Robot_Part = rdr["Robot_Part"] as string;
+                    string Robot_State = rdr["Robot_State"] as string;
+
+                    string[] Robot = new string[] { Robot_No, Robot_Code, Robot_Part, Robot_State };
+                    list.Add(Robot);
+                }
             }
             catch (Exception ex)
             {
-                int ttt = 0;
+                Console.WriteLine(ex.Message);
             }
 
+            return list;
         }
     }
 }

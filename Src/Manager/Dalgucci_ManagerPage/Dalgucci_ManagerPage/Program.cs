@@ -18,9 +18,11 @@ namespace Dalgucci_ManagerPage
         static void Main()
         {
             data = new Database();
+            TcpIpServer server = new TcpIpServer();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new frmMain());
         }
     }
 }

@@ -51,10 +51,11 @@ namespace Dalgucci.Models
         [Required]
         public string Manager_Email { get; set; }
     }
-   
-   
-  
-   
+
+
+
+
+
 
 
 }
