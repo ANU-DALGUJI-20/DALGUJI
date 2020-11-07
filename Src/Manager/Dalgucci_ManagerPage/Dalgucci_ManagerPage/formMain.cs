@@ -16,7 +16,7 @@ namespace Dalgucci_ManagerPage
 {
     public partial class frmMain : MaterialForm
     {
-        string strConn = "Server=192.168.0.30;Database=SF1team;User Id=sa;Password=0924;";
+        string strConn = "Server=127.0.0.1;Database=SF1team;User Id=sa;Password=0924;";
         DataTable table = new DataTable();
         BindingSource bs = new BindingSource();
 
@@ -117,7 +117,7 @@ namespace Dalgucci_ManagerPage
             Order_View.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             Robot_View.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-            //Order_View.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Order_View.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             //Robot_View.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             Order_View.AllowUserToAddRows = false;
@@ -499,6 +499,14 @@ namespace Dalgucci_ManagerPage
             Grid_Style();
             Orders();
             Robot();
+
+
+       
+          
+
+
+
+          
         }
 
         private void Order_View_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -529,17 +537,98 @@ namespace Dalgucci_ManagerPage
 
         private void Output_Click(object sender, EventArgs e)
         {
-            WMS03();
-            WMS02();
-            Robot1_Up();
-            Robot1_Back();
-            WMS01();
+            //string text = test.Text;
+            int po = Convert.ToInt32(test.Text);
             
+            //1001
+
+
+            if (po == 0)
+            WMS03();
+            else if(po == 1)
+            WMS02();
+            else if(po == 2)
+            WMS01();
+            else if(po == 3)
+            Robot1_Up();
+            else if(po == 4)
+            Robot1_Back();
+            else if(po ==5)
             Robot1_OUTPlace();
+            else if(po == 6)
             WMS01_Back();
+            else if(po==7)
             WMS02_Back();
+            else if(po == 8)
             WMS03_Back();
+            else if (po == 9)
             Robot1_INPlace();
+
+
+            //// 1002
+            //WMS03();
+            //WMS02();
+            //Robot1_Up();
+            //Robot1_Back();
+            //WMS01();
+
+            //Robot1_OUTPlace();
+            //WMS01_Back();
+            //WMS02_Back();
+            //WMS03_Back();
+            //Robot1_INPlace();
+
+            //// 1003
+            //WMS03();
+            //Robot1_Up();
+            //Robot1_Back();
+            //WMS02();
+            //WMS01();
+            //Robot1_OUTPlace();
+            //WMS01_Back();
+            //WMS02_Back();
+            //WMS03_Back();
+            //Robot1_INPlace();
+
+            //// 2001
+            //MMS03();
+            //MMS02();
+            //MMS01();
+            //Robot2_Down();
+            //Robot2_Back();
+
+            //Robot2_OUTPlace();
+            //MMS01_Back();
+            //MMS02_Back();
+            //MMS03_Back();
+            //Robot2_INPlace();
+
+            //// 2002
+            //MMS03();
+            //MMS02();
+            //Robot2_Down();
+            //Robot2_Back();
+            //MMS01();
+
+            //Robot2_OUTPlace();
+            //MMS01_Back();
+            //MMS02_Back();
+            //MMS03_Back();
+            //Robot2_INPlace();
+
+            //// 2003
+            //MMS03();
+            //Robot2_Down();
+            //Robot2_Back();
+            //MMS02();
+            //MMS01();
+
+            //Robot2_OUTPlace();
+            //MMS01_Back();
+            //MMS02_Back();
+            //MMS03_Back();
+            //Robot2_INPlace();
+
 
 
 
@@ -551,6 +640,17 @@ namespace Dalgucci_ManagerPage
         }
 
         private void Robot2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CCTV_Click(object sender, EventArgs e)
+        {
+            formRobotCom Form = new formRobotCom();
+            Form.Show();
+        }
+
+        private void test_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -13,96 +13,156 @@ namespace Dalgucci_ManagerPage
 {
     public partial class frmInOutHistory : Form
     {
-        string strConn = "Server=192.168.0.30;Database=SF1team;User Id=sa;Password=0924;";
+        string strConn = "Server=127.0.0.1;Database=SF1team;User Id=sa;Password=0924;";
+
+        public void In()
+        {
+            DataTable table = new DataTable();
+            BindingSource bs = new BindingSource();
+
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+
+           
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+
+                cmd.CommandText = "select * from Input_Log";
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                if (table.Columns.Count == 0)
+                {
+                    table.Columns.Add("입고번호");
+                    table.Columns.Add("제품코드");
+                    table.Columns.Add("제품위치");
+                    table.Columns.Add("입고시간");
+                }
+
+                while (rdr.Read())
+                {
+
+                    string InProduct_No = rdr["InProduct_No"].ToString();
+                    string Product_Code = rdr["Product_Code"] as string;
+                    string Product_Place = rdr["Product_Place"].ToString();
+                    string In_Time = rdr["In_Time"].ToString();
+
+                    string[] Input_Log = new string[] { InProduct_No, Product_Code, Product_Place, In_Time };
+
+                    table.Rows.Add(Input_Log);
+                }
+
+                In_Log.DataSource = bs;
+                bs.DataSource = table;
+                
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        
+
+        }
+
+        public void Out()
+        {
+            DataTable table = new DataTable();
+            BindingSource bs = new BindingSource();
+
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+
+                cmd.CommandText = "select * from Output_Log";
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                if (table.Columns.Count == 0)
+                {
+                    table.Columns.Add("출고번호");
+                    table.Columns.Add("제품코드");
+                    table.Columns.Add("제품위치");
+                    table.Columns.Add("출고시간");
+                }
+
+                while (rdr.Read())
+                {
+
+                    string OutProduct_No = rdr["OutProduct_No"].ToString();
+                    string Product_Code = rdr["Product_Code"] as string;
+                    string Product_Place = rdr["Product_Place"].ToString();
+                    string Out_Time = rdr["Out_Time"].ToString();
+
+                    string[] Output_Log = new string[] { OutProduct_No, Product_Code, Product_Place, Out_Time };
+
+                    table.Rows.Add(Output_Log);
+                }
+
+                In_Log.DataSource = bs;
+                bs.DataSource = table;
+
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+
+        }
+        public void Grid_Style()
+        {
+            In_Log.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            Out_Log.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            In_Log.RowHeadersVisible = false;
+            Out_Log.RowHeadersVisible = false;
+
+            In_Log.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Out_Log.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            In_Log.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Out_Log.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            In_Log.AllowUserToAddRows = false;
+            Out_Log.AllowUserToAddRows = false;
+
+
+            //AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+        }
         public frmInOutHistory()
         {
             InitializeComponent();
         }
-        public void Input_Log()
-        {
-            SqlConnection conn = new SqlConnection(strConn);
-            conn.Open();
-
-            try
-            {
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = conn;
-                cmd.CommandText = "select * from Input_Log";
-                SqlDataReader rdr = cmd.ExecuteReader();
-
-                while (rdr.Read())
-                {
-                    string Input_No = rdr["Input_No"].ToString();
-                    string Product_Code = rdr["Product_Code"] as string;
-                    string In_Time = rdr["In_Time"].ToString();
-                   
-
-                    string[] Input_Log = new string[] { Input_No, Product_Code, In_Time };
-                    dataGridView1.Rows.Add(Input_Log);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-        }
-        public void Output_Log()
-        {
-            SqlConnection conn = new SqlConnection(strConn);
-            conn.Open();
-
-            try
-            {
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = conn;
-                cmd.CommandText = "select * from Output_Log";
-                SqlDataReader rdr = cmd.ExecuteReader();
-
-                while (rdr.Read())
-                {
-                    string Output_No = rdr["Output_No"].ToString();
-                    string Product_Code = rdr["Product_Code"] as string;
-                    string Out_Time = rdr["Out_Time"].ToString();
-                    
-
-                    string[] Output_Log = new string[] { Output_No, Product_Code, Out_Time };
-                    dataGridView2.Rows.Add(Output_Log);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
 
 
-        }
+        
+
+     
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            //맨 앞 열 삭제
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView2.RowHeadersVisible = false;
-            // 그리드뷰 컬럼폭 채우기
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            // 데이터 그리드 뷰 가득 채우기
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //마지막행 삭제
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView2.AllowUserToAddRows = false;
+            Grid_Style();
+            In();
+            Out();
         }
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void In_Log_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Out_Log_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

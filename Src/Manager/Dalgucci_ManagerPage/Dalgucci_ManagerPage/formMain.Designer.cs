@@ -42,6 +42,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Robot1 = new System.Windows.Forms.PictureBox();
             this.Robot2 = new System.Windows.Forms.PictureBox();
+            this.CCTV = new System.Windows.Forms.Button();
+            this.test = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Order_View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Robot_View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -173,11 +175,32 @@
             this.Robot2.TabStop = false;
             this.Robot2.Click += new System.EventHandler(this.Robot2_Click);
             // 
+            // CCTV
+            // 
+            this.CCTV.Location = new System.Drawing.Point(136, 104);
+            this.CCTV.Name = "CCTV";
+            this.CCTV.Size = new System.Drawing.Size(75, 23);
+            this.CCTV.TabIndex = 8;
+            this.CCTV.Text = "로봇";
+            this.CCTV.UseVisualStyleBackColor = true;
+            this.CCTV.Click += new System.EventHandler(this.CCTV_Click);
+            // 
+            // test
+            // 
+            this.test.AcceptsReturn = true;
+            this.test.Location = new System.Drawing.Point(136, 144);
+            this.test.Name = "test";
+            this.test.Size = new System.Drawing.Size(100, 25);
+            this.test.TabIndex = 9;
+            this.test.TextChanged += new System.EventHandler(this.test_TextChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1579, 746);
+            this.Controls.Add(this.test);
+            this.Controls.Add(this.CCTV);
             this.Controls.Add(this.Robot2);
             this.Controls.Add(this.Robot1);
             this.Controls.Add(this.pictureBox1);
@@ -214,6 +237,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox Robot1;
         private System.Windows.Forms.PictureBox Robot2;
+        private System.Windows.Forms.Button CCTV;
+        private System.Windows.Forms.TextBox test;
     }
 }
 

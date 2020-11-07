@@ -15,7 +15,7 @@ namespace Dalgucci
 {
     public class TcpIpServer
     {
-        static string dbStr = "Server=192.168.0.19;Database=SF1team;User Id=sa;Password=0924;";
+        static string dbStr = "Server=127.0.0.1;Database=SF1team;User Id=sa;Password=0924;";
 
         static TcpListener server = null;
 

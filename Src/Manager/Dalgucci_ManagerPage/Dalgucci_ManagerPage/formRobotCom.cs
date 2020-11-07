@@ -16,5 +16,10 @@ namespace Dalgucci_ManagerPage
         {
             InitializeComponent();
         }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
