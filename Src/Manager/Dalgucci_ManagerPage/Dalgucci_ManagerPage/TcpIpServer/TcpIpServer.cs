@@ -14,12 +14,12 @@ namespace Dalgucci_ManagerPage
     {
         static TcpListener server = null;
 
-        static Thread WomanProdThread = new Thread(new ThreadStart(RobotComProc_Woman));    // 여자 송수신 스레드
-        static Thread ManProdThread = new Thread(new ThreadStart(RobotComProc_Man));      // 남자 송수신 스레드
+        static Thread WomanProdThread = new Thread(new ThreadStart(RobotComProc_Woman));    // 여자 한복 송수신 스레드
+        static Thread ManProdThread = new Thread(new ThreadStart(RobotComProc_Man));        // 남자 한복 송수신 스레드
         Thread connThread = new Thread(new ThreadStart(ConnectProc));  // 연결 처리 스레드
 
         public static TcpClient woman_client;  // 여자 한복 로봇
-        public static TcpClient man_client; // 남자 한복 로봇
+        public static TcpClient man_client;    // 남자 한복 로봇
 
         public static ManualResetEvent tcpClientConnected = new ManualResetEvent(false);
 
