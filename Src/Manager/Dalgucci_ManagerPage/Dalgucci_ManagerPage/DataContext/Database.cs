@@ -57,7 +57,7 @@ namespace Dalgucci
             }
         }
 
-        public string SqlOrderResult()
+        public string OrderSelectResult()
         {
             lock (lockObject)
             {
@@ -92,7 +92,7 @@ namespace Dalgucci
             }
         }
 
-        public void SqlDeleteResult()
+        public void RowDelete()
         {
 			try
             {
