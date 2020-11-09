@@ -18,24 +18,24 @@ namespace Dalgucci_ManagerPage
             int nOrderCnt = Program.data.OrdersCountResult();
             if (nOrderCnt > 0)
             {
-                string strProductCode = Program.data.SqlOrderResult();
+                string strProductCode = Program.data.OrderSelectResult();
                 if (strProductCode == "2001")
                 {
                     string out_prod_pos = "MSTG01";
                     SendCmdProdOut(ref stream, cmd__out_order, out_prod_pos);
-                    Program.data.SqlDeleteResult();
+                    Program.data.RowDelete();
                 }
                 else if (strProductCode == "2002")
                 {
                     string out_prod_pos = "MSTG02";
                     SendCmdProdOut(ref stream, cmd__out_order, out_prod_pos);
-                    Program.data.SqlDeleteResult();
+                    Program.data.RowDelete();
                 }
                 else if (strProductCode == "2003")
                 {
                     string out_prod_pos = "MSTG03";
                     SendCmdProdOut(ref stream, cmd__out_order, out_prod_pos);
-                    Program.data.SqlDeleteResult();
+                    Program.data.RowDelete();
                 }
             }
         }

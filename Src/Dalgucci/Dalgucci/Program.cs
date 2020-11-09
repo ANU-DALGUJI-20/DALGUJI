@@ -11,11 +11,9 @@ namespace Dalgucci
 {
     public class Program
     {
-        static TcpIpServer server = null;
 
         public static void Main(string[] args)
         {
-            server = new TcpIpServer();
             //data = new Database();
 
             CreateHostBuilder(args).Build().Run();

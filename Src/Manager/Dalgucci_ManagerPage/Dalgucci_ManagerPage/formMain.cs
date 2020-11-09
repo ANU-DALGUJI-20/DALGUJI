@@ -16,6 +16,7 @@ namespace Dalgucci_ManagerPage
 {
     public partial class frmMain : MaterialForm
     {
+
         public void Grid_Style()
         {
             Order_View.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -395,12 +396,18 @@ namespace Dalgucci_ManagerPage
 
 
 
+        Dictionary<string, Point> m_Robot1_Location = new Dictionary<string, Point>();
+        Point Robot1_Current_Location = new Point(0, 0);
+        Point Robot1_Target_Location = new Point(0, 0);
+
         //----------------------------------------------------------------------------------------------------------------------------
         public frmMain()
         {
             InitializeComponent();
 
-
+            m_Robot1_Location.Add("WIN01", new Point(1256, 384));
+            m_Robot1_Location.Add("WMS03", new Point(1000, 344));
+            m_Robot1_Location.Add("WSTG03", new Point(1060, 384));
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -446,31 +453,33 @@ namespace Dalgucci_ManagerPage
         private void Output_Click(object sender, EventArgs e)
         {
             //string text = test.Text;
-            int po = Convert.ToInt32(test.Text);
-            
+            string Robot1_location = test.Text;
+            Robot1_Current_Location = Robot1.Location;
+            Robot1_Target_Location = m_Robot1_Location[Robot1_location];
+
+           
+
             //1001
-
-
-            if (po == 0)
-            WMS03();
-            else if(po == 1)
-            WMS02();
-            else if(po == 2)
-            WMS01();
-            else if(po == 3)
-            Robot1_Up();
-            else if(po == 4)
-            Robot1_Back();
-            else if(po ==5)
-            Robot1_OUTPlace();
-            else if(po == 6)
-            WMS01_Back();
-            else if(po==7)
-            WMS02_Back();
-            else if(po == 8)
-            WMS03_Back();
-            else if (po == 9)
-            Robot1_INPlace();
+            //if (po == 0)
+            //WMS03();
+            //else if(po == 1)
+            //WMS02();
+            //else if(po == 2)
+            //WMS01();
+            //else if(po == 3)
+            //Robot1_Up();
+            //else if(po == 4)
+            //Robot1_Back();
+            //else if(po ==5)
+            //Robot1_OUTPlace();
+            //else if(po == 6)
+            //WMS01_Back();
+            //else if(po==7)
+            //WMS02_Back();
+            //else if(po == 8)
+            //WMS03_Back();
+            //else if (po == 9)
+            //Robot1_INPlace();
 
 
             //// 1002
@@ -562,6 +571,45 @@ namespace Dalgucci_ManagerPage
         {
 
         }
-    }
+
+
+
+		private void tmr_RobotAnimation_Tick(object sender, EventArgs e)
+		{
+            int x = Robot1.Location.X;
+            int y = Robot1.Location.Y;
+
+            if(x != Robot1_Target_Location.X)
+			{
+                if (Robot1_Current_Location.X < Robot1_Target_Location.X)
+                {
+                    x = Robot1.Location.X + 1;
+                    y = Robot1.Location.Y;
+                }
+                if (Robot1_Current_Location.X > Robot1_Target_Location.X)
+                {
+                    x = Robot1.Location.X - 1;
+                    y = Robot1.Location.Y;
+                }
+            }
+
+            if (y != Robot1_Target_Location.Y)
+			{
+                if (Robot1_Current_Location.Y < Robot1_Target_Location.Y)
+                {
+                    x = Robot1.Location.X;
+                    y = Robot1.Location.Y + 1;
+                }
+                if (Robot1_Current_Location.Y > Robot1_Target_Location.Y)
+                {
+                    x = Robot1.Location.X;
+                    y = Robot1.Location.Y - 1;
+                }
+            }
+            
+            Robot1.Location = new Point(x, y);
+            Update();
+        }
+	}
 }
 
