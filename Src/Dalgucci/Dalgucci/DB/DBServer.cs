@@ -11,7 +11,7 @@ namespace Dalgucci.DB
     {
         public DbSet<Member> Members { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Manager> Managers { get; set; }
+       
         public DbSet<Product> Products { get; set; }
        
         

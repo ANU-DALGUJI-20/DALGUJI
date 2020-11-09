@@ -38,7 +38,7 @@ namespace Dalgucci.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Order1_Add(Order model, Message message)
+        public IActionResult Order1_Add(Order model)
         {
             if (HttpContext.Session.GetInt32("User_Login_Key") == null)
             {
@@ -46,16 +46,21 @@ namespace Dalgucci.Controllers
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Product_Code = "1001";
+            model.Product_Name = "매화당의";
+            model.Product_Cost = "89000";
             model.Order_Time = DateTime.Now;
+
            
+
+
             using (var db = new DBServer())
                 {
                     
                     db.Orders.Add(model);
                     if (db.SaveChanges() > 0)
-                    {   
-                    message.JavascriptToRun = "ShowError()";
-                    return RedirectToAction("Order1","ProductOrder");               
+                    {
+                   
+                    return RedirectToAction("OrderSuccess1", "ProductOrder");               
                 }
 
             }
@@ -71,6 +76,8 @@ namespace Dalgucci.Controllers
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Product_Code = "1002";
+            model.Product_Name = "은비당의 옥색";
+            model.Product_Cost = "109000";
             model.Order_Time = DateTime.Now;
 
             using (var db = new DBServer())
@@ -80,7 +87,7 @@ namespace Dalgucci.Controllers
                 if (db.SaveChanges() > 0)
                 {
                     
-                    return RedirectToAction("OrderSuccess", "ProductOrder");
+                    return RedirectToAction("OrderSuccess2", "ProductOrder");
                 }
 
 
@@ -97,6 +104,8 @@ namespace Dalgucci.Controllers
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Product_Code = "1003";
+            model.Product_Name = "설중산호";
+            model.Product_Cost = "99000";
             model.Order_Time = DateTime.Now;
 
             using (var db = new DBServer())
@@ -105,7 +114,7 @@ namespace Dalgucci.Controllers
                 db.Orders.Add(model);
                 if (db.SaveChanges() > 0)
                 {
-                    return RedirectToAction("OrderSuccess", "ProductOrder");
+                    return RedirectToAction("OrderSuccess3", "ProductOrder");
                 }
 
 
@@ -122,6 +131,8 @@ namespace Dalgucci.Controllers
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Product_Code = "2001";
+            model.Product_Name = "산호핑크";
+            model.Product_Cost = "99000";
             model.Order_Time = DateTime.Now;
 
             using (var db = new DBServer())
@@ -130,7 +141,7 @@ namespace Dalgucci.Controllers
                 db.Orders.Add(model);
                 if (db.SaveChanges() > 0)
                 {
-                    return RedirectToAction("OrderSuccess", "ProductOrder");
+                    return RedirectToAction("OrderSuccess4", "ProductOrder");
                 }
 
 
@@ -147,6 +158,8 @@ namespace Dalgucci.Controllers
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Product_Code = "2002";
+            model.Product_Name = "베리예빔";
+            model.Product_Cost = "119000";
             model.Order_Time = DateTime.Now;
 
             using (var db = new DBServer())
@@ -155,7 +168,7 @@ namespace Dalgucci.Controllers
                 db.Orders.Add(model);
                 if (db.SaveChanges() > 0)
                 {
-                    return RedirectToAction("OrderSuccess", "ProductOrder");
+                    return RedirectToAction("OrderSuccess5", "ProductOrder");
                 }
 
 
@@ -172,6 +185,8 @@ namespace Dalgucci.Controllers
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             model.Product_Code = "2003";
+            model.Product_Name = "민달래";
+            model.Product_Cost = "109000";
             model.Order_Time = DateTime.Now;
 
             using (var db = new DBServer())
@@ -180,14 +195,66 @@ namespace Dalgucci.Controllers
                 db.Orders.Add(model);
                 if (db.SaveChanges() > 0)
                 {
-                    return RedirectToAction("OrderSuccess", "ProductOrder");
+                    return RedirectToAction("OrderSuccess6", "ProductOrder");
                 }
 
 
             }
             return View();
         }
+        public IActionResult OrderSuccess1()
+        {
+            ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
+            ViewData["Product_Name"] = "매화당의";
+            ViewData["Order_Time"] = DateTime.Now; ;
+            ViewData["Product_Cost"] = "109000";
+            return View();
+        }
 
+        public IActionResult OrderSuccess2()
+        {
+            ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
+            ViewData["Product_Name"] = "매화당의";
+            ViewData["Order_Time"] = DateTime.Now; ;
+            ViewData["Product_Cost"] = "109000";
+            return View();
+        }
+
+        public IActionResult OrderSuccess3()
+        {
+            ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
+            ViewData["Product_Name"] = "매화당의";
+            ViewData["Order_Time"] = DateTime.Now; ;
+            ViewData["Product_Cost"] = "109000";
+            return View();
+        }
+
+        public IActionResult OrderSuccess4()
+        {
+            ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
+            ViewData["Product_Name"] = "매화당의";
+            ViewData["Order_Time"] = DateTime.Now; ;
+            ViewData["Product_Cost"] = "109000";
+            return View();
+        }
+
+        public IActionResult OrderSuccess5()
+        {
+            ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
+            ViewData["Product_Name"] = "매화당의";
+            ViewData["Order_Time"] = DateTime.Now; ;
+            ViewData["Product_Cost"] = "109000";
+            return View();
+        }
+
+        public IActionResult OrderSuccess6()
+        {
+            ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
+            ViewData["Product_Name"] = "매화당의";
+            ViewData["Order_Time"] = DateTime.Now; ;
+            ViewData["Product_Cost"] = "109000";
+            return View();
+        }
 
         public IActionResult Order1()
         {
@@ -233,10 +300,7 @@ namespace Dalgucci.Controllers
             return View();
         }
 
-        public IActionResult OrderSuccess()
-        {
-            return View();
-        }
+       
 
 
         public IActionResult Product_Order()
@@ -244,24 +308,7 @@ namespace Dalgucci.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Product_Select(Product_Select model)
-        {
-            if (ModelState.IsValid)
-            {
-                using (var db = new DBServer())
-                {
-                    var user = db.Products.FirstOrDefault(u => u.Product_Code.Equals(model.Product_Code) && u.Quantity.Equals(model.Quantity));
-
-                    if (user != null)
-                    {
-
-                    }
-                }
-                ModelState.AddModelError(string.Empty, "회원정보가 올바르지 않아");
-            }
-            return View(model);
-        }
+      
 
     }
 }
