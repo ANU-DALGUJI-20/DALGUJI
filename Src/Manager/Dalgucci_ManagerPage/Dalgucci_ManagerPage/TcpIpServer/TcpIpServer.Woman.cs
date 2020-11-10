@@ -12,6 +12,12 @@ namespace Dalgucci_ManagerPage
 {
 	partial class TcpIpServer
 	{
+        /*frmMain frmmain = null;
+
+        public TcpIpServer(frmMain fm)
+        {
+            frmmain = fm;
+        }*/
         static void Woman_OutOrder(NetworkStream stream)
         {
             string cmd_out_order = "OUT_ORDER";
@@ -88,10 +94,7 @@ namespace Dalgucci_ManagerPage
 					Console.WriteLine("3번 창고");
 
                 if (data.Contains("WIN01"))
-				{
                     Console.WriteLine("입고 시작 위치");
-
-                }
                 if (data.Contains("WOUT01"))
 					Console.WriteLine("출고 위치");
             }
