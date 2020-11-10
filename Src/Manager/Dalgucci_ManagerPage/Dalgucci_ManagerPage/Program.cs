@@ -19,7 +19,7 @@ namespace Dalgucci_ManagerPage
         {
             data = new Database();
             TcpIpServer server = new TcpIpServer();
-
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMain());

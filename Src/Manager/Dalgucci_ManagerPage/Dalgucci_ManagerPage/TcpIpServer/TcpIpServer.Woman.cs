@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Dalgucci_ManagerPage
 {
@@ -13,7 +14,7 @@ namespace Dalgucci_ManagerPage
 	{
         static void Woman_OutOrder(NetworkStream stream)
         {
-            string cmd__out_order = "OUT_ORDER";
+            string cmd_out_order = "OUT_ORDER";
             int nOrderCnt = Program.data.OrdersCountResult();
             if (nOrderCnt > 0)
             {
@@ -21,23 +22,80 @@ namespace Dalgucci_ManagerPage
                 if (strProductCode == "1001")
                 {
                     string out_prod_pos = "WSTG01";
-                    SendCmdProdOut(ref stream, cmd__out_order, out_prod_pos);
-                    Program.data.RowDelete();
+                    SendCmdProdOut(ref stream, cmd_out_order, out_prod_pos);
+                    Woman_OutOrder_Rev(ref stream);
                 }
                 else if (strProductCode == "1002")
                 {
                     string out_prod_pos = "WSTG02";
-                    SendCmdProdOut(ref stream, cmd__out_order, out_prod_pos);
-                    Program.data.RowDelete();
+                    SendCmdProdOut(ref stream, cmd_out_order, out_prod_pos);
+                    Woman_OutOrder_Rev(ref stream);
                 }
                 else if (strProductCode == "1003")
                 {
                     string out_prod_pos = "WSTG03";
-                    SendCmdProdOut(ref stream, cmd__out_order, out_prod_pos);
-                    Program.data.RowDelete();
+                    SendCmdProdOut(ref stream, cmd_out_order, out_prod_pos);
+                    Woman_OutOrder_Rev(ref stream);
                 }
             }
         }
+
+        private static void Woman_OutOrder_Rev(ref NetworkStream stream)
+		{
+            int length = 0;
+            string data = "";
+            byte[] bytes = new byte[256];
+
+            while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+            {
+                data = Encoding.Default.GetString(bytes, 0, length);
+                // Console.WriteLine(String.Format("수신 : {0}", data));
+
+                if (data.Contains("COMPLETE"))
+                {
+                    Console.WriteLine("작업 완료");
+                    Program.data.RowDelete();
+					Console.WriteLine("주문 테이블 삭제");
+                    break;
+                }
+
+				if (data.Contains("OK"))
+					Console.WriteLine("명령을 전달받음");
+                if (data.Contains("START"))
+					Console.WriteLine("작동 시작");
+
+                if (data.Contains("Going Pick-Up"))
+					Console.WriteLine("출고 작업/이동중 ...");
+                if (data.Contains("Pick End"))
+					Console.WriteLine("제품 내려놓음");
+                if (data.Contains("Going Place"))
+					Console.WriteLine("장소로 이동중...");
+                if (data.Contains("Place End"))
+					Console.WriteLine("도착 및 작업수행");
+
+                if (data.Contains("WMS01"))
+                    Console.WriteLine("1번 창고 앞");
+                if (data.Contains("WMS02"))
+                    Console.WriteLine("2번 창고 앞");
+                if (data.Contains("WMS03"))
+					Console.WriteLine("3번 창고 앞");
+                
+                if (data.Contains("WSTG01"))
+					Console.WriteLine("1번 창고");
+                if (data.Contains("WSTG02"))
+					Console.WriteLine("2번 창고");
+                if (data.Contains("WSTG03"))
+					Console.WriteLine("3번 창고");
+
+                if (data.Contains("WIN01"))
+				{
+                    Console.WriteLine("입고 시작 위치");
+
+                }
+                if (data.Contains("WOUT01"))
+					Console.WriteLine("출고 위치");
+            }
+        } 
 
         static void Woman_InOrder(NetworkStream stream)
         {
