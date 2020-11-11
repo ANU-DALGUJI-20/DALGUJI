@@ -112,82 +112,118 @@ namespace Dalgucci
             }
         }
 
-        public void InsertMember(string MemberID, string Password, string User_name, string Tel, string RRN, string Address, string Email)
-        {
-            try
-            {
-                // 명령 객체 생성
-
-                if (conn.State != ConnectionState.Open)
-                    conn.Open();
-
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = conn;
-
-                cmd.CommandText = $"insert into user_table values ('{MemberID}','{Password}','{User_name}','{Tel}','{RRN}','{Address}','{Email}')";
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(MethodBase.GetCurrentMethod().Name + ex.Message);
-            }
-        }
-
-        public bool Sign_in(string MemberID, string Password)
+        public DataTable In()
         {
             lock (lockObject)
             {
-                int user_cnt = 0;
+                DataTable table = new DataTable();
                 SqlDataReader rdr = null;
+
+                if (table != null)
+                    table.Clear();
 
                 try
                 {
-                    // 명령 객체 생성
-
-                    if (conn.State != ConnectionState.Open)
-                        conn.Open();
-
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = conn;
 
-                    cmd.CommandText = $"select count(*) as count from user_table where user_id = '{MemberID}' and pwd = '{Password}'";
-                    rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-                    rdr.Read();
+                    cmd.CommandText = "select * from Input_Log";
 
-                    var s = rdr["count"];
-                    user_cnt = Convert.ToInt32(s);
+                    rdr = cmd.ExecuteReader();
+
+                    if (table.Columns.Count == 0)
+                    {
+                        table.Columns.Add("입고번호");
+                        table.Columns.Add("제품코드");
+                        table.Columns.Add("제품위치");
+                        table.Columns.Add("입고시간");
+                    }
+
+                    while (rdr.Read())
+                    {
+
+                        string InProduct_No = rdr["InProduct_No"].ToString();
+                        string Product_Code = rdr["Product_Code"] as string;
+                        string Product_Place = rdr["Product_Place"].ToString();
+                        string In_Time = rdr["In_Time"].ToString();
+
+                        string[] Input_Log = new string[] { InProduct_No, Product_Code, Product_Place, In_Time };
+
+                        table.Rows.Add(Input_Log);
+                    }
+
+                }
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                finally
+                {
+                    if (conn.State == ConnectionState.Open)
+                        conn.Close();
+                }
+                return table;
+            }
+        }
+
+        public DataTable Out()
+        {
+            lock (lockObject)
+            {
+                DataTable table = new DataTable();
+                SqlDataReader rdr = null;
+
+                if (table != null)
+                    table.Clear();
+
+                try
+                {
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = conn;
+
+                    cmd.CommandText = "select * from Output_Log";
+
+                    rdr = cmd.ExecuteReader();
+
+                    if (table.Columns.Count == 0)
+                    {
+                        table.Columns.Add("출고번호");
+                        table.Columns.Add("제품코드");
+                        table.Columns.Add("제품위치");
+                        table.Columns.Add("출고시간");
+                    }
+
+                    while (rdr.Read())
+                    {
+
+                        string OutProduct_No = rdr["OutProduct_No"].ToString();
+                        string Product_Code = rdr["Product_Code"] as string;
+                        string Product_Place = rdr["Product_Place"].ToString();
+                        string Out_Time = rdr["Out_Time"].ToString();
+
+                        string[] Output_Log = new string[] { OutProduct_No, Product_Code, Product_Place, Out_Time };
+
+                        table.Rows.Add(Output_Log);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(MethodBase.GetCurrentMethod().Name + ex.Message);
+                    Console.WriteLine(ex.Message);
                 }
 
-                return user_cnt > 0 ? true : false;
+                finally
+                {
+                    if (conn.State == ConnectionState.Open)
+                        conn.Close();
+                }
+
+                return table;
             }
+
         }
-
-        public void Login_state(string MemberID, string Password, string User_name, string Tel, string RRN, string Address, string Email)
-        {
-            try
-            {
-                // 명령 객체 생성
-
-                if (conn.State != ConnectionState.Open)
-                    conn.Open();
-
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = conn;
-
-                cmd.CommandText = $"insert into user_table values ('{MemberID}','{Password}','{User_name}','{Tel}','{RRN}','{Address}','{Email}')";
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(MethodBase.GetCurrentMethod().Name + ex.Message);
-            }
-        }
-
-        public DataTable Orders()
+            public DataTable Orders()
         {
             lock (lockObject)
             {

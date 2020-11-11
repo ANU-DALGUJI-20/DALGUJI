@@ -412,6 +412,7 @@ namespace Dalgucci_ManagerPage
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Order_View.DataSource = Program.data.Orders();
             timer1.Enabled = true;
             timer1.Start();
             Grid_Style();
@@ -423,8 +424,9 @@ namespace Dalgucci_ManagerPage
 
         private void Data_Click(object sender, EventArgs e)
         {
-            frmInOutHistory form2 = new frmInOutHistory();
-            form2.Show();
+            frmInOutHistory inOutHistory = new frmInOutHistory();
+            inOutHistory.Show();
+
         }
 
         private void Robot_View_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -435,12 +437,12 @@ namespace Dalgucci_ManagerPage
         {
             Order_View.DataSource = Program.data.Orders();
 
-            Robot_View.Rows.Clear();
-            List<string[]> robot_list = Program.data.Robot();
-            foreach (var item in robot_list)
-            {
-                Robot_View.Rows.Add(item);
-            }
+            //Robot_View.Rows.Clear();
+            //List<string[]> robot_list = Program.data.Robot();
+            //foreach (var item in robot_list)
+            //{
+            //    Robot_View.Rows.Add(item);
+            //}
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
