@@ -405,9 +405,14 @@ namespace Dalgucci_ManagerPage
         {
             InitializeComponent();
 
-            m_Robot1_Location.Add("WIN01", new Point(1256, 384));
+            m_Robot1_Location.Add("WIN01", new Point(1160, 344));
+            m_Robot1_Location.Add("WOUT01", new Point(648, 344));
             m_Robot1_Location.Add("WMS03", new Point(1000, 344));
-            m_Robot1_Location.Add("WSTG03", new Point(1060, 384));
+            m_Robot1_Location.Add("WMS02", new Point(912, 344));
+            m_Robot1_Location.Add("WMS01", new Point(816, 344));
+            m_Robot1_Location.Add("WSTG03", new Point(1000, 290));
+            m_Robot1_Location.Add("WSTG02", new Point(912, 290));
+            m_Robot1_Location.Add("WSTG01", new Point(816, 290));
         }
 
         private void Form1_Load(object sender, EventArgs e)

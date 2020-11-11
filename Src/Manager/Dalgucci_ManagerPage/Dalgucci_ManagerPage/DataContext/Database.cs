@@ -276,44 +276,44 @@ namespace Dalgucci
             }
         }
 
-        public List<string[]> Robot()
-        {
-            lock (lockObject)
-            {
-                List<string[]> list = new List<string[]>();
-                SqlDataReader rdr = null;
+        //public List<string[]> Robot()
+        //{
+        //    lock (lockObject)
+        //    {
+        //        List<string[]> list = new List<string[]>();
+        //        SqlDataReader rdr = null;
 
-                try
-                {
-                    if (conn.State != ConnectionState.Open)
-                        conn.Open();
+        //        try
+        //        {
+        //            if (conn.State != ConnectionState.Open)
+        //                conn.Open();
 
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = conn;
-                    cmd.CommandText = "select Robot_No, Robot_Name, Robot_Part, Robot_State from Robot_i";
-                    rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+        //            SqlCommand cmd = new SqlCommand();
+        //            cmd.Connection = conn;
+        //            cmd.CommandText = "select Robot_No, Robot_Name, Robot_Part, Robot_State from Robot_i";
+        //            rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
 
-                    while (rdr.Read())
-                    {
-                        string Robot_No = rdr["Robot_No"].ToString();
-                        string Robot_Code = rdr["Robot_Name"] as string;
-                        string Robot_Part = rdr["Robot_Part"] as string;
-                        string Robot_State = rdr["Robot_State"] as string;
+        //            while (rdr.Read())
+        //            {
+        //                string Robot_No = rdr["Robot_No"].ToString();
+        //                string Robot_Code = rdr["Robot_Name"] as string;
+        //                string Robot_Part = rdr["Robot_Part"] as string;
+        //                string Robot_State = rdr["Robot_State"] as string;
 
-                        string[] Robot = new string[] { Robot_No, Robot_Code, Robot_Part, Robot_State };
-                        list.Add(Robot);
-                    }
+        //                string[] Robot = new string[] { Robot_No, Robot_Code, Robot_Part, Robot_State };
+        //                list.Add(Robot);
+        //            }
 
-                    rdr.Close();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(MethodBase.GetCurrentMethod().Name + ex.Message);
-                }
+        //            rdr.Close();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine(MethodBase.GetCurrentMethod().Name + ex.Message);
+        //        }
 
-                return list;
-            }
-        }
+        //        return list;
+        //    }
+        //}
 
         public DataTable InProdHistory()
         {

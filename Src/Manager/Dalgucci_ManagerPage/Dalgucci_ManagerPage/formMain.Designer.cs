@@ -146,7 +146,7 @@
 			this.pictureBox1.ErrorImage = null;
 			this.pictureBox1.Image = global::Dalgucci_ManagerPage.Properties.Resources.productMap1;
 			this.pictureBox1.InitialImage = null;
-			this.pictureBox1.Location = new System.Drawing.Point(496, 200);
+			this.pictureBox1.Location = new System.Drawing.Point(568, 248);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(860, 404);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -157,7 +157,7 @@
 			// Robot1
 			// 
 			this.Robot1.Image = global::Dalgucci_ManagerPage.Properties.Resources.iconmonstr_delivery_15_2402;
-			this.Robot1.Location = new System.Drawing.Point(1256, 384);
+			this.Robot1.Location = new System.Drawing.Point(1408, 344);
 			this.Robot1.Name = "Robot1";
 			this.Robot1.Size = new System.Drawing.Size(45, 40);
 			this.Robot1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -205,7 +205,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1579, 746);
+			this.ClientSize = new System.Drawing.Size(1579, 789);
 			this.Controls.Add(this.test);
 			this.Controls.Add(this.CCTV);
 			this.Controls.Add(this.Robot2);
