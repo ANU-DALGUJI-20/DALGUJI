@@ -8,7 +8,7 @@ using Dalgucci.Models;
 using System.Diagnostics.Eventing.Reader;
 using Microsoft.AspNetCore.Http;
 using Dalgucci.DB;
-
+using System.Web;
 using Dalgucci.ViewModel;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.Data.SqlClient;
@@ -78,7 +78,7 @@ namespace Dalgucci.Controllers
                     if (user != null)
                     {
                         HttpContext.Session.SetInt32("User_Login_Key", user.User_No);
-
+                        
                         return RedirectToAction("LoginSuccess","Account");
                     }
                    
@@ -90,8 +90,9 @@ namespace Dalgucci.Controllers
             }
             return View(models);
         }
-        public IActionResult LoginSuccess()
-        { 
+        public IActionResult LoginSuccess(LoginViewModel models)
+        {
+           
             return View();
 
         }
