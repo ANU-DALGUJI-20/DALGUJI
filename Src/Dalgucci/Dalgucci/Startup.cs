@@ -30,11 +30,7 @@ namespace Dalgucci
             //    options.CheckConsentNeeded = context => true;
             //    options.MinimumSameSitePolicy = SameSiteMode.None;
             //});
-<<<<<<< .mine
 
-=======
-
->>>>>>> .theirs
             services.AddControllersWithViews();
             //services.AddTransient<DbSeeder>();
 

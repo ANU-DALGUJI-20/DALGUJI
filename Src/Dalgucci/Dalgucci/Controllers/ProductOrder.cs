@@ -130,7 +130,7 @@ namespace Dalgucci.Controllers
                 return RedirectToAction("Login", "Account");
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
-            model.Product_Code = "2001";
+            model.Product_Code = "3001";
             model.Product_Name = "산호핑크";
             model.Product_Cost = "99000";
             model.Order_Time = DateTime.Now;
@@ -157,7 +157,7 @@ namespace Dalgucci.Controllers
                 return RedirectToAction("Login", "Account");
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
-            model.Product_Code = "2002";
+            model.Product_Code = "3002";
             model.Product_Name = "베리예빔";
             model.Product_Cost = "119000";
             model.Order_Time = DateTime.Now;
@@ -184,7 +184,7 @@ namespace Dalgucci.Controllers
                 return RedirectToAction("Login", "Account");
             }
             model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
-            model.Product_Code = "2003";
+            model.Product_Code = "3003";
             model.Product_Name = "민달래";
             model.Product_Cost = "109000";
             model.Order_Time = DateTime.Now;
@@ -196,6 +196,87 @@ namespace Dalgucci.Controllers
                 if (db.SaveChanges() > 0)
                 {
                     return RedirectToAction("OrderSuccess6", "ProductOrder");
+                }
+
+
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Order7_Add(Order model)
+        {
+            if (HttpContext.Session.GetInt32("User_Login_Key") == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
+            model.Product_Code = "2001";
+            model.Product_Name = "보라쾌자";
+            model.Product_Cost = "109000";
+            model.Order_Time = DateTime.Now;
+
+            using (var db = new DBServer())
+            {
+
+                db.Orders.Add(model);
+                if (db.SaveChanges() > 0)
+                {
+                    return RedirectToAction("OrderSuccess7", "ProductOrder");
+                }
+
+
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Order8_Add(Order model)
+        {
+            if (HttpContext.Session.GetInt32("User_Login_Key") == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
+            model.Product_Code = "2002";
+            model.Product_Name = "다운블루쾌자";
+            model.Product_Cost = "109000";
+            model.Order_Time = DateTime.Now;
+
+            using (var db = new DBServer())
+            {
+
+                db.Orders.Add(model);
+                if (db.SaveChanges() > 0)
+                {
+                    return RedirectToAction("OrderSuccess8", "ProductOrder");
+                }
+
+
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Order9_Add(Order model)
+        {
+            if (HttpContext.Session.GetInt32("User_Login_Key") == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            model.User_No = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
+            model.Product_Code = "2003";
+            model.Product_Name = "옥색쾌자";
+            model.Product_Cost = "119000";
+            model.Order_Time = DateTime.Now;
+
+            using (var db = new DBServer())
+            {
+
+                db.Orders.Add(model);
+                if (db.SaveChanges() > 0)
+                {
+                    return RedirectToAction("OrderSuccess9", "ProductOrder");
                 }
 
 
