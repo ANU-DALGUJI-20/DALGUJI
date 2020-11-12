@@ -14,27 +14,28 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.Data.SqlClient;
 using Member = Dalgucci.Models.Member;
 using Newtonsoft.Json.Converters;
+using Microsoft.IdentityModel.Protocols;
+using System.Configuration;
 
-
-// test
 namespace Dalgucci.Controllers
 {
-    public class Account : Controller 
+    public class Account : Controller
     {
+
         [HttpGet]
         public IActionResult Sign_up()
         {
-            //Program.data.InsertMember(MemberID, Password, User_name, Tel, RRN, Address, Email);
+
             return View();
         }
 
-        
+
         [HttpPost]
         public IActionResult Sign_up(Member model)
         {
-           if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                using(var db = new DBServer())
+                using (var db = new DBServer())
                 {
                     db.Members.Add(model);
                     db.SaveChanges();
@@ -50,14 +51,6 @@ namespace Dalgucci.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult Sign_up(string MemberID, string Password, string User_name, string Tel, string RRN, string Address, string Email)
-        //{
-        //    Program.data.InsertMember(MemberID, Password, User_name, Tel, RRN, Address, Email);
-        //    //return MemberID + Password + User_name + Tel + RRN + Address + Email;
-        //    return View("Sign_upComplete");
-        //}
-
         [HttpGet]
         public IActionResult Login()
         {
@@ -65,10 +58,8 @@ namespace Dalgucci.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel models )
+        public IActionResult Login(LoginViewModel models)
         {
-            
-
             if (ModelState.IsValid)
             {
                 using (var db = new DBServer())
@@ -78,30 +69,21 @@ namespace Dalgucci.Controllers
                     if (user != null)
                     {
                         HttpContext.Session.SetInt32("User_Login_Key", user.User_No);
-                        
-                        return RedirectToAction("LoginSuccess","Account");
+
+                        return RedirectToAction("LoginSuccess", "Account");
                     }
-                   
                 }
-                //return RedirectToAction("LoginFails","Account");
-                //message.JavascriptToRun = "ShowError()";
                 ViewBag.Message = "실패";
-                //ViewData["message"] = "잘못되었음";
             }
             return View(models);
         }
         public IActionResult LoginSuccess(LoginViewModel models)
         {
-           
-            return View();
-
-        }
-        public IActionResult LoginFails()
-        {
 
             return View();
 
         }
+
 
         public IActionResult Logout()
         {
@@ -109,46 +91,29 @@ namespace Dalgucci.Controllers
             return RedirectToAction("Main", "Web");
 
         }
-        [HttpGet]
-        public IActionResult Manager_Login()
+
+
+       
+
+        public IActionResult Index(Order models)
         {
-            return View();
+
+            using (var db = new DBServer())
+            {
+
+                //var user = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
+                //using (SqlCommand sqlcomm = new SqlCommand($"select * from Order where {user}"))
+                //{
+                    var list = db.Orders.ToList();
+                    return View(list);
+               // }
+
+
+               
+            }
+
         }
 
-       
-       
-
-
-        //[HttpPost]
-
-        //public IActionResult Login(string MemberID, string Password)
-        //{
-        //    bool tru = Program.data.Sign_in(MemberID, Password);
-        //    if (tru == true) {
-
-        //        // ViewData["User"] = MemberID;
-        //        return View("LoginSuccess");
-        //}
-        //    else
-        //        return View("LoginFails");
-
-        //    //return MemberID + Password ;
-        //}
-       
-
-        
-
-        //public IActionResult Register()
-        //{
-
-        //    return View();
-        //}
-        //[HttpPost]
-        //public IActionResult Register(Member member)
-        //{
-
-        //    member.Submit();
-        //    return View("RegisterComplete", member);
-        //}
     }
+
 }

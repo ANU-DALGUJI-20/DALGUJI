@@ -8,11 +8,14 @@ using Dalgucci.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace Dalgucci.Controllers
 {
-    public class JoinController : Controller
+    public class Order_Log : Controller
     {
-      
+        private string Dbconn = ConfigurationManager.ConnectionStrings["DBConn"].ConnectionString;
+        private List<Order> orders = new List<Order>();
+
+
+       
     }
 }
