@@ -115,6 +115,7 @@
 			this.Input.TabIndex = 2;
 			this.Input.Text = "입고";
 			this.Input.UseVisualStyleBackColor = true;
+			this.Input.Click += new System.EventHandler(this.Input_Click);
 			// 
 			// Output
 			// 
