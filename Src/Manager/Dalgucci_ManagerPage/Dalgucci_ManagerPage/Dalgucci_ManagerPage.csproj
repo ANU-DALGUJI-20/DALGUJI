@@ -36,6 +36,12 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
     </Reference>
@@ -56,17 +62,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext\Database.cs" />
+    <Compile Include="formInOutHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formInOutHistory.Designer.cs">
+      <DependentUpon>formInOutHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="formMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formMain.Designer.cs">
       <DependentUpon>formMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="formInOutHistory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>formInOutHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="formRobotCom.cs">
       <SubType>Form</SubType>
@@ -79,11 +85,11 @@
     <Compile Include="TcpIpServer\TcpIpServer.cs" />
     <Compile Include="TcpIpServer\TcpIpServer.Man.cs" />
     <Compile Include="TcpIpServer\TcpIpServer.Woman.cs" />
+    <EmbeddedResource Include="formInOutHistory.resx">
+      <DependentUpon>formInOutHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formMain.resx">
       <DependentUpon>formMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>formInOutHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formRobotCom.resx">
       <DependentUpon>formRobotCom.cs</DependentUpon>

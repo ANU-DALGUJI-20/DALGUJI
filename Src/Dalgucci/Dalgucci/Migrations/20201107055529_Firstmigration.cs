@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Dalgucci.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class Firstmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

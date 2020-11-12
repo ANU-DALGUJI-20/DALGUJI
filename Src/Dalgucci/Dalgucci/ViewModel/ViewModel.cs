@@ -26,17 +26,8 @@ namespace Dalgucci.ViewModel
         public string Manager_Pwd { get; set; }
     }
 
-    public class Product_Select
-    {
+  
 
-        [Required]
-        public string Product_Code { get; set; }
-
-        [Required]
-        public string Quantity { get; set; }
-
-    }
-
-
+    
  
 }

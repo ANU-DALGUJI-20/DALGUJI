@@ -212,15 +212,25 @@
             }
     </style>
 </head>
+@using Microsoft.AspNetCore.Http;
 <body>
     <div class="wrapper">
         <div class="container">
             <div class="my_menu">
                 <ul>
-                    <a href="#"><li>로그인</li></a>
-                    <a href="#"><li>회원가입</li></a>
-                    <a href="#"><li>장바구니</li></a>
-                    <a href="#"><li>주문조회</li></a>
+                    @if (Context.Session.GetInt32("User_Login_Key") == null)
+                    {
+                        <a asp-area="" asp-controller="Account" asp-action="Login"><li>로그인</li></a>
+                        <a asp-area="" asp-controller="Account" asp-action="Sign_up"><li>회원가입</li></a>
+                        <a href="#"><li>장바구니</li></a>
+                        <a href="#"><li>주문조회</li></a>
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="Account" asp-action="Logout"><li>로그아웃</li></a>
+                        <a href="#"><li>장바구니</li></a>
+                        <a href="#"><li>주문조회</li></a>
+                    }
                 </ul>
             </div>
             <div class="menu">
@@ -258,16 +268,18 @@
                 <p>주문정보</p>
             </div>
             <table border="1">
+                <th>구매자 번호</th>
                 <th>상품명</th>
                 <th>주문일자</th>
-                <th>주문번호</th>
                 <th>상품금액</th>
                 <tr>
                     <!-- 첫번째 줄 시작 -->
-                    <td style="padding-top:40px; padding-bottom:40px; font-size:15pt; font-weight:bold;">첫번째 칸</td>
-                    <td style="padding-top:40px; padding-bottom:40px; font-size:15pt; font-weight:bold;">두번째 칸</td>
-                    <td style="padding-top:40px; padding-bottom:40px; font-size:15pt; font-weight:bold;">세번째 칸</td>
-                    <td style="padding-top:40px; padding-bottom:40px; font-size:15pt; font-weight:bold;">네번째 칸</td>
+
+                    <td style="padding-top:40px; padding-bottom:40px; font-size:15pt; font-weight:bold;"> @ViewData["User_No"]</td>
+                    <td style="padding-top:40px; padding-bottom:40px; font-size:15pt; font-weight:bold;"> @ViewData["Product_Name"]</td>
+                    <td style="padding-top:40px; padding-bottom:40px; font-size:15pt; font-weight:bold;"> @ViewData["Order_Time"]</td>
+                    <td style="padding-top:40px; padding-bottom:40px; font-size:15pt; font-weight:bold;"> @ViewData["Product_Cost"]</td>
+
                 </tr><!-- 첫번째 줄 끝 -->
                 <tr>
                     <td colspan="4">주문내역 확인은 배송/마이페이지의 "주문/배송조회"에서 하실 수 있습니다.</td>

@@ -16,6 +16,11 @@ namespace Dalgucci.Models
         public string Product_Code { get; set; }
 
         [Required]
+        public string Product_Name { get; set; }
+
+        [Required]
+        public string Product_Cost { get; set; }
+        [Required]
         public int User_No { get; set; }
         [ForeignKey("User_No")]
         public virtual Member Member { get; set; }

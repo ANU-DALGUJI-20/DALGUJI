@@ -89,6 +89,7 @@ namespace Dalgucci_ManagerPage
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Order_View.DataSource = Program.data.Orders();
             timer1.Enabled = true;
             timer1.Start();
             Grid_Style();
@@ -96,8 +97,9 @@ namespace Dalgucci_ManagerPage
 
         private void Data_Click(object sender, EventArgs e)
         {
-            frmInOutHistory form2 = new frmInOutHistory();
-            form2.Show();
+            frmInOutHistory inOutHistory = new frmInOutHistory();
+            inOutHistory.Show();
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
