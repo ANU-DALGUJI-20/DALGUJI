@@ -41,7 +41,7 @@ namespace Dalgucci_ManagerPage
         //로봇 1 -------------------------------------------------------------------------------------------------------
 
         // 경로 이동
-   
+
         public void WMS01()
         {
             int i, j;
@@ -417,6 +417,7 @@ namespace Dalgucci_ManagerPage
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             Order_View.DataSource = Program.data.Orders();
             timer1.Enabled = true;
             timer1.Start();
@@ -455,7 +456,7 @@ namespace Dalgucci_ManagerPage
 
         }
 
-     
+
 
         private void Output_Click(object sender, EventArgs e)
         {
@@ -464,7 +465,7 @@ namespace Dalgucci_ManagerPage
             Robot1_Current_Location = Robot1.Location;
             Robot1_Target_Location = m_Robot1_Location[Robot1_location];
 
-           
+
 
             //1001
             //if (po == 0)
@@ -581,13 +582,13 @@ namespace Dalgucci_ManagerPage
 
 
 
-		private void tmr_RobotAnimation_Tick(object sender, EventArgs e)
-		{
+        private void tmr_RobotAnimation_Tick(object sender, EventArgs e)
+        {
             int x = Robot1.Location.X;
             int y = Robot1.Location.Y;
 
-            if(x != Robot1_Target_Location.X)
-			{
+            if (x != Robot1_Target_Location.X)
+            {
                 if (Robot1_Current_Location.X < Robot1_Target_Location.X)
                 {
                     x = Robot1.Location.X + 1;
@@ -601,7 +602,7 @@ namespace Dalgucci_ManagerPage
             }
 
             if (y != Robot1_Target_Location.Y)
-			{
+            {
                 if (Robot1_Current_Location.Y < Robot1_Target_Location.Y)
                 {
                     x = Robot1.Location.X;
@@ -613,10 +614,14 @@ namespace Dalgucci_ManagerPage
                     y = Robot1.Location.Y - 1;
                 }
             }
-            
+
             Robot1.Location = new Point(x, y);
             Update();
         }
-	}
-}
 
+        private void Input_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
