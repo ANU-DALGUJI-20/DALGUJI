@@ -169,7 +169,7 @@
 			// Robot2
 			// 
 			this.Robot2.Image = global::Dalgucci_ManagerPage.Properties.Resources.iconmonstr_delivery_15_2402;
-			this.Robot2.Location = new System.Drawing.Point(1256, 536);
+			this.Robot2.Location = new System.Drawing.Point(1408, 488);
 			this.Robot2.Name = "Robot2";
 			this.Robot2.Size = new System.Drawing.Size(45, 40);
 			this.Robot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;

@@ -18,6 +18,7 @@ namespace Dalgucci_ManagerPage
     {
         private void Input_Click(object sender, EventArgs e)
         {
+
         }
 
         private void Order_View_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -72,11 +73,16 @@ namespace Dalgucci_ManagerPage
         Dictionary<string, Point> m_Robot1_Location = new Dictionary<string, Point>();
         Point Robot1_Current_Location = new Point(0, 0);
         Point Robot1_Target_Location = new Point(0, 0);
+        
+        Dictionary<string, Point> m_Robot2_Location = new Dictionary<string, Point>();
+        Point Robot2_Current_Location = new Point(0, 0);
+        Point Robot2_Target_Location = new Point(0, 0);
 
         public frmMain()
         {
             InitializeComponent();
 
+            // 그림 바뀌면 좌표 수정 요망!!!!!!!!!!!!!!!!!!
             m_Robot1_Location.Add("WIN01", new Point(1160, 344));
             m_Robot1_Location.Add("WOUT01", new Point(648, 344));
             m_Robot1_Location.Add("WMS03", new Point(1000, 344));
@@ -85,6 +91,15 @@ namespace Dalgucci_ManagerPage
             m_Robot1_Location.Add("WSTG03", new Point(1000, 290));
             m_Robot1_Location.Add("WSTG02", new Point(912, 290));
             m_Robot1_Location.Add("WSTG01", new Point(816, 290));
+            
+            m_Robot2_Location.Add("MIN01", new Point(1408, 488));
+            m_Robot2_Location.Add("MOUT01", new Point(648, 488));
+            m_Robot2_Location.Add("MMS03", new Point(1000, 344));
+            m_Robot2_Location.Add("MMS02", new Point(912, 344));
+            m_Robot2_Location.Add("MMS01", new Point(816, 344));
+            m_Robot2_Location.Add("MSTG03", new Point(1000, 290));
+            m_Robot2_Location.Add("MSTG02", new Point(912, 290));
+            m_Robot2_Location.Add("MSTG01", new Point(816, 290));
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -136,64 +151,130 @@ namespace Dalgucci_ManagerPage
 
         private void tmr_RobotAnimation_Tick(object sender, EventArgs e)
         {
-            int x = Robot1.Location.X;
-            int y = Robot1.Location.Y;
+            int x1 = Robot1.Location.X;
+            int y1 = Robot1.Location.Y;
+            
+            int x2 = Robot2.Location.X;
+            int y2 = Robot2.Location.Y;
 
-            if (x != Robot1_Target_Location.X)
+            // Robot 1
+            if (x1 != Robot1_Target_Location.X)
             {
                 if (Robot1_Current_Location.X < Robot1_Target_Location.X)
                 {
-                    x = Robot1.Location.X + 1;
-                    y = Robot1.Location.Y;
+                    x1 = Robot1.Location.X + 1;
+                    y1 = Robot1.Location.Y;
                 }
                 if (Robot1_Current_Location.X > Robot1_Target_Location.X)
                 {
-                    x = Robot1.Location.X - 1;
-                    y = Robot1.Location.Y;
+                    x1 = Robot1.Location.X - 1;
+                    y1 = Robot1.Location.Y;
                 }
             }
 
-            if (y != Robot1_Target_Location.Y)
+            if (y1 != Robot1_Target_Location.Y)
             {
                 if (Robot1_Current_Location.Y < Robot1_Target_Location.Y)
                 {
-                    x = Robot1.Location.X;
-                    y = Robot1.Location.Y + 1;
+                    x1 = Robot1.Location.X;
+                    y1 = Robot1.Location.Y + 1;
                 }
                 if (Robot1_Current_Location.Y > Robot1_Target_Location.Y)
                 {
-                    x = Robot1.Location.X;
-                    y = Robot1.Location.Y - 1;
+                    x1 = Robot1.Location.X;
+                    y1 = Robot1.Location.Y - 1;
                 }
             }
 
+            // Robot 2
+            if (x2 != Robot2_Target_Location.X)
+            {
+                if (Robot2_Current_Location.X < Robot2_Target_Location.X)
+                {
+                    x2 = Robot2.Location.X + 1;
+                    y2 = Robot2.Location.Y;
+                }
+                if (Robot2_Current_Location.X > Robot2_Target_Location.X)
+                {
+                    x2 = Robot2.Location.X - 1;
+                    y2 = Robot2.Location.Y;
+                }
+            }
+
+            if (y2 != Robot2_Target_Location.Y)
+            {
+                if (Robot2_Current_Location.Y < Robot2_Target_Location.Y)
+                {
+                    x2 = Robot2.Location.X;
+                    y2 = Robot2.Location.Y + 1;
+                }
+                if (Robot2_Current_Location.Y > Robot2_Target_Location.Y)
+                {
+                    x2 = Robot2.Location.X;
+                    y2 = Robot2.Location.Y - 1;
+                }
+            }
+
+            // 여자 한복
 			if (TcpIpServer.Position_Value() == "WIN01")
-               move(ref x, ref y, "WIN01");
+               Robot_move_1(ref x1, ref y1, "WIN01");
             if(TcpIpServer.Position_Value() == "WOUT01")
-                move(ref x, ref y, "WOUT01");
+                Robot_move_1(ref x1, ref y1, "WOUT01");
 
             if(TcpIpServer.Position_Value() == "WSTG01")
-                move(ref x, ref y, "WSTG01");
+                Robot_move_1(ref x1, ref y1, "WSTG01");
             if(TcpIpServer.Position_Value() == "WSTG02")
-                move(ref x, ref y, "WSTG02");
+                Robot_move_1(ref x1, ref y1, "WSTG02");
             if(TcpIpServer.Position_Value() == "WSTG03")
-                move(ref x, ref y, "WSTG03");
+                Robot_move_1(ref x1, ref y1, "WSTG03");
 
             if(TcpIpServer.Position_Value() == "WMS01")
-                move(ref x, ref y, "WMS01");
+                Robot_move_1(ref x1, ref y1, "WMS01");
             if(TcpIpServer.Position_Value() == "WMS02")
-                move(ref x, ref y, "WMS02");
+                Robot_move_1(ref x1, ref y1, "WMS02");
             if(TcpIpServer.Position_Value() == "WMS03")
-                move(ref x, ref y, "WMS03");
-            Robot1.Location = new Point(x, y);
+                Robot_move_1(ref x1, ref y1, "WMS03");
+            
+            // 남자 한복
+            if (TcpIpServer.Position_Value() == "MIN01")
+               Robot_move_2(ref x2, ref y2, "MIN01");
+            if(TcpIpServer.Position_Value() == "MOUT01")
+                Robot_move_2(ref x2, ref y2, "MOUT01");
+
+            if(TcpIpServer.Position_Value() == "MSTG01")
+                Robot_move_2(ref x2, ref y2, "MSTG01");
+            if(TcpIpServer.Position_Value() == "MSTG02")
+                Robot_move_2(ref x2, ref y2, "MSTG02");
+            if(TcpIpServer.Position_Value() == "MSTG03")
+                Robot_move_2(ref x2, ref y2, "MSTG03");
+
+            if(TcpIpServer.Position_Value() == "MMS01")
+                Robot_move_2(ref x2, ref y2, "MMS01");
+            if(TcpIpServer.Position_Value() == "MMS02")
+                Robot_move_2(ref x2, ref y2, "MMS02");
+            if(TcpIpServer.Position_Value() == "MMS03")
+                Robot_move_2(ref x2, ref y2, "MMS03");
+
+
+            Robot1.Location = new Point(x1, y1);
+            Robot2.Location = new Point(x2, y2);
             Update();
         }
 
-        private void move(ref int x, ref int y, string position)
+        private void Robot_move_1(ref int x, ref int y, string position)
 		{
             string Robot1_location = position;
             Robot1_Current_Location = Robot1.Location;
             Robot1_Target_Location = m_Robot1_Location[Robot1_location];
+
+            TcpIpServer.Position_End();
+        }
+        
+        private void Robot_move_2(ref int x, ref int y, string position)
+		{
+            string Robot2_location = position;
+            Robot2_Current_Location = Robot2.Location;
+            Robot2_Target_Location = m_Robot2_Location[Robot2_location];
 
             TcpIpServer.Position_End();
         }

@@ -12,12 +12,6 @@ namespace Dalgucci_ManagerPage
 {
 	partial class TcpIpServer
 	{
-        /*frmMain frmmain = null;
-
-        public TcpIpServer(frmMain fm)
-        {
-            frmmain = fm;
-        }*/
         static void Woman_OutOrder(NetworkStream stream)
         {
             string cmd_out_order = "OUT_ORDER";
@@ -44,17 +38,6 @@ namespace Dalgucci_ManagerPage
                     Woman_OutOrder_Rev(ref stream);
                 }
             }
-        }
-
-        private static string bPosition = "";
-        public static string Position_Value()
-        {
-            return bPosition;
-        }
-        public static string Position_End()
-        {
-            bPosition = "";
-            return bPosition;
         }
 
         static void Woman_InOrder(NetworkStream stream)
@@ -118,7 +101,7 @@ namespace Dalgucci_ManagerPage
 			}
 		}
 
-        private static void Woman_OutOrder_Rev(ref NetworkStream stream)
+        public static void Woman_OutOrder_Rev(ref NetworkStream stream)
         {
             int length = 0;
             string data = "";
@@ -128,11 +111,11 @@ namespace Dalgucci_ManagerPage
             {
                 data = Encoding.Default.GetString(bytes, 0, length);
                 // Console.WriteLine(String.Format("수신 : {0}", data));
-                string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "POS" }, StringSplitOptions.RemoveEmptyEntries);
+                string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "POS", "STATE", }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (data.Contains("COMPLETE_OUTPUT"))
                 {
-                    Console.WriteLine("작업 완료");
+                    Console.WriteLine("작업 완료/출고 완료");
                     Program.data.RowDelete();
                     Console.WriteLine("주문 테이블 삭제");
                     break;
@@ -157,46 +140,47 @@ namespace Dalgucci_ManagerPage
                 if (data.Contains("Place End"))
                     Console.WriteLine("도착 및 작업수행");
 
+                // 여자 한복 창고
                 if (data.Contains("WMS01"))
                 {
-                    Console.WriteLine("1번 창고 앞");
+                    Console.WriteLine("여자 한복 1번 창고 앞");
                     bPosition = sRcvMessage[2];
                 }
 
                 if (sRcvMessage[2] == "WMS02")
                 {
-                    Console.WriteLine("2번 창고 앞");
+                    Console.WriteLine("여자 한복 2번 창고 앞");
                     bPosition = sRcvMessage[2];
                 }
 
                 if (data.Contains("WMS03"))
                 {
-                    Console.WriteLine("3번 창고 앞");
+                    Console.WriteLine("여자 한복 3번 창고 앞");
                     bPosition = sRcvMessage[2];
                 }
                 if (data.Contains("WSTG01"))
                 {
-                    Console.WriteLine("1번 창고");
+                    Console.WriteLine("여자 한복 1번 창고");
                     bPosition = sRcvMessage[2];
                 }
                 if (data.Contains("WSTG02"))
                 {
-                    Console.WriteLine("2번 창고");
+                    Console.WriteLine("여자 한복 2번 창고");
                     bPosition = sRcvMessage[2];
                 }
                 if (data.Contains("WSTG03"))
                 {
-                    Console.WriteLine("3번 창고");
+                    Console.WriteLine("여자 한복 3번 창고");
                     bPosition = sRcvMessage[2];
                 }
                 if (sRcvMessage[2] == "WIN01")
                 {
-                    Console.WriteLine("입고 시작 위치");
+                    Console.WriteLine("여자 한복 입고 시작 위치");
                     bPosition = sRcvMessage[2];
                 }
                 if (data.Contains("WOUT01"))
                 {
-                    Console.WriteLine("출고 위치");
+                    Console.WriteLine("여자 한복 출고 위치");
                     bPosition = sRcvMessage[2];
                 }
             }
