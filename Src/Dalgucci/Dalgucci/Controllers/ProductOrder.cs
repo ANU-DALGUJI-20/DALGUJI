@@ -288,14 +288,14 @@ namespace Dalgucci.Controllers
             ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
             ViewData["Product_Name"] = "매화당의";
             ViewData["Order_Time"] = DateTime.Now; ;
-            ViewData["Product_Cost"] = "109000";
+            ViewData["Product_Cost"] = "89000";
             return View();
         }
 
         public IActionResult OrderSuccess2()
         {
             ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
-            ViewData["Product_Name"] = "매화당의";
+            ViewData["Product_Name"] = "은디방의 옥색";
             ViewData["Order_Time"] = DateTime.Now; ;
             ViewData["Product_Cost"] = "109000";
             return View();
@@ -304,36 +304,63 @@ namespace Dalgucci.Controllers
         public IActionResult OrderSuccess3()
         {
             ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
-            ViewData["Product_Name"] = "매화당의";
+            ViewData["Product_Name"] = "설중산호";
             ViewData["Order_Time"] = DateTime.Now; ;
-            ViewData["Product_Cost"] = "109000";
+            ViewData["Product_Cost"] = "99000";
             return View();
         }
 
         public IActionResult OrderSuccess4()
         {
             ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
-            ViewData["Product_Name"] = "매화당의";
+            ViewData["Product_Name"] = "산호핑크";
             ViewData["Order_Time"] = DateTime.Now; ;
-            ViewData["Product_Cost"] = "109000";
+            ViewData["Product_Cost"] = "99000";
             return View();
         }
 
         public IActionResult OrderSuccess5()
         {
             ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
-            ViewData["Product_Name"] = "매화당의";
+            ViewData["Product_Name"] = "베리예빔";
             ViewData["Order_Time"] = DateTime.Now; ;
-            ViewData["Product_Cost"] = "109000";
+            ViewData["Product_Cost"] = "119000";
             return View();
         }
 
         public IActionResult OrderSuccess6()
         {
             ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
-            ViewData["Product_Name"] = "매화당의";
+            ViewData["Product_Name"] = "민달래";
             ViewData["Order_Time"] = DateTime.Now; ;
             ViewData["Product_Cost"] = "109000";
+            return View();
+        }
+
+        public IActionResult OrderSuccess7()
+        {
+            ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
+            ViewData["Product_Name"] = "보라쾌자";
+            ViewData["Order_Time"] = DateTime.Now; ;
+            ViewData["Product_Cost"] = "109000";
+            return View();
+        }
+
+        public IActionResult OrderSuccess8()
+        {
+            ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
+            ViewData["Product_Name"] = "다운블루쾌자";
+            ViewData["Order_Time"] = DateTime.Now; ;
+            ViewData["Product_Cost"] = "109000";
+            return View();
+        }
+
+        public IActionResult OrderSuccess9()
+        {
+            ViewData["User_No"] = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
+            ViewData["Product_Name"] = "옥색쾌자";
+            ViewData["Order_Time"] = DateTime.Now; ;
+            ViewData["Product_Cost"] = "119000";
             return View();
         }
 
@@ -381,9 +408,7 @@ namespace Dalgucci.Controllers
             return View();
         }
 
-       
-
-
+ 
         public IActionResult Product_Order()
         {
             return View();

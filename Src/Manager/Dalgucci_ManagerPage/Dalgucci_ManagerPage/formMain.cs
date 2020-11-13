@@ -417,7 +417,6 @@ namespace Dalgucci_ManagerPage
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             Order_View.DataSource = Program.data.Orders();
             timer1.Enabled = true;
             timer1.Start();

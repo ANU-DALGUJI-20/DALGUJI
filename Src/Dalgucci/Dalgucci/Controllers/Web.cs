@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
 using Dalgucci.DB;
 using Microsoft.AspNetCore.Http;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace Dalgucci.Controllers
 {
@@ -30,7 +32,7 @@ namespace Dalgucci.Controllers
         {
             return View();
         }
-      
 
+       
     }
 }
