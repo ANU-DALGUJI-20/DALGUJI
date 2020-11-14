@@ -23,19 +23,19 @@ namespace Dalgucci_ManagerPage
                 {
                     string out_prod_pos = "MSTG01";
                     SendCmdProdOut(ref stream, cmd_out_order, out_prod_pos);
-                    Man_OutOrder_Rev(ref stream);
+                    Man_Order_Rev(ref stream);
                 }
                 else if (strProductCode == "2002")
                 {
                     string out_prod_pos = "MSTG02";
                     SendCmdProdOut(ref stream, cmd_out_order, out_prod_pos);
-                    Man_OutOrder_Rev(ref stream);
+                    Man_Order_Rev(ref stream);
                 }
                 else if (strProductCode == "2003")
                 {
                     string out_prod_pos = "MSTG03";
                     SendCmdProdOut(ref stream, cmd_out_order, out_prod_pos);
-                    Man_OutOrder_Rev(ref stream);
+                    Man_Order_Rev(ref stream);
                 }
             }
         }
@@ -55,33 +55,28 @@ namespace Dalgucci_ManagerPage
                 data = Encoding.Default.GetString(bytes, 0, length);
                 Console.WriteLine(String.Format("수신 : {0}", data));
 
-                if (data.Contains("COMPLETE"))
-                {
-                    Console.WriteLine("작업 완료");
-                }
-
                 if (data.Contains("2001"))
                 {
                     string in_prod_pos = "MSTG01";
                     SendCmdProdOut(ref stream, cmd_in_order, in_prod_pos);
-                    Man_OutOrder_Rev(ref stream);
+                    Man_Order_Rev(ref stream);
                 }
                 else if (data.Contains("2002"))
                 {
                     string in_prod_pos = "MSTG02";
                     SendCmdProdOut(ref stream, cmd_in_order, in_prod_pos);
-                    Man_OutOrder_Rev(ref stream);
+                    Man_Order_Rev(ref stream);
                 }
                 else if (data.Contains("2003"))
                 {
                     string in_prod_pos = "MSTG03";
                     SendCmdProdOut(ref stream, cmd_in_order, in_prod_pos);
-                    Man_OutOrder_Rev(ref stream);
+                    Man_Order_Rev(ref stream);
                 }
             }
         }
 
-        public static void Man_OutOrder_Rev(ref NetworkStream stream)
+        public static void Man_Order_Rev(ref NetworkStream stream)
         {
             int length = 0;
             string data = "";
@@ -153,7 +148,7 @@ namespace Dalgucci_ManagerPage
                     Console.WriteLine("남자 한복 3번 창고");
                     bPosition = sRcvMessage[2];
                 }
-                if (sRcvMessage[2] == "MIN01")
+                if (data.Contains("MIN01"))
                 {
                     Console.WriteLine("남자 한복 입고 시작 위치");
                     bPosition = sRcvMessage[2];
@@ -180,8 +175,8 @@ namespace Dalgucci_ManagerPage
 
                 Man_InOrder(stream);
             }
-            stream.Close();
-            client.Close();
+            //stream.Close();
+            //client.Close();
         }
     }
 }

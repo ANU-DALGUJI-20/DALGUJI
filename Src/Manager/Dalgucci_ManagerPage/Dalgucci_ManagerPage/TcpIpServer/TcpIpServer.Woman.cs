@@ -23,19 +23,19 @@ namespace Dalgucci_ManagerPage
                 {
                     string out_prod_pos = "WSTG01";
                     SendCmdProdOut(ref stream, cmd_out_order, out_prod_pos);
-                    Woman_OutOrder_Rev(ref stream);
+                    Woman_Order_Rev(ref stream);
                 }
                 else if (strProductCode == "1002")
                 {
                     string out_prod_pos = "WSTG02";
                     SendCmdProdOut(ref stream, cmd_out_order, out_prod_pos);
-                    Woman_OutOrder_Rev(ref stream);
+                    Woman_Order_Rev(ref stream);
                 }
                 else if (strProductCode == "1003")
                 {
                     string out_prod_pos = "WSTG03";
                     SendCmdProdOut(ref stream, cmd_out_order, out_prod_pos);
-                    Woman_OutOrder_Rev(ref stream);
+                    Woman_Order_Rev(ref stream);
                 }
             }
         }
@@ -55,28 +55,23 @@ namespace Dalgucci_ManagerPage
                 data = Encoding.Default.GetString(bytes, 0, length);
                 Console.WriteLine(String.Format("수신 : {0}", data));
 
-                if (data.Contains("COMPLETE"))
-                {
-                    Console.WriteLine("작업 완료");
-                }
-
                 if (data.Contains("1001"))
                 {
                     string in_prod_pos = "WSTG01";
                     SendCmdProdOut(ref stream, cmd_in_order, in_prod_pos);
-                    Woman_OutOrder_Rev(ref stream);
+                    Woman_Order_Rev(ref stream);
                 }
                 else if (data.Contains("1002"))
                 {
                     string in_prod_pos = "WSTG02";
                     SendCmdProdOut(ref stream, cmd_in_order, in_prod_pos);
-                    Woman_OutOrder_Rev(ref stream);
+                    Woman_Order_Rev(ref stream);
                 }
                 else if (data.Contains("1003"))
                 {
                     string in_prod_pos = "WSTG03";
                     SendCmdProdOut(ref stream, cmd_in_order, in_prod_pos);
-                    Woman_OutOrder_Rev(ref stream);
+                    Woman_Order_Rev(ref stream);
                 }
 				//string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "POS" }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -101,7 +96,7 @@ namespace Dalgucci_ManagerPage
 			}
 		}
 
-        public static void Woman_OutOrder_Rev(ref NetworkStream stream)
+        public static void Woman_Order_Rev(ref NetworkStream stream)
         {
             int length = 0;
             string data = "";
@@ -173,7 +168,7 @@ namespace Dalgucci_ManagerPage
                     Console.WriteLine("여자 한복 3번 창고");
                     bPosition = sRcvMessage[2];
                 }
-                if (sRcvMessage[2] == "WIN01")
+                if (data.Contains("WIN01"))
                 {
                     Console.WriteLine("여자 한복 입고 시작 위치");
                     bPosition = sRcvMessage[2];
@@ -200,8 +195,8 @@ namespace Dalgucci_ManagerPage
 
                 Woman_InOrder(stream);
             }
-            stream.Close();
-            client.Close();
+            //stream.Close();
+            //client.Close();
         }
     }
 }

@@ -221,9 +221,9 @@ namespace Dalgucci
 
                 return table;
             }
-
         }
-            public DataTable Orders()
+
+        public DataTable Orders()
         {
             lock (lockObject)
             {

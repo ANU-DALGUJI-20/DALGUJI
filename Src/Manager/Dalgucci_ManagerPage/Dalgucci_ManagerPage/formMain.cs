@@ -21,20 +21,9 @@ namespace Dalgucci_ManagerPage
 
         }
 
-<<<<<<< .mine
         private void Order_View_CellContentClick(object sender, DataGridViewCellEventArgs e)
-
-
-
-
-=======
-        //로봇 1 -------------------------------------------------------------------------------------------------------
-
-        // 경로 이동
-
-        public void WMS01()
->>>>>>> .theirs
         {
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -94,7 +83,7 @@ namespace Dalgucci_ManagerPage
         {
             InitializeComponent();
 
-            // 그림 바뀌면 좌표 수정 요망!!!!!!!!!!!!!!!!!!
+            // 그림 바뀌면 좌표 수정!!!!!!!!!!!!!!!!!!
             m_Robot1_Location.Add("WIN01", new Point(1160, 344));
             m_Robot1_Location.Add("WOUT01", new Point(648, 344));
             m_Robot1_Location.Add("WMS03", new Point(1000, 344));
@@ -141,22 +130,6 @@ namespace Dalgucci_ManagerPage
             //}
         }
 
-<<<<<<< .mine
-
-
-
-
-
-
-=======
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
->>>>>>> .theirs
-
         private void Output_Click(object sender, EventArgs e)
         {
             //string text = test.Text;
@@ -164,196 +137,7 @@ namespace Dalgucci_ManagerPage
             Robot1_Current_Location = Robot1.Location;
             Robot1_Target_Location = m_Robot1_Location[Robot1_location];
 
-<<<<<<< .mine
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-
-
-            //1001
-            //if (po == 0)
-            //WMS03();
-            //else if(po == 1)
-            //WMS02();
-            //else if(po == 2)
-            //WMS01();
-            //else if(po == 3)
-            //Robot1_Up();
-            //else if(po == 4)
-            //Robot1_Back();
-            //else if(po ==5)
-            //Robot1_OUTPlace();
-            //else if(po == 6)
-            //WMS01_Back();
-            //else if(po==7)
-            //WMS02_Back();
-            //else if(po == 8)
-            //WMS03_Back();
-            //else if (po == 9)
-            //Robot1_INPlace();
-
-
-            //// 1002
-            //WMS03();
-            //WMS02();
-            //Robot1_Up();
-            //Robot1_Back();
-            //WMS01();
-
-            //Robot1_OUTPlace();
-            //WMS01_Back();
-            //WMS02_Back();
-            //WMS03_Back();
-            //Robot1_INPlace();
-
-            //// 1003
-            //WMS03();
-            //Robot1_Up();
-            //Robot1_Back();
-            //WMS02();
-            //WMS01();
-            //Robot1_OUTPlace();
-            //WMS01_Back();
-            //WMS02_Back();
-            //WMS03_Back();
-            //Robot1_INPlace();
-
-            //// 2001
-            //MMS03();
-            //MMS02();
-            //MMS01();
-            //Robot2_Down();
-            //Robot2_Back();
-
-            //Robot2_OUTPlace();
-            //MMS01_Back();
-            //MMS02_Back();
-            //MMS03_Back();
-            //Robot2_INPlace();
-
-            //// 2002
-            //MMS03();
-            //MMS02();
-            //Robot2_Down();
-            //Robot2_Back();
-            //MMS01();
-
-            //Robot2_OUTPlace();
-            //MMS01_Back();
-            //MMS02_Back();
-            //MMS03_Back();
-            //Robot2_INPlace();
-
-            //// 2003
-            //MMS03();
-            //Robot2_Down();
-            //Robot2_Back();
-            //MMS02();
-            //MMS01();
-
-            //Robot2_OUTPlace();
-            //MMS01_Back();
-            //MMS02_Back();
-            //MMS03_Back();
-            //Robot2_INPlace();
-
-
-
-
->>>>>>> .theirs
         }
-
-        
 
         private void CCTV_Click(object sender, EventArgs e)
         {
@@ -371,31 +155,9 @@ namespace Dalgucci_ManagerPage
             int x2 = Robot2.Location.X;
             int y2 = Robot2.Location.Y;
 
-<<<<<<< .mine
             // Robot 1
             if (x1 != Robot1_Target_Location.X)
             {
-
-
-
-
-
-
-
-
-=======
-        }
-
-
-
-        private void tmr_RobotAnimation_Tick(object sender, EventArgs e)
-        {
-            int x = Robot1.Location.X;
-            int y = Robot1.Location.Y;
-
-            if (x != Robot1_Target_Location.X)
-            {
->>>>>>> .theirs
                 if (Robot1_Current_Location.X < Robot1_Target_Location.X)
                 {
                     x1 = Robot1.Location.X + 1;
@@ -408,13 +170,8 @@ namespace Dalgucci_ManagerPage
                 }
             }
 
-<<<<<<< .mine
             if (y1 != Robot1_Target_Location.Y)
             {
-=======
-            if (y != Robot1_Target_Location.Y)
-            {
->>>>>>> .theirs
                 if (Robot1_Current_Location.Y < Robot1_Target_Location.Y)
                 {
                     x1 = Robot1.Location.X;
@@ -426,7 +183,6 @@ namespace Dalgucci_ManagerPage
                     y1 = Robot1.Location.Y - 1;
                 }
             }
-<<<<<<< .mine
 
             // Robot 2
             if (x2 != Robot2_Target_Location.X)
@@ -477,58 +233,6 @@ namespace Dalgucci_ManagerPage
             if(TcpIpServer.Position_Value() == "WMS03")
                 Robot_move_1(ref x1, ref y1, "WMS03");
             
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> .theirs
             // 남자 한복
             if (TcpIpServer.Position_Value() == "MIN01")
                Robot_move_2(ref x2, ref y2, "MIN01");
@@ -554,9 +258,8 @@ namespace Dalgucci_ManagerPage
             Robot2.Location = new Point(x2, y2);
             Update();
         }
-<<<<<<< .mine
 
-        private void Robot_move_1(ref int x, ref int y, string position)
+        private void Robot_move_1(ref int x1, ref int y1, string position)
 		{
             string Robot1_location = position;
             Robot1_Current_Location = Robot1.Location;
@@ -565,7 +268,7 @@ namespace Dalgucci_ManagerPage
             TcpIpServer.Position_End();
         }
         
-        private void Robot_move_2(ref int x, ref int y, string position)
+        private void Robot_move_2(ref int x2, ref int y2, string position)
 		{
             string Robot2_location = position;
             Robot2_Current_Location = Robot2.Location;
@@ -574,25 +277,4 @@ namespace Dalgucci_ManagerPage
             TcpIpServer.Position_End();
         }
 	}
-=======
-
-        private void Input_Click(object sender, EventArgs e)
-        {
-
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> .theirs
 }
