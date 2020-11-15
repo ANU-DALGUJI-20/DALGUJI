@@ -75,7 +75,8 @@ namespace Dalgucci_ManagerPage
             {
                 woman_client = listener.EndAcceptTcpClient(ar);
                 string ip = ((IPEndPoint)woman_client.Client.RemoteEndPoint).Address.ToString();
-                Console.WriteLine("Woman 접속 :{0}", ip);
+                //Console.WriteLine("Woman 접속 :{0}", ip);
+                Program.g_frmMain.AddConsoleOutput(string.Format("Woman 접속 :{0}", ip));
                 WomanProdThread.Start();
 
                 tcpClientConnected.Reset();
@@ -87,7 +88,8 @@ namespace Dalgucci_ManagerPage
             {
                 man_client = listener.EndAcceptTcpClient(ar);
                 string ip = ((IPEndPoint)man_client.Client.RemoteEndPoint).Address.ToString();
-                Console.WriteLine("Man 접속 :{0}", ip);
+                //Console.WriteLine("Man 접속 :{0}", ip);
+                Program.g_frmMain.AddConsoleOutput(string.Format("Man 접속 :{0}", ip));
                 ManProdThread.Start();
 
                 tcpClientConnected.Reset();
@@ -105,7 +107,8 @@ namespace Dalgucci_ManagerPage
                 IPEndPoint localAddress = new IPEndPoint(IPAddress.Parse(bindIp), bindPort);
                 server = new TcpListener(localAddress);
                 server.Start();
-                Console.WriteLine("서버 시작...");
+                // Console.WriteLine("서버 시작...");
+                Program.g_frmMain.AddConsoleOutput("서버 시작...");
 
                 return true;
             }
@@ -127,7 +130,8 @@ namespace Dalgucci_ManagerPage
             string sPacket = String.Format($"{Token_Start}MSGID={nMsgId.ToString().PadLeft(4, '0')}{my_splitor}CMD={sCMD}{my_splitor}POS={sPosition}{Token_End}");
             byte[] msg = Encoding.Default.GetBytes(sPacket);
             stream.Write(msg, 0, msg.Length);
-            Console.WriteLine(String.Format("송신: {0}", sPacket));
+            //Console.WriteLine(String.Format("송신: {0}", sPacket));
+            Program.g_frmMain.AddConsoleOutput(String.Format("송신: {0}", sPacket));
 
             return 0;
         }

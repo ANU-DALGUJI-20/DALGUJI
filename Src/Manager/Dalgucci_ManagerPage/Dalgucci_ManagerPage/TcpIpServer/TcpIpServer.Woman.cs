@@ -53,7 +53,7 @@ namespace Dalgucci_ManagerPage
             while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
             {
                 data = Encoding.Default.GetString(bytes, 0, length);
-                Console.WriteLine(String.Format("수신 : {0}", data));
+                Program.g_frmMain.AddConsoleOutput(String.Format("수신 : {0}", data));
 
                 if (data.Contains("1001"))
                 {
@@ -110,72 +110,72 @@ namespace Dalgucci_ManagerPage
 
                 if (data.Contains("COMPLETE_OUTPUT"))
                 {
-                    Console.WriteLine("작업 완료/출고 완료");
+                    Program.g_frmMain.AddConsoleOutput("작업 완료/출고 완료");
                     Program.data.RowDelete();
-                    Console.WriteLine("주문 테이블 삭제");
+                    Program.g_frmMain.AddConsoleOutput("주문 테이블 삭제");
                     break;
                 }
                 if (data.Contains("COMPLETE_INPUT"))
                 {
-                    Console.WriteLine("작업 완료/입고 완료");
+                    Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
                     break;
                 }
 
                 if (data.Contains("OK"))
-                    Console.WriteLine("명령을 전달받음");
+                    Program.g_frmMain.AddConsoleOutput("명령을 전달받음");
                 if (data.Contains("START"))
-                    Console.WriteLine("작동 시작");
+                    Program.g_frmMain.AddConsoleOutput("작동 시작");
 
                 if (data.Contains("Going Pick-Up"))
-                    Console.WriteLine("출고 작업/이동중 ...");
+                    Program.g_frmMain.AddConsoleOutput("출고 작업/이동중 ...");
                 if (data.Contains("Pick End"))
-                    Console.WriteLine("제품 내려놓음");
+                    Program.g_frmMain.AddConsoleOutput("제품 내려놓음");
                 if (data.Contains("Going Place"))
-                    Console.WriteLine("장소로 이동중...");
+                    Program.g_frmMain.AddConsoleOutput("장소로 이동중...");
                 if (data.Contains("Place End"))
-                    Console.WriteLine("도착 및 작업수행");
+                    Program.g_frmMain.AddConsoleOutput("도착 및 작업수행");
 
                 // 여자 한복 창고
                 if (data.Contains("WMS01"))
                 {
-                    Console.WriteLine("여자 한복 1번 창고 앞");
+                    Program.g_frmMain.AddConsoleOutput("여자 한복 1번 창고 앞");
                     bPosition = sRcvMessage[2];
                 }
 
                 if (sRcvMessage[2] == "WMS02")
                 {
-                    Console.WriteLine("여자 한복 2번 창고 앞");
+                    Program.g_frmMain.AddConsoleOutput("여자 한복 2번 창고 앞");
                     bPosition = sRcvMessage[2];
                 }
 
                 if (data.Contains("WMS03"))
                 {
-                    Console.WriteLine("여자 한복 3번 창고 앞");
+                    Program.g_frmMain.AddConsoleOutput("여자 한복 3번 창고 앞");
                     bPosition = sRcvMessage[2];
                 }
                 if (data.Contains("WSTG01"))
                 {
-                    Console.WriteLine("여자 한복 1번 창고");
+                    Program.g_frmMain.AddConsoleOutput("여자 한복 1번 창고");
                     bPosition = sRcvMessage[2];
                 }
                 if (data.Contains("WSTG02"))
                 {
-                    Console.WriteLine("여자 한복 2번 창고");
+                    Program.g_frmMain.AddConsoleOutput("여자 한복 2번 창고");
                     bPosition = sRcvMessage[2];
                 }
                 if (data.Contains("WSTG03"))
                 {
-                    Console.WriteLine("여자 한복 3번 창고");
+                    Program.g_frmMain.AddConsoleOutput("여자 한복 3번 창고");
                     bPosition = sRcvMessage[2];
                 }
                 if (data.Contains("WIN01"))
                 {
-                    Console.WriteLine("여자 한복 입고 시작 위치");
+                    Program.g_frmMain.AddConsoleOutput("여자 한복 입고 시작 위치");
                     bPosition = sRcvMessage[2];
                 }
                 if (data.Contains("WOUT01"))
                 {
-                    Console.WriteLine("여자 한복 출고 위치");
+                    Program.g_frmMain.AddConsoleOutput("여자 한복 출고 위치");
                     bPosition = sRcvMessage[2];
                 }
             }
@@ -184,7 +184,7 @@ namespace Dalgucci_ManagerPage
         private static void RobotComProc_Woman()
         {
             TcpClient client = TcpIpServer.GetWomanClient();
-            Console.WriteLine("Woman 로봇 :{0}", ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString());
+            Program.g_frmMain.AddConsoleOutput(string.Format("Woman 로봇 :{0}", ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString()));
             NetworkStream stream = client.GetStream();
 
             while (true)

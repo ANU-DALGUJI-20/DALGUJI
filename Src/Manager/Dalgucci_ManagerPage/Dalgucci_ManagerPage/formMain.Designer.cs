@@ -45,6 +45,8 @@
 			this.CCTV = new System.Windows.Forms.Button();
 			this.test = new System.Windows.Forms.TextBox();
 			this.tmr_RobotAnimation = new System.Windows.Forms.Timer(this.components);
+			this.Console_output = new System.Windows.Forms.ListBox();
+			this.trmConsloeOutput = new System.Windows.Forms.Timer(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.Order_View)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.Robot_View)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -67,10 +69,10 @@
 			// 
 			this.Robot_View.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.Robot_View.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-			this.Robot_No,
-			this.Robot_Name,
-			this.Robot_Part,
-			this.Robot_State});
+            this.Robot_No,
+            this.Robot_Name,
+            this.Robot_Part,
+            this.Robot_State});
 			this.Robot_View.Location = new System.Drawing.Point(16, 200);
 			this.Robot_View.Name = "Robot_View";
 			this.Robot_View.RowHeadersWidth = 51;
@@ -202,11 +204,29 @@
 			this.tmr_RobotAnimation.Interval = 5;
 			this.tmr_RobotAnimation.Tick += new System.EventHandler(this.tmr_RobotAnimation_Tick);
 			// 
+			// Console_output
+			// 
+			this.Console_output.BackColor = System.Drawing.SystemColors.WindowText;
+			this.Console_output.ForeColor = System.Drawing.Color.Lime;
+			this.Console_output.FormattingEnabled = true;
+			this.Console_output.ItemHeight = 15;
+			this.Console_output.Location = new System.Drawing.Point(560, 80);
+			this.Console_output.Name = "Console_output";
+			this.Console_output.Size = new System.Drawing.Size(520, 139);
+			this.Console_output.TabIndex = 10;
+			this.Console_output.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.Console_output_DrawItem);
+			// 
+			// trmConsloeOutput
+			// 
+			this.trmConsloeOutput.Enabled = true;
+			this.trmConsloeOutput.Tick += new System.EventHandler(this.trmConsloeOutput_Tick);
+			// 
 			// frmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1579, 789);
+			this.Controls.Add(this.Console_output);
 			this.Controls.Add(this.test);
 			this.Controls.Add(this.CCTV);
 			this.Controls.Add(this.Robot2);
@@ -248,6 +268,8 @@
 		private System.Windows.Forms.Button CCTV;
 		private System.Windows.Forms.TextBox test;
 		private System.Windows.Forms.Timer tmr_RobotAnimation;
+		private System.Windows.Forms.ListBox Console_output;
+		private System.Windows.Forms.Timer trmConsloeOutput;
 	}
 }
 

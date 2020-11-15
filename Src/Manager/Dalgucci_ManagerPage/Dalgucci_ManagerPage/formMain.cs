@@ -79,6 +79,8 @@ namespace Dalgucci_ManagerPage
         Point Robot2_Current_Location = new Point(0, 0);
         Point Robot2_Target_Location = new Point(0, 0);
 
+        List<string> list_Console_Output = new List<string>();
+
         public frmMain()
         {
             InitializeComponent();
@@ -275,6 +277,50 @@ namespace Dalgucci_ManagerPage
             Robot2_Target_Location = m_Robot2_Location[Robot2_location];
 
             TcpIpServer.Position_End();
+        }
+
+        public void AddConsoleOutput( string _log )
+		{
+            string date = System.DateTime.Now.ToString("[hh:mm:ss] ");
+
+            list_Console_Output.Add(date + _log);
+        }
+        
+		private void trmConsloeOutput_Tick(object sender, EventArgs e)
+		{
+            if( list_Console_Output.Count > 0)
+			{
+                Console_output.Items.Add(list_Console_Output[0]);
+                list_Console_Output.RemoveAt(0);
+                this.Console_output.SelectedIndex = this.Console_output.Items.Count - 1;
+            }
+
+            if( Console_output.Items.Count > 5000)
+			{
+                Console_output.Items.RemoveAt(0);
+            }
+
+        }
+
+		private void Console_output_DrawItem(object sender, DrawItemEventArgs e)
+		{
+            if (e.Index < 0) return;
+            //if the item state is selected them change the back color 
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+                e = new DrawItemEventArgs(e.Graphics,
+                                          e.Font,
+                                          e.Bounds,
+                                          e.Index,
+                                          e.State ^ DrawItemState.Selected,
+                                          e.ForeColor,
+                                          Color.Black);//Choose the color
+
+            // Draw the background of the ListBox control for each item.
+            e.DrawBackground();
+            // Draw the current item text
+            e.Graphics.DrawString(Console_output.Items[e.Index].ToString(), e.Font, Brushes.Black, e.Bounds, StringFormat.GenericDefault);
+            // If the ListBox has focus, draw a focus rectangle around the selected item.
+            e.DrawFocusRectangle();
         }
 	}
 }
