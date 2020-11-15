@@ -30,11 +30,6 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			this.Order_View = new System.Windows.Forms.DataGridView();
-			this.Robot_View = new System.Windows.Forms.DataGridView();
-			this.Robot_No = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Robot_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Robot_Part = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Robot_State = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Input = new System.Windows.Forms.Button();
 			this.Output = new System.Windows.Forms.Button();
 			this.Data = new System.Windows.Forms.Button();
@@ -43,12 +38,10 @@
 			this.Robot1 = new System.Windows.Forms.PictureBox();
 			this.Robot2 = new System.Windows.Forms.PictureBox();
 			this.CCTV = new System.Windows.Forms.Button();
-			this.test = new System.Windows.Forms.TextBox();
 			this.tmr_RobotAnimation = new System.Windows.Forms.Timer(this.components);
 			this.Console_output = new System.Windows.Forms.ListBox();
 			this.trmConsloeOutput = new System.Windows.Forms.Timer(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.Order_View)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.Robot_View)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.Robot1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.Robot2)).BeginInit();
@@ -57,75 +50,31 @@
 			// Order_View
 			// 
 			this.Order_View.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.Order_View.Location = new System.Drawing.Point(16, 384);
+			this.Order_View.Location = new System.Drawing.Point(16, 440);
 			this.Order_View.Name = "Order_View";
 			this.Order_View.RowHeadersWidth = 51;
 			this.Order_View.RowTemplate.Height = 27;
-			this.Order_View.Size = new System.Drawing.Size(440, 320);
+			this.Order_View.Size = new System.Drawing.Size(432, 320);
 			this.Order_View.TabIndex = 0;
 			this.Order_View.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Order_View_CellContentClick);
 			// 
-			// Robot_View
-			// 
-			this.Robot_View.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.Robot_View.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Robot_No,
-            this.Robot_Name,
-            this.Robot_Part,
-            this.Robot_State});
-			this.Robot_View.Location = new System.Drawing.Point(16, 200);
-			this.Robot_View.Name = "Robot_View";
-			this.Robot_View.RowHeadersWidth = 51;
-			this.Robot_View.RowTemplate.Height = 27;
-			this.Robot_View.Size = new System.Drawing.Size(440, 152);
-			this.Robot_View.TabIndex = 1;
-			this.Robot_View.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Robot_View_CellContentClick);
-			// 
-			// Robot_No
-			// 
-			this.Robot_No.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Robot_No.HeaderText = "로봇번호";
-			this.Robot_No.MinimumWidth = 6;
-			this.Robot_No.Name = "Robot_No";
-			// 
-			// Robot_Name
-			// 
-			this.Robot_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Robot_Name.HeaderText = "로봇이름";
-			this.Robot_Name.MinimumWidth = 6;
-			this.Robot_Name.Name = "Robot_Name";
-			// 
-			// Robot_Part
-			// 
-			this.Robot_Part.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Robot_Part.HeaderText = "로봇역할";
-			this.Robot_Part.MinimumWidth = 6;
-			this.Robot_Part.Name = "Robot_Part";
-			// 
-			// Robot_State
-			// 
-			this.Robot_State.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Robot_State.HeaderText = "작동유무";
-			this.Robot_State.MinimumWidth = 6;
-			this.Robot_State.Name = "Robot_State";
-			// 
 			// Input
 			// 
-			this.Input.Location = new System.Drawing.Point(32, 104);
+			this.Input.Location = new System.Drawing.Point(16, 88);
 			this.Input.Name = "Input";
-			this.Input.Size = new System.Drawing.Size(75, 23);
+			this.Input.Size = new System.Drawing.Size(208, 88);
 			this.Input.TabIndex = 2;
-			this.Input.Text = "입고";
+			this.Input.Text = "남자 창고 입고";
 			this.Input.UseVisualStyleBackColor = true;
 			this.Input.Click += new System.EventHandler(this.Input_Click);
 			// 
 			// Output
 			// 
-			this.Output.Location = new System.Drawing.Point(32, 144);
+			this.Output.Location = new System.Drawing.Point(240, 88);
 			this.Output.Name = "Output";
-			this.Output.Size = new System.Drawing.Size(75, 23);
+			this.Output.Size = new System.Drawing.Size(208, 88);
 			this.Output.TabIndex = 3;
-			this.Output.Text = "출고";
+			this.Output.Text = "여자 창고 입고";
 			this.Output.UseVisualStyleBackColor = true;
 			this.Output.Click += new System.EventHandler(this.Output_Click);
 			// 
@@ -181,22 +130,13 @@
 			// 
 			// CCTV
 			// 
-			this.CCTV.Location = new System.Drawing.Point(136, 104);
+			this.CCTV.Location = new System.Drawing.Point(1296, 72);
 			this.CCTV.Name = "CCTV";
-			this.CCTV.Size = new System.Drawing.Size(75, 23);
+			this.CCTV.Size = new System.Drawing.Size(131, 32);
 			this.CCTV.TabIndex = 8;
 			this.CCTV.Text = "로봇";
 			this.CCTV.UseVisualStyleBackColor = true;
 			this.CCTV.Click += new System.EventHandler(this.CCTV_Click);
-			// 
-			// test
-			// 
-			this.test.AcceptsReturn = true;
-			this.test.Location = new System.Drawing.Point(136, 144);
-			this.test.Name = "test";
-			this.test.Size = new System.Drawing.Size(100, 25);
-			this.test.TabIndex = 9;
-			this.test.TextChanged += new System.EventHandler(this.test_TextChanged);
 			// 
 			// tmr_RobotAnimation
 			// 
@@ -207,12 +147,13 @@
 			// Console_output
 			// 
 			this.Console_output.BackColor = System.Drawing.SystemColors.WindowText;
+			this.Console_output.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this.Console_output.ForeColor = System.Drawing.Color.Lime;
 			this.Console_output.FormattingEnabled = true;
 			this.Console_output.ItemHeight = 15;
-			this.Console_output.Location = new System.Drawing.Point(560, 80);
+			this.Console_output.Location = new System.Drawing.Point(16, 184);
 			this.Console_output.Name = "Console_output";
-			this.Console_output.Size = new System.Drawing.Size(520, 139);
+			this.Console_output.Size = new System.Drawing.Size(432, 244);
 			this.Console_output.TabIndex = 10;
 			this.Console_output.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.Console_output_DrawItem);
 			// 
@@ -227,7 +168,6 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1579, 789);
 			this.Controls.Add(this.Console_output);
-			this.Controls.Add(this.test);
 			this.Controls.Add(this.CCTV);
 			this.Controls.Add(this.Robot2);
 			this.Controls.Add(this.Robot1);
@@ -235,13 +175,11 @@
 			this.Controls.Add(this.Data);
 			this.Controls.Add(this.Output);
 			this.Controls.Add(this.Input);
-			this.Controls.Add(this.Robot_View);
 			this.Controls.Add(this.Order_View);
 			this.Name = "frmMain";
 			this.Text = "관리자 메인페이지";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			((System.ComponentModel.ISupportInitialize)(this.Order_View)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.Robot_View)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.Robot1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.Robot2)).EndInit();
@@ -253,20 +191,14 @@
 		#endregion
 
 		private System.Windows.Forms.DataGridView Order_View;
-		private System.Windows.Forms.DataGridView Robot_View;
 		private System.Windows.Forms.Button Input;
 		private System.Windows.Forms.Button Output;
 		private System.Windows.Forms.Button Data;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Robot_No;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Robot_Name;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Robot_Part;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Robot_State;
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.PictureBox Robot1;
 		private System.Windows.Forms.PictureBox Robot2;
 		private System.Windows.Forms.Button CCTV;
-		private System.Windows.Forms.TextBox test;
 		private System.Windows.Forms.Timer tmr_RobotAnimation;
 		private System.Windows.Forms.ListBox Console_output;
 		private System.Windows.Forms.Timer trmConsloeOutput;

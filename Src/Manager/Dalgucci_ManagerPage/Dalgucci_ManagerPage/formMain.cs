@@ -18,7 +18,12 @@ namespace Dalgucci_ManagerPage
     {
         private void Input_Click(object sender, EventArgs e)
         {
+            TcpIpServer.SendCmdToMan("abcd", "abcd");
+        }
 
+        private void Output_Click(object sender, EventArgs e)
+        {
+            TcpIpServer.SendCmdToWoman("abcd", "abcd");
         }
 
         private void Order_View_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -53,20 +58,14 @@ namespace Dalgucci_ManagerPage
         public void Grid_Style()
         {
             Order_View.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Robot_View.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             Order_View.RowHeadersVisible = false;
-            Robot_View.RowHeadersVisible = false;
 
             Order_View.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            Robot_View.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             Order_View.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //Robot_View.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             Order_View.AllowUserToAddRows = false;
-            Robot_View.AllowUserToAddRows = false;
-
 
             //AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
         }
@@ -103,6 +102,7 @@ namespace Dalgucci_ManagerPage
             m_Robot2_Location.Add("MSTG03", new Point(1000, 290));
             m_Robot2_Location.Add("MSTG02", new Point(912, 290));
             m_Robot2_Location.Add("MSTG01", new Point(816, 290));
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -131,16 +131,6 @@ namespace Dalgucci_ManagerPage
             //    Robot_View.Rows.Add(item);
             //}
         }
-
-        private void Output_Click(object sender, EventArgs e)
-        {
-            //string text = test.Text;
-            string Robot1_location = test.Text;
-            Robot1_Current_Location = Robot1.Location;
-            Robot1_Target_Location = m_Robot1_Location[Robot1_location];
-
-        }
-
         private void CCTV_Click(object sender, EventArgs e)
         {
             formRobotCom Form = new formRobotCom();
@@ -216,53 +206,23 @@ namespace Dalgucci_ManagerPage
             }
 
             // 여자 한복
-			if (TcpIpServer.Position_Value() == "WIN01")
-               Robot_move_1(ref x1, ref y1, "WIN01");
-            if(TcpIpServer.Position_Value() == "WOUT01")
-                Robot_move_1(ref x1, ref y1, "WOUT01");
+            string strWoman = TcpIpServer.Position_Value();
+            Robot_move_1(strWoman);
 
-            if(TcpIpServer.Position_Value() == "WSTG01")
-                Robot_move_1(ref x1, ref y1, "WSTG01");
-            if(TcpIpServer.Position_Value() == "WSTG02")
-                Robot_move_1(ref x1, ref y1, "WSTG02");
-            if(TcpIpServer.Position_Value() == "WSTG03")
-                Robot_move_1(ref x1, ref y1, "WSTG03");
-
-            if(TcpIpServer.Position_Value() == "WMS01")
-                Robot_move_1(ref x1, ref y1, "WMS01");
-            if(TcpIpServer.Position_Value() == "WMS02")
-                Robot_move_1(ref x1, ref y1, "WMS02");
-            if(TcpIpServer.Position_Value() == "WMS03")
-                Robot_move_1(ref x1, ref y1, "WMS03");
-            
             // 남자 한복
-            if (TcpIpServer.Position_Value() == "MIN01")
-               Robot_move_2(ref x2, ref y2, "MIN01");
-            if(TcpIpServer.Position_Value() == "MOUT01")
-                Robot_move_2(ref x2, ref y2, "MOUT01");
-
-            if(TcpIpServer.Position_Value() == "MSTG01")
-                Robot_move_2(ref x2, ref y2, "MSTG01");
-            if(TcpIpServer.Position_Value() == "MSTG02")
-                Robot_move_2(ref x2, ref y2, "MSTG02");
-            if(TcpIpServer.Position_Value() == "MSTG03")
-                Robot_move_2(ref x2, ref y2, "MSTG03");
-
-            if(TcpIpServer.Position_Value() == "MMS01")
-                Robot_move_2(ref x2, ref y2, "MMS01");
-            if(TcpIpServer.Position_Value() == "MMS02")
-                Robot_move_2(ref x2, ref y2, "MMS02");
-            if(TcpIpServer.Position_Value() == "MMS03")
-                Robot_move_2(ref x2, ref y2, "MMS03");
-
+            string strMan = TcpIpServer.Position_Value();
+            Robot_move_2(strMan);
 
             Robot1.Location = new Point(x1, y1);
             Robot2.Location = new Point(x2, y2);
             Update();
         }
 
-        private void Robot_move_1(ref int x1, ref int y1, string position)
+        private void Robot_move_1(string position)
 		{
+            if(position == "" || position == null)
+                return;
+
             string Robot1_location = position;
             Robot1_Current_Location = Robot1.Location;
             Robot1_Target_Location = m_Robot1_Location[Robot1_location];
@@ -270,8 +230,11 @@ namespace Dalgucci_ManagerPage
             TcpIpServer.Position_End();
         }
         
-        private void Robot_move_2(ref int x2, ref int y2, string position)
+        private void Robot_move_2(string position)
 		{
+            if (position == "" || position == null)
+                return;
+
             string Robot2_location = position;
             Robot2_Current_Location = Robot2.Location;
             Robot2_Target_Location = m_Robot2_Location[Robot2_location];
@@ -318,7 +281,7 @@ namespace Dalgucci_ManagerPage
             // Draw the background of the ListBox control for each item.
             e.DrawBackground();
             // Draw the current item text
-            e.Graphics.DrawString(Console_output.Items[e.Index].ToString(), e.Font, Brushes.Black, e.Bounds, StringFormat.GenericDefault);
+            e.Graphics.DrawString(Console_output.Items[e.Index].ToString(), e.Font, Brushes.Lime, e.Bounds, StringFormat.GenericDefault);
             // If the ListBox has focus, draw a focus rectangle around the selected item.
             e.DrawFocusRectangle();
         }

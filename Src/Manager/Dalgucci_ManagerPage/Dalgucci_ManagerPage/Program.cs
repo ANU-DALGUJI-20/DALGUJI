@@ -14,6 +14,7 @@ namespace Dalgucci_ManagerPage
         /// </summary>
         static public Database data = null;
         static public frmMain g_frmMain = null;
+        static public TcpIpServer server = null;
         [STAThread]
        
         static void Main()
@@ -23,7 +24,7 @@ namespace Dalgucci_ManagerPage
 
             g_frmMain = new frmMain();
             data = new Database();
-            TcpIpServer server = new TcpIpServer();
+            server = new TcpIpServer();
             Application.Run(g_frmMain);
         }
     }
