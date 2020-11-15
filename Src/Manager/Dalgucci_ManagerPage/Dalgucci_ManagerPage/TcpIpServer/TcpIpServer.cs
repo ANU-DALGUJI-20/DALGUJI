@@ -33,6 +33,17 @@ namespace Dalgucci_ManagerPage
             }
         }
 
+        private static string bPosition = "";
+        public static string Position_Value()
+        {
+            return bPosition;
+        }
+        public static string Position_End()
+        {
+            bPosition = "";
+            return bPosition;
+        }
+
         private static TcpClient GetWomanClient()
         {
             return woman_client;
@@ -105,7 +116,7 @@ namespace Dalgucci_ManagerPage
             }
         }
 
-        private static int SendCmdProdOut(ref NetworkStream stream, string sCMD, string sPosition)
+        public static int SendCmdProdOut(ref NetworkStream stream, string sCMD, string sPosition)
         {
             string Token_Start = "{{$";
             string Token_End = "$}}";
