@@ -13,16 +13,18 @@ namespace Dalgucci_ManagerPage
         /// 해당 애플리케이션의 주 진입점입니다.
         /// </summary>
         static public Database data = null;
+        static public frmMain g_frmMain = null;
         [STAThread]
        
         static void Main()
         {
-            data = new Database();
-            TcpIpServer server = new TcpIpServer();
-            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+
+            g_frmMain = new frmMain();
+            data = new Database();
+            TcpIpServer server = new TcpIpServer();
+            Application.Run(g_frmMain);
         }
     }
 }

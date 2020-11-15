@@ -1,33 +1,33 @@
 ﻿namespace Dalgucci_ManagerPage
 {
-    partial class frmMain
-    {
-        /// <summary>
-        /// 필수 디자이너 변수입니다.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class frmMain
+	{
+		/// <summary>
+		/// 필수 디자이너 변수입니다.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// 사용 중인 모든 리소스를 정리합니다.
-        /// </summary>
-        /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// 사용 중인 모든 리소스를 정리합니다.
+		/// </summary>
+		/// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form 디자이너에서 생성한 코드
+		#region Windows Form 디자이너에서 생성한 코드
 
-        /// <summary>
-        /// 디자이너 지원에 필요한 메서드입니다. 
-        /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// 디자이너 지원에 필요한 메서드입니다. 
+		/// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			this.components = new System.ComponentModel.Container();
 			this.Order_View = new System.Windows.Forms.DataGridView();
 			this.Robot_View = new System.Windows.Forms.DataGridView();
@@ -45,6 +45,8 @@
 			this.CCTV = new System.Windows.Forms.Button();
 			this.test = new System.Windows.Forms.TextBox();
 			this.tmr_RobotAnimation = new System.Windows.Forms.Timer(this.components);
+			this.Console_output = new System.Windows.Forms.ListBox();
+			this.trmConsloeOutput = new System.Windows.Forms.Timer(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.Order_View)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.Robot_View)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -115,6 +117,7 @@
 			this.Input.TabIndex = 2;
 			this.Input.Text = "입고";
 			this.Input.UseVisualStyleBackColor = true;
+			this.Input.Click += new System.EventHandler(this.Input_Click);
 			// 
 			// Output
 			// 
@@ -168,7 +171,7 @@
 			// Robot2
 			// 
 			this.Robot2.Image = global::Dalgucci_ManagerPage.Properties.Resources.iconmonstr_delivery_15_2402;
-			this.Robot2.Location = new System.Drawing.Point(1256, 536);
+			this.Robot2.Location = new System.Drawing.Point(1408, 488);
 			this.Robot2.Name = "Robot2";
 			this.Robot2.Size = new System.Drawing.Size(45, 40);
 			this.Robot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -201,11 +204,29 @@
 			this.tmr_RobotAnimation.Interval = 5;
 			this.tmr_RobotAnimation.Tick += new System.EventHandler(this.tmr_RobotAnimation_Tick);
 			// 
+			// Console_output
+			// 
+			this.Console_output.BackColor = System.Drawing.SystemColors.WindowText;
+			this.Console_output.ForeColor = System.Drawing.Color.Lime;
+			this.Console_output.FormattingEnabled = true;
+			this.Console_output.ItemHeight = 15;
+			this.Console_output.Location = new System.Drawing.Point(560, 80);
+			this.Console_output.Name = "Console_output";
+			this.Console_output.Size = new System.Drawing.Size(520, 139);
+			this.Console_output.TabIndex = 10;
+			this.Console_output.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.Console_output_DrawItem);
+			// 
+			// trmConsloeOutput
+			// 
+			this.trmConsloeOutput.Enabled = true;
+			this.trmConsloeOutput.Tick += new System.EventHandler(this.trmConsloeOutput_Tick);
+			// 
 			// frmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1579, 789);
+			this.Controls.Add(this.Console_output);
 			this.Controls.Add(this.test);
 			this.Controls.Add(this.CCTV);
 			this.Controls.Add(this.Robot2);
@@ -227,26 +248,28 @@
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.DataGridView Order_View;
-        private System.Windows.Forms.DataGridView Robot_View;
-        private System.Windows.Forms.Button Input;
-        private System.Windows.Forms.Button Output;
-        private System.Windows.Forms.Button Data;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Robot_No;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Robot_Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Robot_Part;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Robot_State;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox Robot1;
-        private System.Windows.Forms.PictureBox Robot2;
-        private System.Windows.Forms.Button CCTV;
-        private System.Windows.Forms.TextBox test;
+		private System.Windows.Forms.DataGridView Order_View;
+		private System.Windows.Forms.DataGridView Robot_View;
+		private System.Windows.Forms.Button Input;
+		private System.Windows.Forms.Button Output;
+		private System.Windows.Forms.Button Data;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Robot_No;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Robot_Name;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Robot_Part;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Robot_State;
+		private System.Windows.Forms.Timer timer1;
+		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox Robot1;
+		private System.Windows.Forms.PictureBox Robot2;
+		private System.Windows.Forms.Button CCTV;
+		private System.Windows.Forms.TextBox test;
 		private System.Windows.Forms.Timer tmr_RobotAnimation;
+		private System.Windows.Forms.ListBox Console_output;
+		private System.Windows.Forms.Timer trmConsloeOutput;
 	}
 }
 

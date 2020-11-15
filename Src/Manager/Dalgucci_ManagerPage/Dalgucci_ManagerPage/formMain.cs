@@ -16,6 +16,39 @@ namespace Dalgucci_ManagerPage
 {
     public partial class frmMain : MaterialForm
     {
+        private void Input_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Order_View_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Robot1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Robot2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Robot_View_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void test_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
         public void Grid_Style()
         {
@@ -38,373 +71,21 @@ namespace Dalgucci_ManagerPage
             //AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
         }
 
-        //로봇 1 -------------------------------------------------------------------------------------------------------
-
-        // 경로 이동
-   
-        public void WMS01()
-        {
-            int i, j;
-            i = Robot1.Location.X.GetHashCode();
-            j = Robot1.Location.Y.GetHashCode();
-
-            Robot1.Location = new Point(i, j);
-
-            while (i > 750)
-            {
-                i -= 1;
-                Thread.Sleep(5);
-                Robot1.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        public void WMS02()
-        {
-            int i, j;
-            i = Robot1.Location.X.GetHashCode();
-            j = Robot1.Location.Y.GetHashCode();
-
-            Robot1.Location = new Point(i, j);
-
-            while (i > 845)
-            {
-                i -= 1;
-                Thread.Sleep(5);
-                Robot1.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        public void WMS03()
-        {
-            int i, j;
-            i = Robot1.Location.X.GetHashCode();
-            j = Robot1.Location.Y.GetHashCode();
-
-            Robot1.Location = new Point(i, j);
-
-            while (i > 940)
-            {
-                i -= 1;
-                Thread.Sleep(5);
-                Robot1.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        // 물품으로 이동
-        public void Robot1_Up()
-        {
-            int i, j;
-            i = Robot1.Location.X.GetHashCode();
-            j = Robot1.Location.Y.GetHashCode();
-
-            while (j > 250)
-            {
-                j -= 1;
-
-                Thread.Sleep(5);
-                Robot1.Location = new Point(i, j);
-                Update();
-            }
-        }
-        //돌아옴
-        public void Robot1_Back()
-        {
-            int i, j;
-            i = Robot1.Location.X.GetHashCode();
-            j = Robot1.Location.Y.GetHashCode();
-
-            while (j < 300)
-            {
-                j += 1;
-
-                Thread.Sleep(5);
-                Robot1.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        //출고 위치로
-        public void Robot1_OUTPlace()
-        {
-            int i, j;
-            i = Robot1.Location.X.GetHashCode();
-            j = Robot1.Location.Y.GetHashCode();
-
-            Robot1.Location = new Point(i, j);
-
-            while (i > 590)
-            {
-                i -= 1;
-                Thread.Sleep(5);
-                Robot1.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        // 돌아가는 경로
-        public void WMS01_Back()
-        {
-            int i, j;
-            i = Robot1.Location.X.GetHashCode();
-            j = Robot1.Location.Y.GetHashCode();
-
-            Robot1.Location = new Point(i, j);
-
-            while (i < 750)
-            {
-                i += 1;
-                Thread.Sleep(5);
-                Robot1.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        public void WMS02_Back()
-        {
-            int i, j;
-            i = Robot1.Location.X.GetHashCode();
-            j = Robot1.Location.Y.GetHashCode();
-
-            Robot1.Location = new Point(i, j);
-
-            while (i < 845)
-            {
-                i += 1;
-                Thread.Sleep(5);
-                Robot1.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        public void WMS03_Back()
-        {
-            int i, j;
-            i = Robot1.Location.X.GetHashCode();
-            j = Robot1.Location.Y.GetHashCode();
-
-            Robot1.Location = new Point(i, j);
-
-            while (i < 940)
-            {
-                i += 1;
-                Thread.Sleep(5);
-                Robot1.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        // 입고 장소로
-        public void Robot1_INPlace()
-        {
-            int i, j;
-            i = Robot1.Location.X.GetHashCode();
-            j = Robot1.Location.Y.GetHashCode();
-
-            Robot1.Location = new Point(i, j);
-
-            while (i < 1100)
-            {
-                i += 1;
-                Thread.Sleep(5);
-                Robot1.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-
-        //로봇2 ------------------------------------------------------------------------------------------------------
-
-        //경로이동
-        public void MMS01()
-        {
-            int i, j;
-            i = Robot2.Location.X.GetHashCode();
-            j = Robot2.Location.Y.GetHashCode();
-
-            Robot2.Location = new Point(i, j);
-
-            while (i > 750)
-            {
-                i -= 1;
-                Thread.Sleep(5);
-                Robot2.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        public void MMS02()
-        {
-            int i, j;
-            i = Robot2.Location.X.GetHashCode();
-            j = Robot2.Location.Y.GetHashCode();
-
-            Robot2.Location = new Point(i, j);
-
-            while (i > 845)
-            {
-                i -= 1;
-                Thread.Sleep(5);
-                Robot2.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        public void MMS03()
-        {
-            int i, j;
-            i = Robot2.Location.X.GetHashCode();
-            j = Robot2.Location.Y.GetHashCode();
-
-            Robot2.Location = new Point(i, j);
-
-            while (i > 940)
-            {
-                i -= 1;
-                Thread.Sleep(5);
-                Robot2.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        // 물품으로 이동
-        public void Robot2_Down()
-        {
-            int i, j;
-            i = Robot2.Location.X.GetHashCode();
-            j = Robot2.Location.Y.GetHashCode();
-
-            while (j < 480)
-            {
-                j += 1;
-
-                Thread.Sleep(5);
-                Robot2.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        // 돌아옴
-        public void Robot2_Back()
-        {
-            int i, j;
-            i = Robot2.Location.X.GetHashCode();
-            j = Robot2.Location.Y.GetHashCode();
-
-            while (j > 427)
-            {
-                j -= 1;
-
-                Thread.Sleep(5);
-                Robot2.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        // 출고 위치로
-        public void Robot2_OUTPlace()
-        {
-            int i, j;
-            i = Robot2.Location.X.GetHashCode();
-            j = Robot2.Location.Y.GetHashCode();
-
-            Robot2.Location = new Point(i, j);
-
-            while (i > 590)
-            {
-                i -= 1;
-                Thread.Sleep(5);
-                Robot2.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-
-        // 돌아가기 경로
-
-        public void MMS01_Back()
-        {
-            int i, j;
-            i = Robot2.Location.X.GetHashCode();
-            j = Robot2.Location.Y.GetHashCode();
-
-            Robot2.Location = new Point(i, j);
-
-            while (i < 750)
-            {
-                i += 1;
-                Thread.Sleep(5);
-                Robot2.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        public void MMS02_Back()
-        {
-            int i, j;
-            i = Robot2.Location.X.GetHashCode();
-            j = Robot2.Location.Y.GetHashCode();
-
-            Robot2.Location = new Point(i, j);
-
-            while (i < 845)
-            {
-                i += 1;
-                Thread.Sleep(5);
-                Robot2.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        public void MMS03_Back()
-        {
-            int i, j;
-            i = Robot2.Location.X.GetHashCode();
-            j = Robot2.Location.Y.GetHashCode();
-
-            Robot2.Location = new Point(i, j);
-
-            while (i < 940)
-            {
-                i += 1;
-                Thread.Sleep(5);
-                Robot2.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-        // 입고 장소로
-        public void Robot2_INPlace()
-        {
-            int i, j;
-            i = Robot2.Location.X.GetHashCode();
-            j = Robot2.Location.Y.GetHashCode();
-
-            Robot2.Location = new Point(i, j);
-
-            while (i < 1100)
-            {
-                i += 1;
-                Thread.Sleep(5);
-                Robot2.Location = new Point(i, j);
-                Update();
-            }
-        }
-
-
-
-
         Dictionary<string, Point> m_Robot1_Location = new Dictionary<string, Point>();
         Point Robot1_Current_Location = new Point(0, 0);
         Point Robot1_Target_Location = new Point(0, 0);
+        
+        Dictionary<string, Point> m_Robot2_Location = new Dictionary<string, Point>();
+        Point Robot2_Current_Location = new Point(0, 0);
+        Point Robot2_Target_Location = new Point(0, 0);
 
-        //----------------------------------------------------------------------------------------------------------------------------
+        List<string> list_Console_Output = new List<string>();
+
         public frmMain()
         {
             InitializeComponent();
 
+            // 그림 바뀌면 좌표 수정!!!!!!!!!!!!!!!!!!
             m_Robot1_Location.Add("WIN01", new Point(1160, 344));
             m_Robot1_Location.Add("WOUT01", new Point(648, 344));
             m_Robot1_Location.Add("WMS03", new Point(1000, 344));
@@ -413,19 +94,23 @@ namespace Dalgucci_ManagerPage
             m_Robot1_Location.Add("WSTG03", new Point(1000, 290));
             m_Robot1_Location.Add("WSTG02", new Point(912, 290));
             m_Robot1_Location.Add("WSTG01", new Point(816, 290));
+            
+            m_Robot2_Location.Add("MIN01", new Point(1408, 488));
+            m_Robot2_Location.Add("MOUT01", new Point(648, 488));
+            m_Robot2_Location.Add("MMS03", new Point(1000, 344));
+            m_Robot2_Location.Add("MMS02", new Point(912, 344));
+            m_Robot2_Location.Add("MMS01", new Point(816, 344));
+            m_Robot2_Location.Add("MSTG03", new Point(1000, 290));
+            m_Robot2_Location.Add("MSTG02", new Point(912, 290));
+            m_Robot2_Location.Add("MSTG01", new Point(816, 290));
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
             Order_View.DataSource = Program.data.Orders();
             timer1.Enabled = true;
             timer1.Start();
             Grid_Style();
-        }
-
-        private void Order_View_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
         }
 
         private void Data_Click(object sender, EventArgs e)
@@ -433,10 +118,6 @@ namespace Dalgucci_ManagerPage
             frmInOutHistory inOutHistory = new frmInOutHistory();
             inOutHistory.Show();
 
-        }
-
-        private void Robot_View_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -451,121 +132,12 @@ namespace Dalgucci_ManagerPage
             //}
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-     
-
         private void Output_Click(object sender, EventArgs e)
         {
             //string text = test.Text;
             string Robot1_location = test.Text;
             Robot1_Current_Location = Robot1.Location;
             Robot1_Target_Location = m_Robot1_Location[Robot1_location];
-
-           
-
-            //1001
-            //if (po == 0)
-            //WMS03();
-            //else if(po == 1)
-            //WMS02();
-            //else if(po == 2)
-            //WMS01();
-            //else if(po == 3)
-            //Robot1_Up();
-            //else if(po == 4)
-            //Robot1_Back();
-            //else if(po ==5)
-            //Robot1_OUTPlace();
-            //else if(po == 6)
-            //WMS01_Back();
-            //else if(po==7)
-            //WMS02_Back();
-            //else if(po == 8)
-            //WMS03_Back();
-            //else if (po == 9)
-            //Robot1_INPlace();
-
-
-            //// 1002
-            //WMS03();
-            //WMS02();
-            //Robot1_Up();
-            //Robot1_Back();
-            //WMS01();
-
-            //Robot1_OUTPlace();
-            //WMS01_Back();
-            //WMS02_Back();
-            //WMS03_Back();
-            //Robot1_INPlace();
-
-            //// 1003
-            //WMS03();
-            //Robot1_Up();
-            //Robot1_Back();
-            //WMS02();
-            //WMS01();
-            //Robot1_OUTPlace();
-            //WMS01_Back();
-            //WMS02_Back();
-            //WMS03_Back();
-            //Robot1_INPlace();
-
-            //// 2001
-            //MMS03();
-            //MMS02();
-            //MMS01();
-            //Robot2_Down();
-            //Robot2_Back();
-
-            //Robot2_OUTPlace();
-            //MMS01_Back();
-            //MMS02_Back();
-            //MMS03_Back();
-            //Robot2_INPlace();
-
-            //// 2002
-            //MMS03();
-            //MMS02();
-            //Robot2_Down();
-            //Robot2_Back();
-            //MMS01();
-
-            //Robot2_OUTPlace();
-            //MMS01_Back();
-            //MMS02_Back();
-            //MMS03_Back();
-            //Robot2_INPlace();
-
-            //// 2003
-            //MMS03();
-            //Robot2_Down();
-            //Robot2_Back();
-            //MMS02();
-            //MMS01();
-
-            //Robot2_OUTPlace();
-            //MMS01_Back();
-            //MMS02_Back();
-            //MMS03_Back();
-            //Robot2_INPlace();
-
-
-
-
-        }
-
-        private void Robot1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Robot2_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -575,49 +147,180 @@ namespace Dalgucci_ManagerPage
             Form.Show();
         }
 
-        private void test_TextChanged(object sender, EventArgs e)
+        
+
+        private void tmr_RobotAnimation_Tick(object sender, EventArgs e)
         {
+            int x1 = Robot1.Location.X;
+            int y1 = Robot1.Location.Y;
+            
+            int x2 = Robot2.Location.X;
+            int y2 = Robot2.Location.Y;
 
-        }
-
-
-
-		private void tmr_RobotAnimation_Tick(object sender, EventArgs e)
-		{
-            int x = Robot1.Location.X;
-            int y = Robot1.Location.Y;
-
-            if(x != Robot1_Target_Location.X)
-			{
+            // Robot 1
+            if (x1 != Robot1_Target_Location.X)
+            {
                 if (Robot1_Current_Location.X < Robot1_Target_Location.X)
                 {
-                    x = Robot1.Location.X + 1;
-                    y = Robot1.Location.Y;
+                    x1 = Robot1.Location.X + 1;
+                    y1 = Robot1.Location.Y;
                 }
                 if (Robot1_Current_Location.X > Robot1_Target_Location.X)
                 {
-                    x = Robot1.Location.X - 1;
-                    y = Robot1.Location.Y;
+                    x1 = Robot1.Location.X - 1;
+                    y1 = Robot1.Location.Y;
                 }
             }
 
-            if (y != Robot1_Target_Location.Y)
-			{
+            if (y1 != Robot1_Target_Location.Y)
+            {
                 if (Robot1_Current_Location.Y < Robot1_Target_Location.Y)
                 {
-                    x = Robot1.Location.X;
-                    y = Robot1.Location.Y + 1;
+                    x1 = Robot1.Location.X;
+                    y1 = Robot1.Location.Y + 1;
                 }
                 if (Robot1_Current_Location.Y > Robot1_Target_Location.Y)
                 {
-                    x = Robot1.Location.X;
-                    y = Robot1.Location.Y - 1;
+                    x1 = Robot1.Location.X;
+                    y1 = Robot1.Location.Y - 1;
                 }
             }
+
+            // Robot 2
+            if (x2 != Robot2_Target_Location.X)
+            {
+                if (Robot2_Current_Location.X < Robot2_Target_Location.X)
+                {
+                    x2 = Robot2.Location.X + 1;
+                    y2 = Robot2.Location.Y;
+                }
+                if (Robot2_Current_Location.X > Robot2_Target_Location.X)
+                {
+                    x2 = Robot2.Location.X - 1;
+                    y2 = Robot2.Location.Y;
+                }
+            }
+
+            if (y2 != Robot2_Target_Location.Y)
+            {
+                if (Robot2_Current_Location.Y < Robot2_Target_Location.Y)
+                {
+                    x2 = Robot2.Location.X;
+                    y2 = Robot2.Location.Y + 1;
+                }
+                if (Robot2_Current_Location.Y > Robot2_Target_Location.Y)
+                {
+                    x2 = Robot2.Location.X;
+                    y2 = Robot2.Location.Y - 1;
+                }
+            }
+
+            // 여자 한복
+			if (TcpIpServer.Position_Value() == "WIN01")
+               Robot_move_1(ref x1, ref y1, "WIN01");
+            if(TcpIpServer.Position_Value() == "WOUT01")
+                Robot_move_1(ref x1, ref y1, "WOUT01");
+
+            if(TcpIpServer.Position_Value() == "WSTG01")
+                Robot_move_1(ref x1, ref y1, "WSTG01");
+            if(TcpIpServer.Position_Value() == "WSTG02")
+                Robot_move_1(ref x1, ref y1, "WSTG02");
+            if(TcpIpServer.Position_Value() == "WSTG03")
+                Robot_move_1(ref x1, ref y1, "WSTG03");
+
+            if(TcpIpServer.Position_Value() == "WMS01")
+                Robot_move_1(ref x1, ref y1, "WMS01");
+            if(TcpIpServer.Position_Value() == "WMS02")
+                Robot_move_1(ref x1, ref y1, "WMS02");
+            if(TcpIpServer.Position_Value() == "WMS03")
+                Robot_move_1(ref x1, ref y1, "WMS03");
             
-            Robot1.Location = new Point(x, y);
+            // 남자 한복
+            if (TcpIpServer.Position_Value() == "MIN01")
+               Robot_move_2(ref x2, ref y2, "MIN01");
+            if(TcpIpServer.Position_Value() == "MOUT01")
+                Robot_move_2(ref x2, ref y2, "MOUT01");
+
+            if(TcpIpServer.Position_Value() == "MSTG01")
+                Robot_move_2(ref x2, ref y2, "MSTG01");
+            if(TcpIpServer.Position_Value() == "MSTG02")
+                Robot_move_2(ref x2, ref y2, "MSTG02");
+            if(TcpIpServer.Position_Value() == "MSTG03")
+                Robot_move_2(ref x2, ref y2, "MSTG03");
+
+            if(TcpIpServer.Position_Value() == "MMS01")
+                Robot_move_2(ref x2, ref y2, "MMS01");
+            if(TcpIpServer.Position_Value() == "MMS02")
+                Robot_move_2(ref x2, ref y2, "MMS02");
+            if(TcpIpServer.Position_Value() == "MMS03")
+                Robot_move_2(ref x2, ref y2, "MMS03");
+
+
+            Robot1.Location = new Point(x1, y1);
+            Robot2.Location = new Point(x2, y2);
             Update();
+        }
+
+        private void Robot_move_1(ref int x1, ref int y1, string position)
+		{
+            string Robot1_location = position;
+            Robot1_Current_Location = Robot1.Location;
+            Robot1_Target_Location = m_Robot1_Location[Robot1_location];
+
+            TcpIpServer.Position_End();
+        }
+        
+        private void Robot_move_2(ref int x2, ref int y2, string position)
+		{
+            string Robot2_location = position;
+            Robot2_Current_Location = Robot2.Location;
+            Robot2_Target_Location = m_Robot2_Location[Robot2_location];
+
+            TcpIpServer.Position_End();
+        }
+
+        public void AddConsoleOutput( string _log )
+		{
+            string date = System.DateTime.Now.ToString("[hh:mm:ss] ");
+
+            list_Console_Output.Add(date + _log);
+        }
+        
+		private void trmConsloeOutput_Tick(object sender, EventArgs e)
+		{
+            if( list_Console_Output.Count > 0)
+			{
+                Console_output.Items.Add(list_Console_Output[0]);
+                list_Console_Output.RemoveAt(0);
+                this.Console_output.SelectedIndex = this.Console_output.Items.Count - 1;
+            }
+
+            if( Console_output.Items.Count > 5000)
+			{
+                Console_output.Items.RemoveAt(0);
+            }
+
+        }
+
+		private void Console_output_DrawItem(object sender, DrawItemEventArgs e)
+		{
+            if (e.Index < 0) return;
+            //if the item state is selected them change the back color 
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+                e = new DrawItemEventArgs(e.Graphics,
+                                          e.Font,
+                                          e.Bounds,
+                                          e.Index,
+                                          e.State ^ DrawItemState.Selected,
+                                          e.ForeColor,
+                                          Color.Black);//Choose the color
+
+            // Draw the background of the ListBox control for each item.
+            e.DrawBackground();
+            // Draw the current item text
+            e.Graphics.DrawString(Console_output.Items[e.Index].ToString(), e.Font, Brushes.Black, e.Bounds, StringFormat.GenericDefault);
+            // If the ListBox has focus, draw a focus rectangle around the selected item.
+            e.DrawFocusRectangle();
         }
 	}
 }
-

@@ -13,7 +13,7 @@ namespace Dalgucci_ManagerPage
 {
     public partial class frmInOutHistory : Form
     {
-        string strConn = "Server=127.0.0.1;Database=SF1team;User Id=sa;Password=0924;";
+        string strConn = "Server=127.0.0.1;Database=SF1team;User Id=sa;Password=1234;";
 
         public void In()
         {
