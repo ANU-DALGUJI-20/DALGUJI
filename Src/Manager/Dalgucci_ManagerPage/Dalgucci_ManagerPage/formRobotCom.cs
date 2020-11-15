@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AForge.Video;
+using AForge.Video.DirectShow;
+using ZXing;
 
 namespace Dalgucci_ManagerPage
 {
@@ -20,22 +22,47 @@ namespace Dalgucci_ManagerPage
             InitializeComponent();
             stream = new MJPEGStream("http://192.168.0.192:8081");
             stream.NewFrame += stream_NewFrame;
+            //captureDevice = new VideoCaptureDevice(filterInfoCollection[comboBox1.SelectedIndex].MonikerString);
+            //stream.NewFrame += stream_NewFrame;
+            stream.Start();
+            timer1.Start();
         }
-
+        FilterInfoCollection filterInfoCollection;
+        VideoCaptureDevice captureDevice;
         private void stream_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
-            Bitmap bmp = (Bitmap)eventArgs.Frame.Clone();
-            CCTV.Image = bmp;
+            //Bitmap bmp = (Bitmap)eventArgs.Frame.Clone();
+            //CCTV.Image = bmp;
+            CCTV.Image = (Bitmap)eventArgs.Frame.Clone();
         }
 
         private void formRobotCom_Load(object sender, EventArgs e)
         {
-            stream.Start();
+            //stream.Start();
+            filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
         }
 
         private void formRobotCom_FormClosing(object sender, FormClosingEventArgs e)
         {
-            stream.Stop();
+            //stream.Stop();
+            if (stream.IsRunning)
+                stream.Stop();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (CCTV.Image != null)
+            {
+                BarcodeReader barcodeReader = new BarcodeReader();
+                Result result = barcodeReader.Decode((Bitmap)CCTV.Image);
+                if (result != null)
+                {
+                    testTextBox.Text = result.ToString();
+                    //timer1.Stop();
+                    //if (stream.IsRunning)
+                    //    stream.Stop();
+                }
+            }
         }
     }
 }

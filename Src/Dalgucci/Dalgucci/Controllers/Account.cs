@@ -101,12 +101,12 @@ namespace Dalgucci.Controllers
             using (var db = new DBServer())
             {
 
-                //var user = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
-                //using (SqlCommand sqlcomm = new SqlCommand($"select * from Order where {user}"))
-                //{
+                var user = int.Parse(HttpContext.Session.GetInt32("User_Login_Key").ToString());
+                using (SqlCommand sqlcomm = new SqlCommand($"select * from Order where {user}"))
+                {
                     var list = db.Orders.ToList();
                     return View(list);
-               // }
+                }
 
 
                
