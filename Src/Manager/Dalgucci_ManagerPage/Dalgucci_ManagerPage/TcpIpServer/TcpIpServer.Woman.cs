@@ -27,6 +27,9 @@ namespace Dalgucci_ManagerPage
 
                 SendCmdToRobot(ref stream, cmd_out_order, out_prod_pos);
                 Woman_Order_Rev(ref stream);
+
+                Program.data.insertValue(strProductCode, out_prod_pos);
+                Program.g_frmMain.AddConsoleOutput("출고기록 삽입");
             }
         }
 
@@ -56,7 +59,8 @@ namespace Dalgucci_ManagerPage
                 
                 SendCmdToRobot(ref stream, cmd_in_order, in_prod_pos);
                 Woman_Order_Rev(ref stream);
-                Program.data.insertValue(productNo);
+
+                Program.data.insertValue(productNo,in_prod_pos);
                 Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
             }
 		}

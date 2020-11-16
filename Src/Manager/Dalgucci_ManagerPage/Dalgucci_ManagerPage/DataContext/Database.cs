@@ -112,7 +112,7 @@ namespace Dalgucci
             }
         }
 
-        public void insertValue(string product_code)
+        public void insertValue(string product_code, string product_place)
 		{
             try
             {
@@ -123,7 +123,7 @@ namespace Dalgucci
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
 
-                cmd.CommandText = $"insert into Input_Log values (3,'{product_code}',getdate());";
+                cmd.CommandText = $"insert into Output_Log values ((select ISNULL(max(Output_No) + 1,1) from Output_Log),'{product_code}','{product_place}',GETDATE());";
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -155,7 +155,7 @@ namespace Dalgucci
 					{
 						table.Columns.Add("입고번호");
 						table.Columns.Add("제품코드");
-						//table.Columns.Add("제품위치");
+						table.Columns.Add("제품위치");
 						table.Columns.Add("입고시간");
 					}
 
@@ -164,10 +164,10 @@ namespace Dalgucci
 
 						string InProduct_No = rdr["Input_No"].ToString();
 						string Product_Code = rdr["Product_Code"] as string;
-						//string Product_Place = rdr["Product_Place"].ToString();
+						string Product_Place = rdr["Product_Place"].ToString();
 						string In_Time = rdr["In_Time"].ToString();
 
-						string[] Input_Log = new string[] { InProduct_No, Product_Code, /*Product_Place,*/ In_Time };
+						string[] Input_Log = new string[] { InProduct_No, Product_Code, Product_Place, In_Time };
 
 						table.Rows.Add(Input_Log);
 					}
