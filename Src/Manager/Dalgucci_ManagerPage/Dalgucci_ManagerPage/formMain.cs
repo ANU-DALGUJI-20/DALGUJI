@@ -12,10 +12,12 @@ using MaterialSkin.Controls;
 using MaterialSkin;
 using System.Threading;
 
+
 namespace Dalgucci_ManagerPage
 {
     public partial class frmMain : MaterialForm
     {
+       
         private void Input_Click(object sender, EventArgs e)
         {
 
@@ -107,12 +109,18 @@ namespace Dalgucci_ManagerPage
 
         private void Form1_Load(object sender, EventArgs e)
         {
+           
+
             Order_View.DataSource = Program.data.Orders();
             timer1.Enabled = true;
             timer1.Start();
             Grid_Style();
         }
+     
 
+     
+
+      
         private void Data_Click(object sender, EventArgs e)
         {
             frmInOutHistory inOutHistory = new frmInOutHistory();
@@ -322,5 +330,15 @@ namespace Dalgucci_ManagerPage
             // If the ListBox has focus, draw a focus rectangle around the selected item.
             e.DrawFocusRectangle();
         }
-	}
+
+        private void QRcode_Read_Tick(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void Robot1_read_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
