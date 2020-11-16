@@ -18,25 +18,18 @@ namespace Dalgucci_ManagerPage
             int nOrderCnt = Program.data.OrdersCountResult();
             if (nOrderCnt > 0)
             {
+                string out_prod_pos = "";
                 string strProductCode = Program.data.OrderSelectResult();
-                if (strProductCode == "1001")
-                {
-                    string out_prod_pos = "WSTG01";
-                    SendCmdProdOut(ref stream, cmd_out_order, out_prod_pos);
-                    Woman_Order_Rev(ref stream);
-                }
-                else if (strProductCode == "1002")
-                {
-                    string out_prod_pos = "WSTG02";
-                    SendCmdProdOut(ref stream, cmd_out_order, out_prod_pos);
-                    Woman_Order_Rev(ref stream);
-                }
-                else if (strProductCode == "1003")
-                {
-                    string out_prod_pos = "WSTG03";
-                    SendCmdProdOut(ref stream, cmd_out_order, out_prod_pos);
-                    Woman_Order_Rev(ref stream);
-                }
+
+                if (strProductCode == WOMAN1001) out_prod_pos = WSTG01;
+                else if (strProductCode == WOMAN1002) out_prod_pos = WSTG02;
+                else if (strProductCode == WOMAN1003) out_prod_pos = WSTG03;
+
+                SendCmdToRobot(ref stream, cmd_out_order, out_prod_pos);
+                Woman_Order_Rev(ref stream);
+
+                Program.data.insertValue(strProductCode, out_prod_pos);
+                Program.g_frmMain.AddConsoleOutput("출고기록 삽입");
             }
         }
 
@@ -46,6 +39,8 @@ namespace Dalgucci_ManagerPage
             string data = "";
             byte[] bytes = new byte[256];
             string cmd_in_order = "IN_ORDER";
+            string productNo = "";
+            string in_prod_pos = "";
 
             if (stream.DataAvailable != true)
                 return;
@@ -53,47 +48,21 @@ namespace Dalgucci_ManagerPage
             while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
             {
                 data = Encoding.Default.GetString(bytes, 0, length);
-                Program.g_frmMain.AddConsoleOutput(String.Format("수신 : {0}", data));
+                //Program.g_frmMain.AddConsoleOutput(String.Format("수신 : {0}", data));
+                string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "NUMBER" }, StringSplitOptions.RemoveEmptyEntries);
 
-                if (data.Contains("1001"))
-                {
-                    string in_prod_pos = "WSTG01";
-                    SendCmdProdOut(ref stream, cmd_in_order, in_prod_pos);
-                    Woman_Order_Rev(ref stream);
-                }
-                else if (data.Contains("1002"))
-                {
-                    string in_prod_pos = "WSTG02";
-                    SendCmdProdOut(ref stream, cmd_in_order, in_prod_pos);
-                    Woman_Order_Rev(ref stream);
-                }
-                else if (data.Contains("1003"))
-                {
-                    string in_prod_pos = "WSTG03";
-                    SendCmdProdOut(ref stream, cmd_in_order, in_prod_pos);
-                    Woman_Order_Rev(ref stream);
-                }
-				//string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "POS" }, StringSplitOptions.RemoveEmptyEntries);
+                productNo = sRcvMessage[2];
 
-				//for (int i = 0; i < sRcvMessage.Length; i++)
-				//{
-				//	Console.WriteLine(String.Format("수신 : {0}", sRcvMessage[i]));
-				//}
+                if (sRcvMessage[2] == WOMAN1001) in_prod_pos = WSTG01;
+                else if (sRcvMessage[2] == WOMAN1002) in_prod_pos = WSTG02;
+                else if (sRcvMessage[2] == WOMAN1003) in_prod_pos = WSTG03;
+                
+                SendCmdToRobot(ref stream, cmd_in_order, in_prod_pos);
+                Woman_Order_Rev(ref stream);
 
-				// 출고 시나리오 시작 검사
-				//if (구매내역테이블.신규구매요청() > 0)
-				//{
-				//    제품정보 = 구매내역테이블.신규구매요청(0);
-				//    string out_prod_pos = "WSTG01"; // 제품정보.창고에 제품이 있는 위치 정보;
-				//    string out_order = "OUT_ORDER";
-				//    SendCmdProdOut(ref stream, out_order, out_prod_pos);
-				//    string ack_code = wait_robot_ack_code();
-				//}
-
-
-				// 입고 시나리오 시작 검사
-
-			}
+                Program.data.insertValue(productNo,in_prod_pos);
+                Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
+            }
 		}
 
         public static void Woman_Order_Rev(ref NetworkStream stream)
@@ -105,14 +74,14 @@ namespace Dalgucci_ManagerPage
             while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
             {
                 data = Encoding.Default.GetString(bytes, 0, length);
-                // Console.WriteLine(String.Format("수신 : {0}", data));
-                string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "POS", "STATE", }, StringSplitOptions.RemoveEmptyEntries);
+                string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "POS", "STATE"}, StringSplitOptions.RemoveEmptyEntries);
 
                 if (data.Contains("COMPLETE_OUTPUT"))
                 {
                     Program.g_frmMain.AddConsoleOutput("작업 완료/출고 완료");
                     Program.data.RowDelete();
                     Program.g_frmMain.AddConsoleOutput("주문 테이블 삭제");
+
                     break;
                 }
                 if (data.Contains("COMPLETE_INPUT"))
@@ -121,62 +90,20 @@ namespace Dalgucci_ManagerPage
                     break;
                 }
 
-                if (data.Contains("OK"))
-                    Program.g_frmMain.AddConsoleOutput("명령을 전달받음");
-                if (data.Contains("START"))
-                    Program.g_frmMain.AddConsoleOutput("작동 시작");
-
-                if (data.Contains("Going Pick-Up"))
-                    Program.g_frmMain.AddConsoleOutput("출고 작업/이동중 ...");
-                if (data.Contains("Pick End"))
-                    Program.g_frmMain.AddConsoleOutput("제품 내려놓음");
-                if (data.Contains("Going Place"))
-                    Program.g_frmMain.AddConsoleOutput("장소로 이동중...");
-                if (data.Contains("Place End"))
-                    Program.g_frmMain.AddConsoleOutput("도착 및 작업수행");
-
-                // 여자 한복 창고
-                if (data.Contains("WMS01"))
+                foreach (var k in dicWomanLog.Keys)
                 {
-                    Program.g_frmMain.AddConsoleOutput("여자 한복 1번 창고 앞");
-                    bPosition = sRcvMessage[2];
+                    if (data.Contains(k))
+                    {
+                        Program.g_frmMain.AddConsoleOutput(dicWomanLog[k]);
+                    }
                 }
 
-                if (sRcvMessage[2] == "WMS02")
+                foreach (var p in dicWomanPos)
                 {
-                    Program.g_frmMain.AddConsoleOutput("여자 한복 2번 창고 앞");
-                    bPosition = sRcvMessage[2];
-                }
-
-                if (data.Contains("WMS03"))
-                {
-                    Program.g_frmMain.AddConsoleOutput("여자 한복 3번 창고 앞");
-                    bPosition = sRcvMessage[2];
-                }
-                if (data.Contains("WSTG01"))
-                {
-                    Program.g_frmMain.AddConsoleOutput("여자 한복 1번 창고");
-                    bPosition = sRcvMessage[2];
-                }
-                if (data.Contains("WSTG02"))
-                {
-                    Program.g_frmMain.AddConsoleOutput("여자 한복 2번 창고");
-                    bPosition = sRcvMessage[2];
-                }
-                if (data.Contains("WSTG03"))
-                {
-                    Program.g_frmMain.AddConsoleOutput("여자 한복 3번 창고");
-                    bPosition = sRcvMessage[2];
-                }
-                if (data.Contains("WIN01"))
-                {
-                    Program.g_frmMain.AddConsoleOutput("여자 한복 입고 시작 위치");
-                    bPosition = sRcvMessage[2];
-                }
-                if (data.Contains("WOUT01"))
-                {
-                    Program.g_frmMain.AddConsoleOutput("여자 한복 출고 위치");
-                    bPosition = sRcvMessage[2];
+                    if (data.Contains(p))
+                    {
+                        sPosition = p;
+                    }
                 }
             }
         }

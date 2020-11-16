@@ -23,6 +23,44 @@ namespace Dalgucci_ManagerPage
 
         public static ManualResetEvent tcpClientConnected = new ManualResetEvent(false);
 
+        // 남자
+        private static string MIN01 = "MIN01";
+        private static string MOUT01 = "MOUT01";
+
+        private static string MMS01 = "MMS01";
+        private static string MMS02 = "MMS02";
+        private static string MMS03 = "MMS03";
+
+        private static string MSTG01 = "MSTG01";
+        private static string MSTG02 = "MSTG02";
+        private static string MSTG03 = "MSTG03";
+
+        private static string MAN2001 = "2001";
+        private static string MAN2002 = "2002";
+        private static string MAN2003 = "2003";
+        
+        // 여자
+        private static string WIN01 = "WIN01";
+        private static string WOUT01 = "WOUT01";
+
+        private static string WMS01 = "WMS01";
+        private static string WMS02 = "WMS02";
+        private static string WMS03 = "WMS03";
+
+        private static string WSTG01 = "WSTG01";
+        private static string WSTG02 = "WSTG02";
+        private static string WSTG03 = "WSTG03";
+
+        private static string WOMAN1001 = "1001";
+        private static string WOMAN1002 = "1002";
+        private static string WOMAN1003 = "1003";
+
+        private static Dictionary<string, string> dicManLog = new Dictionary<string, string>();
+        private static List<string> dicManPos = new List<string>();
+
+        private static Dictionary<string, string> dicWomanLog = new Dictionary<string, string>();
+        private static List<string> dicWomanPos = new List<string>();
+
         public TcpIpServer()
         {
             bool bServerStart = ServStart();
@@ -31,17 +69,71 @@ namespace Dalgucci_ManagerPage
                 // 서버 시작
                 connThread.Start();
             }
+
+            // 남자
+            dicManLog.Add("OK", "명령을 전달받음");
+            dicManLog.Add("START", "작동 시작");
+            dicManLog.Add("Going Pick-Up", "출고 작업/이동중 ...");
+            dicManLog.Add("Pick End", "제품 내려놓음");
+            dicManLog.Add("Going Place", "장소로 이동중...");
+            dicManLog.Add("Place End", "도착 및 작업수행");
+
+            dicManLog.Add(MIN01, "남자 한복 입고 시작 위치");
+            dicManLog.Add(MOUT01, "남자 한복 출고 위치");
+            dicManLog.Add(MMS01, "남자 한복 1번 창고 앞");
+            dicManLog.Add(MMS02, "남자 한복 2번 창고 앞");
+            dicManLog.Add(MMS03, "남자 한복 3번 창고 앞");
+            dicManLog.Add(MSTG01, "남자 한복 1번 창고");
+            dicManLog.Add(MSTG02, "남자 한복 2번 창고");
+            dicManLog.Add(MSTG03, "남자 한복 3번 창고");
+
+
+            dicManPos.Add(MIN01);
+            dicManPos.Add(MOUT01);
+            dicManPos.Add(MMS01);
+            dicManPos.Add(MMS02);
+            dicManPos.Add(MMS03);
+            dicManPos.Add(MSTG01);
+            dicManPos.Add(MSTG02);
+            dicManPos.Add(MSTG03);
+
+            // 여자
+            dicWomanLog.Add("OK", "명령을 전달받음");
+            dicWomanLog.Add("START", "작동 시작");
+            dicWomanLog.Add("Going Pick-Up", "출고 작업/이동중 ...");
+            dicWomanLog.Add("Pick End", "제품 내려놓음");
+            dicWomanLog.Add("Going Place", "장소로 이동중...");
+            dicWomanLog.Add("Place End", "도착 및 작업수행");
+
+            dicWomanLog.Add(WIN01, "여자 한복 입고 시작 위치");
+            dicWomanLog.Add(WOUT01, "여자 한복 출고 위치");
+            dicWomanLog.Add(WMS01, "여자 한복 1번 창고 앞");
+            dicWomanLog.Add(WMS02, "여자 한복 2번 창고 앞");
+            dicWomanLog.Add(WMS03, "여자 한복 3번 창고 앞");
+            dicWomanLog.Add(WSTG01, "여자 한복 1번 창고");
+            dicWomanLog.Add(WSTG02, "여자 한복 2번 창고");
+            dicWomanLog.Add(WSTG03, "여자 한복 3번 창고");
+
+
+            dicWomanPos.Add(WIN01);
+            dicWomanPos.Add(WOUT01);
+            dicWomanPos.Add(WMS01);
+            dicWomanPos.Add(WMS02);
+            dicWomanPos.Add(WMS03);
+            dicWomanPos.Add(WSTG01);
+            dicWomanPos.Add(WSTG02);
+            dicWomanPos.Add(WSTG03);
         }
 
-        private static string bPosition = "";
+        private static string sPosition = "";
         public static string Position_Value()
         {
-            return bPosition;
+            return sPosition;
         }
         public static string Position_End()
         {
-            bPosition = "";
-            return bPosition;
+            sPosition = "";
+            return sPosition;
         }
 
         private static TcpClient GetWomanClient()
@@ -75,7 +167,6 @@ namespace Dalgucci_ManagerPage
             {
                 woman_client = listener.EndAcceptTcpClient(ar);
                 string ip = ((IPEndPoint)woman_client.Client.RemoteEndPoint).Address.ToString();
-                //Console.WriteLine("Woman 접속 :{0}", ip);
                 Program.g_frmMain.AddConsoleOutput(string.Format("Woman 접속 :{0}", ip));
                 WomanProdThread.Start();
 
@@ -88,7 +179,6 @@ namespace Dalgucci_ManagerPage
             {
                 man_client = listener.EndAcceptTcpClient(ar);
                 string ip = ((IPEndPoint)man_client.Client.RemoteEndPoint).Address.ToString();
-                //Console.WriteLine("Man 접속 :{0}", ip);
                 Program.g_frmMain.AddConsoleOutput(string.Format("Man 접속 :{0}", ip));
                 ManProdThread.Start();
 
@@ -107,7 +197,6 @@ namespace Dalgucci_ManagerPage
                 IPEndPoint localAddress = new IPEndPoint(IPAddress.Parse(bindIp), bindPort);
                 server = new TcpListener(localAddress);
                 server.Start();
-                // Console.WriteLine("서버 시작...");
                 Program.g_frmMain.AddConsoleOutput("서버 시작...");
 
                 return true;
@@ -119,7 +208,7 @@ namespace Dalgucci_ManagerPage
             }
         }
 
-        public static int SendCmdProdOut(ref NetworkStream stream, string sCMD, string sPosition)
+        private static int SendCmdToRobot(ref NetworkStream stream, string sCMD, string sPosition)
         {
             string Token_Start = "{{$";
             string Token_End = "$}}";
@@ -130,10 +219,23 @@ namespace Dalgucci_ManagerPage
             string sPacket = String.Format($"{Token_Start}MSGID={nMsgId.ToString().PadLeft(4, '0')}{my_splitor}CMD={sCMD}{my_splitor}POS={sPosition}{Token_End}");
             byte[] msg = Encoding.Default.GetBytes(sPacket);
             stream.Write(msg, 0, msg.Length);
-            //Console.WriteLine(String.Format("송신: {0}", sPacket));
             Program.g_frmMain.AddConsoleOutput(String.Format("송신: {0}", sPacket));
 
             return 0;
         }
+
+        public static int SendCmdToMan(string sCMD, string sPosition)
+		{
+            NetworkStream s = GetManClient().GetStream();
+            SendCmdToRobot(ref s, sCMD, sPosition);
+            return 0;
+		}
+        
+        public static int SendCmdToWoman(string sCMD, string sPosition)
+		{
+            NetworkStream s = GetWomanClient().GetStream();
+            SendCmdToRobot(ref s, sCMD, sPosition);
+            return 0;
+		}
     }
 }

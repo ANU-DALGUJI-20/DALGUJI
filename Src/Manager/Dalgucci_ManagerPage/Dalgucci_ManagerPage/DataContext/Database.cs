@@ -112,118 +112,127 @@ namespace Dalgucci
             }
         }
 
-        public DataTable In()
-        {
-            lock (lockObject)
+        public void insertValue(string product_code, string product_place)
+		{
+            try
             {
-                DataTable table = new DataTable();
-                SqlDataReader rdr = null;
 
-                if (table != null)
-                    table.Clear();
+                if (conn.State != ConnectionState.Open)
+                    conn.Open();
 
-                try
-                {
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = conn;
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
 
-                    cmd.CommandText = "select * from Input_Log";
-
-                    rdr = cmd.ExecuteReader();
-
-                    if (table.Columns.Count == 0)
-                    {
-                        table.Columns.Add("입고번호");
-                        table.Columns.Add("제품코드");
-                        table.Columns.Add("제품위치");
-                        table.Columns.Add("입고시간");
-                    }
-
-                    while (rdr.Read())
-                    {
-
-                        string InProduct_No = rdr["InProduct_No"].ToString();
-                        string Product_Code = rdr["Product_Code"] as string;
-                        string Product_Place = rdr["Product_Place"].ToString();
-                        string In_Time = rdr["In_Time"].ToString();
-
-                        string[] Input_Log = new string[] { InProduct_No, Product_Code, Product_Place, In_Time };
-
-                        table.Rows.Add(Input_Log);
-                    }
-
-                }
-
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-
-                finally
-                {
-                    if (conn.State == ConnectionState.Open)
-                        conn.Close();
-                }
-                return table;
+                cmd.CommandText = $"insert into Output_Log values ((select ISNULL(max(Output_No) + 1,1) from Output_Log),'{product_code}','{product_place}',GETDATE());";
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(MethodBase.GetCurrentMethod().Name + ex.Message);
             }
         }
 
-        public DataTable Out()
-        {
-            lock (lockObject)
-            {
-                DataTable table = new DataTable();
-                SqlDataReader rdr = null;
+		public DataTable InProdHistory()
+		{
+			lock (lockObject)
+			{
+				DataTable table = new DataTable();
+				SqlDataReader rdr = null;
 
-                if (table != null)
-                    table.Clear();
+				if (table != null)
+					table.Clear();
 
-                try
-                {
+				try
+				{
+					SqlCommand cmd = new SqlCommand();
+					cmd.Connection = conn;
+
+					cmd.CommandText = "select * from Input_Log";
+
+					rdr = cmd.ExecuteReader();
+
+					if (table.Columns.Count == 0)
+					{
+						table.Columns.Add("입고번호");
+						table.Columns.Add("제품코드");
+						table.Columns.Add("제품위치");
+						table.Columns.Add("입고시간");
+					}
+
+					while (rdr.Read())
+					{
+
+						string InProduct_No = rdr["Input_No"].ToString();
+						string Product_Code = rdr["Product_Code"] as string;
+						string Product_Place = rdr["Product_Place"].ToString();
+						string In_Time = rdr["In_Time"].ToString();
+
+						string[] Input_Log = new string[] { InProduct_No, Product_Code, Product_Place, In_Time };
+
+						table.Rows.Add(Input_Log);
+					}
+                    rdr.Close();
+                }
+
+				catch (Exception ex)
+				{
+					Console.WriteLine(ex.Message);
+				}
+				return table;
+			}
+		}
+
+		public DataTable OutProdHistory()
+		{
+			lock (lockObject)
+			{
+				DataTable table = new DataTable();
+				SqlDataReader rdr = null;
+
+				try
+				{
+                    if (conn.State != ConnectionState.Open)
+                        conn.Open();
+
                     SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = conn;
+					cmd.Connection = conn;
 
-                    cmd.CommandText = "select * from Output_Log";
+					cmd.CommandText = "select * from Output_Log";
 
-                    rdr = cmd.ExecuteReader();
+					rdr = cmd.ExecuteReader();
 
-                    if (table.Columns.Count == 0)
-                    {
-                        table.Columns.Add("출고번호");
-                        table.Columns.Add("제품코드");
-                        table.Columns.Add("제품위치");
-                        table.Columns.Add("출고시간");
+					if (table.Columns.Count == 0)
+					{
+						table.Columns.Add("출고번호");
+						table.Columns.Add("제품코드");
+						table.Columns.Add("제품위치");
+						table.Columns.Add("출고시간");
+					}
+
+					while (rdr.Read())
+					{
+
+						string OutProduct_No = rdr["Output_No"].ToString();
+						string Product_Code = rdr["Product_Code"] as string;
+						string Product_Place = rdr["Product_Place"].ToString();
+						string Out_Time = rdr["Out_Time"].ToString();
+
+						string[] Output_Log = new string[] { OutProduct_No, Product_Code, Product_Place, Out_Time };
+
+						table.Rows.Add(Output_Log);
                     }
-
-                    while (rdr.Read())
-                    {
-
-                        string OutProduct_No = rdr["OutProduct_No"].ToString();
-                        string Product_Code = rdr["Product_Code"] as string;
-                        string Product_Place = rdr["Product_Place"].ToString();
-                        string Out_Time = rdr["Out_Time"].ToString();
-
-                        string[] Output_Log = new string[] { OutProduct_No, Product_Code, Product_Place, Out_Time };
-
-                        table.Rows.Add(Output_Log);
-                    }
+                    rdr.Close();
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+				catch (Exception ex)
+				{
+					Console.WriteLine(ex.Message);
+				}
 
-                finally
-                {
-                    if (conn.State == ConnectionState.Open)
-                        conn.Close();
-                }
+				return table;
+			}
+		}
 
-                return table;
-            }
-        }
-
-        public DataTable Orders()
+		public DataTable Orders()
         {
             lock (lockObject)
             {
@@ -272,141 +281,6 @@ namespace Dalgucci
                     Console.WriteLine(MethodBase.GetCurrentMethod().Name + ex.Message);
                 }
 
-                return table;
-            }
-        }
-
-        //public List<string[]> Robot()
-        //{
-        //    lock (lockObject)
-        //    {
-        //        List<string[]> list = new List<string[]>();
-        //        SqlDataReader rdr = null;
-
-        //        try
-        //        {
-        //            if (conn.State != ConnectionState.Open)
-        //                conn.Open();
-
-        //            SqlCommand cmd = new SqlCommand();
-        //            cmd.Connection = conn;
-        //            cmd.CommandText = "select Robot_No, Robot_Name, Robot_Part, Robot_State from Robot_i";
-        //            rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-
-        //            while (rdr.Read())
-        //            {
-        //                string Robot_No = rdr["Robot_No"].ToString();
-        //                string Robot_Code = rdr["Robot_Name"] as string;
-        //                string Robot_Part = rdr["Robot_Part"] as string;
-        //                string Robot_State = rdr["Robot_State"] as string;
-
-        //                string[] Robot = new string[] { Robot_No, Robot_Code, Robot_Part, Robot_State };
-        //                list.Add(Robot);
-        //            }
-
-        //            rdr.Close();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine(MethodBase.GetCurrentMethod().Name + ex.Message);
-        //        }
-
-        //        return list;
-        //    }
-        //}
-
-        public DataTable InProdHistory()
-        {
-            lock (lockObject)
-            {
-                DataTable table = new DataTable();
-                SqlDataReader rdr = null;
-
-                try
-                {
-                    if (conn.State != ConnectionState.Open)
-                        conn.Open();
-
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = conn;
-
-                    cmd.CommandText = "select * from Input_Log";
-                    rdr = cmd.ExecuteReader();
-
-                    if (table.Columns.Count == 0)
-                    {
-                        table.Columns.Add("입고번호");
-                        table.Columns.Add("제품코드");
-                        table.Columns.Add("제품위치");
-                        table.Columns.Add("입고시간");
-                    }
-
-                    while (rdr.Read())
-                    {
-
-                        string InProduct_No = rdr["InProduct_No"].ToString();
-                        string Product_Code = rdr["Product_Code"] as string;
-                        string Product_Place = rdr["Product_Place"].ToString();
-                        string In_Time = rdr["In_Time"].ToString();
-
-                        string[] Input_Log = new string[] { InProduct_No, Product_Code, Product_Place, In_Time };
-
-                        table.Rows.Add(Input_Log);
-                    }
-                    rdr.Close();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                return table;
-            }
-        }
-
-        public DataTable OutProdHistory()
-        {
-            lock (lockObject)
-            {
-                DataTable table = new DataTable();
-                SqlDataReader rdr = null;
-
-                try
-                {
-                    if (conn.State != ConnectionState.Open)
-                        conn.Open();
-
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = conn;
-
-                    cmd.CommandText = "select * from Output_Log";
-                    rdr = cmd.ExecuteReader();
-
-                    if (table.Columns.Count == 0)
-                    {
-                        table.Columns.Add("출고번호");
-                        table.Columns.Add("제품코드");
-                        table.Columns.Add("제품위치");
-                        table.Columns.Add("출고시간");
-                    }
-
-                    while (rdr.Read())
-                    {
-
-                        string OutProduct_No = rdr["OutProduct_No"].ToString();
-                        string Product_Code = rdr["Product_Code"] as string;
-                        string Product_Place = rdr["Product_Place"].ToString();
-                        string Out_Time = rdr["Out_Time"].ToString();
-
-                        string[] Output_Log = new string[] { OutProduct_No, Product_Code, Product_Place, Out_Time };
-
-                        table.Rows.Add(Output_Log);
-                    }
-                    rdr.Close();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
                 return table;
             }
         }
