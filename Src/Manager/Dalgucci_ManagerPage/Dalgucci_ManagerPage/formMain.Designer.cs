@@ -34,17 +34,17 @@
 			this.Output = new System.Windows.Forms.Button();
 			this.Data = new System.Windows.Forms.Button();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.Robot1 = new System.Windows.Forms.PictureBox();
-			this.Robot2 = new System.Windows.Forms.PictureBox();
 			this.CCTV = new System.Windows.Forms.Button();
 			this.tmr_RobotAnimation = new System.Windows.Forms.Timer(this.components);
 			this.Console_output = new System.Windows.Forms.ListBox();
 			this.trmConsloeOutput = new System.Windows.Forms.Timer(this.components);
+			this.Robot2 = new System.Windows.Forms.PictureBox();
+			this.Robot1 = new System.Windows.Forms.PictureBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.Order_View)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.Robot1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.Robot2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.Robot1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// Order_View
@@ -93,41 +93,6 @@
 			this.timer1.Interval = 2000;
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.ErrorImage = null;
-			this.pictureBox1.Image = global::Dalgucci_ManagerPage.Properties.Resources.productMap1;
-			this.pictureBox1.InitialImage = null;
-			this.pictureBox1.Location = new System.Drawing.Point(568, 248);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(860, 404);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-			this.pictureBox1.TabIndex = 5;
-			this.pictureBox1.TabStop = false;
-			this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-			// 
-			// Robot1
-			// 
-			this.Robot1.Image = global::Dalgucci_ManagerPage.Properties.Resources.iconmonstr_delivery_15_2402;
-			this.Robot1.Location = new System.Drawing.Point(1408, 344);
-			this.Robot1.Name = "Robot1";
-			this.Robot1.Size = new System.Drawing.Size(45, 40);
-			this.Robot1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-			this.Robot1.TabIndex = 6;
-			this.Robot1.TabStop = false;
-			this.Robot1.Click += new System.EventHandler(this.Robot1_Click);
-			// 
-			// Robot2
-			// 
-			this.Robot2.Image = global::Dalgucci_ManagerPage.Properties.Resources.iconmonstr_delivery_15_2402;
-			this.Robot2.Location = new System.Drawing.Point(1408, 488);
-			this.Robot2.Name = "Robot2";
-			this.Robot2.Size = new System.Drawing.Size(45, 40);
-			this.Robot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-			this.Robot2.TabIndex = 7;
-			this.Robot2.TabStop = false;
-			this.Robot2.Click += new System.EventHandler(this.Robot2_Click);
-			// 
 			// CCTV
 			// 
 			this.CCTV.Location = new System.Drawing.Point(1296, 72);
@@ -162,6 +127,41 @@
 			this.trmConsloeOutput.Enabled = true;
 			this.trmConsloeOutput.Tick += new System.EventHandler(this.trmConsloeOutput_Tick);
 			// 
+			// Robot2
+			// 
+			this.Robot2.Image = global::Dalgucci_ManagerPage.Properties.Resources.iconmonstr_delivery_15_2402;
+			this.Robot2.Location = new System.Drawing.Point(1408, 488);
+			this.Robot2.Name = "Robot2";
+			this.Robot2.Size = new System.Drawing.Size(45, 40);
+			this.Robot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.Robot2.TabIndex = 7;
+			this.Robot2.TabStop = false;
+			this.Robot2.Click += new System.EventHandler(this.Robot2_Click);
+			// 
+			// Robot1
+			// 
+			this.Robot1.Image = global::Dalgucci_ManagerPage.Properties.Resources.iconmonstr_delivery_15_2402;
+			this.Robot1.Location = new System.Drawing.Point(1408, 344);
+			this.Robot1.Name = "Robot1";
+			this.Robot1.Size = new System.Drawing.Size(45, 40);
+			this.Robot1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.Robot1.TabIndex = 6;
+			this.Robot1.TabStop = false;
+			this.Robot1.Click += new System.EventHandler(this.Robot1_Click);
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.ErrorImage = null;
+			this.pictureBox1.Image = global::Dalgucci_ManagerPage.Properties.Resources.창고현황_최종_;
+			this.pictureBox1.InitialImage = null;
+			this.pictureBox1.Location = new System.Drawing.Point(472, 136);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(1080, 624);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox1.TabIndex = 5;
+			this.pictureBox1.TabStop = false;
+			this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+			// 
 			// frmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -180,9 +180,9 @@
 			this.Text = "관리자 메인페이지";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			((System.ComponentModel.ISupportInitialize)(this.Order_View)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.Robot1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.Robot2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.Robot1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
