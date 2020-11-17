@@ -15,6 +15,7 @@ namespace Dalgucci_ManagerPage
         static public Database data = null;
         static public frmMain g_frmMain = null;
         static public TcpIpServer server = null;
+        static public formRobotCom formRobot = null;
         [STAThread]
        
         static void Main()
@@ -25,7 +26,10 @@ namespace Dalgucci_ManagerPage
             g_frmMain = new frmMain();
             data = new Database();
             server = new TcpIpServer();
+            formRobot = new formRobotCom();
+
             Application.Run(g_frmMain);
+            Application.Run(formRobot);
         }
     }
 }

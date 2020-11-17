@@ -68,6 +68,26 @@ namespace Dalgucci_ManagerPage
                 Robot2.Stop();
         }
 
+        private void CCTV2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextTest2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private static string sQRcode = "";
+        public static string QRcode_Value()
+        {
+            return sQRcode;
+        }
+        public static string QRcode_End()
+        {
+            sQRcode = "";
+            return sQRcode;
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (CCTV.Image != null)
@@ -77,27 +97,14 @@ namespace Dalgucci_ManagerPage
                 if (result != null)
                 {
                     testTextBox.Text = result.ToString();
+                    sQRcode = result.ToString();
                     //timer1.Stop();
                     //if (stream.IsRunning)
                     //    stream.Stop();
                 }
             }
-           
 
         }
-
-        private void CCTV2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void TextTest2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void timer2_Tick(object sender, EventArgs e)
         {
             if (CCTV2.Image != null)
@@ -107,6 +114,7 @@ namespace Dalgucci_ManagerPage
                 if (result != null)
                 {
                     TextTest2.Text = result.ToString();
+                    sQRcode = result.ToString();
                     //timer1.Stop();
                     //if (stream.IsRunning)
                     //    stream.Stop();

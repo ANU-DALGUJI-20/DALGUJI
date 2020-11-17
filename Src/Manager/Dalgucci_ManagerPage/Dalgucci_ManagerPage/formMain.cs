@@ -145,8 +145,6 @@ namespace Dalgucci_ManagerPage
             Form.Show();
         }
 
-        
-
         private void tmr_RobotAnimation_Tick(object sender, EventArgs e)
         {
             int x1 = Robot1.Location.X;
@@ -213,12 +211,17 @@ namespace Dalgucci_ManagerPage
                 }
             }
 
+            //string strWoman = TcpIpServer.Position_Value();
+            //Robot_move_1(strWoman);
+            //string strMan = TcpIpServer.Position_Value();
+            //Robot_move_2(strMan);
+
             // 여자 한복
-            string strWoman = TcpIpServer.Position_Value();
+            string strWoman = formRobotCom.QRcode_Value();
             Robot_move_1(strWoman);
 
             // 남자 한복
-            string strMan = TcpIpServer.Position_Value();
+            string strMan = formRobotCom.QRcode_Value();
             Robot_move_2(strMan);
 
             Robot1.Location = new Point(x1, y1);
@@ -235,7 +238,7 @@ namespace Dalgucci_ManagerPage
             Robot1_Current_Location = Robot1.Location;
             Robot1_Target_Location = m_Robot1_Location[Robot1_location];
 
-            TcpIpServer.Position_End();
+            formRobotCom.QRcode_End();
         }
         
         private void Robot_move_2(string position)
@@ -247,7 +250,7 @@ namespace Dalgucci_ManagerPage
             Robot2_Current_Location = Robot2.Location;
             Robot2_Target_Location = m_Robot2_Location[Robot2_location];
 
-            TcpIpServer.Position_End();
+            formRobotCom.QRcode_End();
         }
 
         public void AddConsoleOutput( string _log )

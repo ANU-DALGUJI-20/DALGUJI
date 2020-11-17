@@ -88,14 +88,14 @@ namespace Dalgucci_ManagerPage
             dicManLog.Add(MSTG03, "남자 한복 3번 창고");
 
 
-            dicManPos.Add(MIN01);
-            dicManPos.Add(MOUT01);
-            dicManPos.Add(MMS01);
-            dicManPos.Add(MMS02);
-            dicManPos.Add(MMS03);
-            dicManPos.Add(MSTG01);
-            dicManPos.Add(MSTG02);
-            dicManPos.Add(MSTG03);
+            //dicManPos.Add(MIN01);
+            //dicManPos.Add(MOUT01);
+            //dicManPos.Add(MMS01);
+            //dicManPos.Add(MMS02);
+            //dicManPos.Add(MMS03);
+            //dicManPos.Add(MSTG01);
+            //dicManPos.Add(MSTG02);
+            //dicManPos.Add(MSTG03);
 
             // 여자
             dicWomanLog.Add("OK", "명령을 전달받음");
@@ -115,26 +115,26 @@ namespace Dalgucci_ManagerPage
             dicWomanLog.Add(WSTG03, "여자 한복 3번 창고");
 
 
-            dicWomanPos.Add(WIN01);
-            dicWomanPos.Add(WOUT01);
-            dicWomanPos.Add(WMS01);
-            dicWomanPos.Add(WMS02);
-            dicWomanPos.Add(WMS03);
-            dicWomanPos.Add(WSTG01);
-            dicWomanPos.Add(WSTG02);
-            dicWomanPos.Add(WSTG03);
+            //dicWomanPos.Add(WIN01);
+            //dicWomanPos.Add(WOUT01);
+            //dicWomanPos.Add(WMS01);
+            //dicWomanPos.Add(WMS02);
+            //dicWomanPos.Add(WMS03);
+            //dicWomanPos.Add(WSTG01);
+            //dicWomanPos.Add(WSTG02);
+            //dicWomanPos.Add(WSTG03);
         }
 
-        private static string sPosition = "";
-        public static string Position_Value()
-        {
-            return sPosition;
-        }
-        public static string Position_End()
-        {
-            sPosition = "";
-            return sPosition;
-        }
+        //private static string sPosition = "";
+        //public static string Position_Value()
+        //{
+        //    return sPosition;
+        //}
+        //public static string Position_End()
+        //{
+        //    sPosition = "";
+        //    return sPosition;
+        //}
 
         private static TcpClient GetWomanClient()
         {

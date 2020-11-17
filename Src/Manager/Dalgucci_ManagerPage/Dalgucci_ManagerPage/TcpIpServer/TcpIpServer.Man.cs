@@ -98,13 +98,13 @@ namespace Dalgucci_ManagerPage
                     }
 				}
 
-                foreach (var p in dicManPos)
-                {
-                    if (data.Contains(p))
-                    {
-                        sPosition = p;
-                    }
-                }
+                //foreach (var p in dicManPos)
+                //{
+                //    if (data.Contains(p))
+                //    {
+                //        sPosition = p;
+                //    }
+                //}
             }
         }
 
