@@ -130,7 +130,7 @@
 			// Robot2
 			// 
 			this.Robot2.Image = global::Dalgucci_ManagerPage.Properties.Resources.Robot1;
-			this.Robot2.Location = new System.Drawing.Point(1464, 560);
+			this.Robot2.Location = new System.Drawing.Point(1464, 624);
 			this.Robot2.Name = "Robot2";
 			this.Robot2.Size = new System.Drawing.Size(44, 51);
 			this.Robot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -141,7 +141,7 @@
 			// Robot1
 			// 
 			this.Robot1.Image = global::Dalgucci_ManagerPage.Properties.Resources.Robot;
-			this.Robot1.Location = new System.Drawing.Point(1464, 304);
+			this.Robot1.Location = new System.Drawing.Point(1464, 216);
 			this.Robot1.Name = "Robot1";
 			this.Robot1.Size = new System.Drawing.Size(44, 51);
 			this.Robot1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;

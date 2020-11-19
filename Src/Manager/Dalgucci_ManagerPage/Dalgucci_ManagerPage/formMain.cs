@@ -87,15 +87,18 @@ namespace Dalgucci_ManagerPage
             InitializeComponent();
 
             // 그림 바뀌면 좌표 수정!!!!!!!!!!!!!!!!!!
-            m_Robot1_Location.Add("1001", new Point(0, 0));
+            m_Robot1_Location.Add("1001", new Point(1278, 174));
+            m_Robot1_Location.Add("1002", new Point(1278, 174));
+            m_Robot1_Location.Add("1003", new Point(1278, 174));
+
             m_Robot1_Location.Add("WIN01", new Point(1160, 344));
             m_Robot1_Location.Add("WOUT01", new Point(648, 344));
-            m_Robot1_Location.Add("WMS03", new Point(1000, 344));
-            m_Robot1_Location.Add("WMS02", new Point(912, 344));
-            m_Robot1_Location.Add("WMS01", new Point(816, 344));
+            m_Robot1_Location.Add("WMS03", new Point(1000, 248));
+            m_Robot1_Location.Add("WMS02", new Point(912, 248));
+            m_Robot1_Location.Add("WMS01", new Point(708, 248));
             m_Robot1_Location.Add("WSTG03", new Point(1000, 290));
             m_Robot1_Location.Add("WSTG02", new Point(912, 290));
-            m_Robot1_Location.Add("WSTG01", new Point(816, 290));
+            m_Robot1_Location.Add("WSTG01", new Point(708, 190));
             
             m_Robot2_Location.Add("MIN01", new Point(1408, 488));
             m_Robot2_Location.Add("MOUT01", new Point(648, 488));
