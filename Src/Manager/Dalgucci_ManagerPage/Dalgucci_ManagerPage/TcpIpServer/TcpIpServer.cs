@@ -98,6 +98,7 @@ namespace Dalgucci_ManagerPage
             //dicManPos.Add(MSTG03);
 
             // 여자
+            dicWomanLog.Add("1001", "입고 시작 1001");
             dicWomanLog.Add("OK", "명령을 전달받음");
             dicWomanLog.Add("START", "작동 시작");
             dicWomanLog.Add("Going Pick-Up", "출고 작업/이동중 ...");
@@ -192,7 +193,7 @@ namespace Dalgucci_ManagerPage
         {
             try
             {
-                string bindIp = "127.0.0.1";
+                string bindIp = "192.168.0.49";
                 const int bindPort = 5425;
                 IPEndPoint localAddress = new IPEndPoint(IPAddress.Parse(bindIp), bindPort);
                 server = new TcpListener(localAddress);
@@ -208,6 +209,7 @@ namespace Dalgucci_ManagerPage
             }
         }
 
+        //static int nMsgId = 1;
         private static int SendCmdToRobot(ref NetworkStream stream, string sCMD, string sPosition)
         {
             string Token_Start = "{{$";
@@ -215,12 +217,14 @@ namespace Dalgucci_ManagerPage
             string my_splitor = "[!]";
 
             int nMsgId = 1;
+            string sMsgId = nMsgId.ToString().PadLeft(4, '0');
 
-            string sPacket = String.Format($"{Token_Start}MSGID={nMsgId.ToString().PadLeft(4, '0')}{my_splitor}CMD={sCMD}{my_splitor}POS={sPosition}{Token_End}");
+            string sPacket = String.Format($"{Token_Start}MSGID={sMsgId}{my_splitor}CMD={sCMD}{my_splitor}POS={sPosition}{Token_End}");
             byte[] msg = Encoding.Default.GetBytes(sPacket);
             stream.Write(msg, 0, msg.Length);
             Program.g_frmMain.AddConsoleOutput(String.Format("송신: {0}", sPacket));
 
+            //return nMsgId++;
             return 0;
         }
 

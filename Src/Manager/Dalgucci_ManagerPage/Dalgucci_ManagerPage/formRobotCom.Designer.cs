@@ -99,10 +99,11 @@
 			// 
 			// TextTest2
 			// 
-			this.TextTest2.Location = new System.Drawing.Point(24, 480);
+			this.TextTest2.Location = new System.Drawing.Point(240, 480);
 			this.TextTest2.Name = "TextTest2";
-			this.TextTest2.Size = new System.Drawing.Size(100, 25);
+			this.TextTest2.Size = new System.Drawing.Size(168, 25);
 			this.TextTest2.TabIndex = 2;
+			this.TextTest2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.TextTest2.TextChanged += new System.EventHandler(this.TextTest2_TextChanged);
 			// 
 			// CCTV2
@@ -117,10 +118,12 @@
 			// 
 			// timer1
 			// 
+			this.timer1.Interval = 4000;
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
 			// timer2
 			// 
+			this.timer2.Interval = 4000;
 			this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
 			// 
 			// formRobotCom

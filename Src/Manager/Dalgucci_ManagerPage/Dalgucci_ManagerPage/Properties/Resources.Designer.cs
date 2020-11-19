@@ -123,6 +123,26 @@ namespace Dalgucci_ManagerPage.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap Robot {
+            get {
+                object obj = ResourceManager.GetObject("Robot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Robot1 {
+            get {
+                object obj = ResourceManager.GetObject("Robot1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap 그룹_114 {
             get {
                 object obj = ResourceManager.GetObject("그룹 114", resourceCulture);
@@ -146,6 +166,16 @@ namespace Dalgucci_ManagerPage.Properties {
         internal static System.Drawing.Bitmap 그룹_125 {
             get {
                 object obj = ResourceManager.GetObject("그룹 125", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 창고_구성도_찐최종_ {
+            get {
+                object obj = ResourceManager.GetObject("창고 구성도(찐최종)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

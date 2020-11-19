@@ -87,6 +87,7 @@ namespace Dalgucci_ManagerPage
             InitializeComponent();
 
             // 그림 바뀌면 좌표 수정!!!!!!!!!!!!!!!!!!
+            m_Robot1_Location.Add("1001", new Point(0, 0));
             m_Robot1_Location.Add("WIN01", new Point(1160, 344));
             m_Robot1_Location.Add("WOUT01", new Point(648, 344));
             m_Robot1_Location.Add("WMS03", new Point(1000, 344));
@@ -109,18 +110,12 @@ namespace Dalgucci_ManagerPage
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
-
             Order_View.DataSource = Program.data.Orders();
             timer1.Enabled = true;
             timer1.Start();
             Grid_Style();
         }
-     
 
-     
-
-      
         private void Data_Click(object sender, EventArgs e)
         {
             frmInOutHistory inOutHistory = new frmInOutHistory();
@@ -211,27 +206,27 @@ namespace Dalgucci_ManagerPage
                 }
             }
 
-            //string strWoman = TcpIpServer.Position_Value();
-            //Robot_move_1(strWoman);
-            //string strMan = TcpIpServer.Position_Value();
-            //Robot_move_2(strMan);
+			//string strWoman = TcpIpServer.Position_Value();
+			//Robot_move_1(strWoman);
+			//string strMan = TcpIpServer.Position_Value();
+			//Robot_move_2(strMan);
 
-            // 여자 한복
-            string strWoman = formRobotCom.QRcode_Value();
-            Robot_move_1(strWoman);
+			// 여자 한복
+			string strWoman = formRobotCom.QRcode_Value();
+			Robot_move_1(strWoman);
 
-            // 남자 한복
-            string strMan = formRobotCom.QRcode_Value();
-            Robot_move_2(strMan);
+			// 남자 한복
+			string strMan = formRobotCom.QRcode_Value();
+			Robot_move_2(strMan);
 
-            Robot1.Location = new Point(x1, y1);
+			Robot1.Location = new Point(x1, y1);
             Robot2.Location = new Point(x2, y2);
             Update();
         }
 
         private void Robot_move_1(string position)
-		{
-            if(position == "" || position == null)
+        {
+            if (position == "" || position == null)
                 return;
 
             string Robot1_location = position;
@@ -239,6 +234,7 @@ namespace Dalgucci_ManagerPage
             Robot1_Target_Location = m_Robot1_Location[Robot1_location];
 
             formRobotCom.QRcode_End();
+            //TcpIpServer.Position_End();
         }
         
         private void Robot_move_2(string position)
@@ -251,6 +247,7 @@ namespace Dalgucci_ManagerPage
             Robot2_Target_Location = m_Robot2_Location[Robot2_location];
 
             formRobotCom.QRcode_End();
+            //TcpIpServer.Position_End();
         }
 
         public void AddConsoleOutput( string _log )

@@ -98,6 +98,8 @@ namespace Dalgucci_ManagerPage
                 {
                     testTextBox.Text = result.ToString();
                     sQRcode = result.ToString();
+                        
+                    TcpIpServer.SendCmdToWoman("CUR_POS", sQRcode);
                     //timer1.Stop();
                     //if (stream.IsRunning)
                     //    stream.Stop();
@@ -115,6 +117,10 @@ namespace Dalgucci_ManagerPage
                 {
                     TextTest2.Text = result.ToString();
                     sQRcode = result.ToString();
+
+                    if (sQRcode == "1001")
+                        TcpIpServer.SendCmdToWoman("PROD_CODE", sQRcode);
+
                     //timer1.Stop();
                     //if (stream.IsRunning)
                     //    stream.Stop();

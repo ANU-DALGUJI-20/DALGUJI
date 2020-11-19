@@ -62,7 +62,7 @@
 			// 
 			this.Input.Location = new System.Drawing.Point(16, 88);
 			this.Input.Name = "Input";
-			this.Input.Size = new System.Drawing.Size(208, 88);
+			this.Input.Size = new System.Drawing.Size(208, 40);
 			this.Input.TabIndex = 2;
 			this.Input.Text = "남자 창고 입고";
 			this.Input.UseVisualStyleBackColor = true;
@@ -72,7 +72,7 @@
 			// 
 			this.Output.Location = new System.Drawing.Point(240, 88);
 			this.Output.Name = "Output";
-			this.Output.Size = new System.Drawing.Size(208, 88);
+			this.Output.Size = new System.Drawing.Size(208, 40);
 			this.Output.TabIndex = 3;
 			this.Output.Text = "여자 창고 입고";
 			this.Output.UseVisualStyleBackColor = true;
@@ -116,9 +116,9 @@
 			this.Console_output.ForeColor = System.Drawing.Color.Lime;
 			this.Console_output.FormattingEnabled = true;
 			this.Console_output.ItemHeight = 15;
-			this.Console_output.Location = new System.Drawing.Point(16, 184);
+			this.Console_output.Location = new System.Drawing.Point(16, 136);
 			this.Console_output.Name = "Console_output";
-			this.Console_output.Size = new System.Drawing.Size(432, 244);
+			this.Console_output.Size = new System.Drawing.Size(432, 289);
 			this.Console_output.TabIndex = 10;
 			this.Console_output.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.Console_output_DrawItem);
 			// 
@@ -129,10 +129,10 @@
 			// 
 			// Robot2
 			// 
-			this.Robot2.Image = global::Dalgucci_ManagerPage.Properties.Resources.iconmonstr_delivery_15_2402;
+			this.Robot2.Image = global::Dalgucci_ManagerPage.Properties.Resources.Robot1;
 			this.Robot2.Location = new System.Drawing.Point(1464, 560);
 			this.Robot2.Name = "Robot2";
-			this.Robot2.Size = new System.Drawing.Size(45, 40);
+			this.Robot2.Size = new System.Drawing.Size(44, 51);
 			this.Robot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
 			this.Robot2.TabIndex = 7;
 			this.Robot2.TabStop = false;
@@ -140,10 +140,10 @@
 			// 
 			// Robot1
 			// 
-			this.Robot1.Image = global::Dalgucci_ManagerPage.Properties.Resources.iconmonstr_delivery_15_2402;
+			this.Robot1.Image = global::Dalgucci_ManagerPage.Properties.Resources.Robot;
 			this.Robot1.Location = new System.Drawing.Point(1464, 304);
 			this.Robot1.Name = "Robot1";
-			this.Robot1.Size = new System.Drawing.Size(45, 40);
+			this.Robot1.Size = new System.Drawing.Size(44, 51);
 			this.Robot1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
 			this.Robot1.TabIndex = 6;
 			this.Robot1.TabStop = false;
@@ -152,11 +152,11 @@
 			// pictureBox1
 			// 
 			this.pictureBox1.ErrorImage = null;
-			this.pictureBox1.Image = global::Dalgucci_ManagerPage.Properties.Resources.창고현황_최종_;
+			this.pictureBox1.Image = global::Dalgucci_ManagerPage.Properties.Resources.창고_구성도_찐최종_;
 			this.pictureBox1.InitialImage = null;
-			this.pictureBox1.Location = new System.Drawing.Point(472, 136);
+			this.pictureBox1.Location = new System.Drawing.Point(480, 136);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(1080, 624);
+			this.pictureBox1.Size = new System.Drawing.Size(1072, 624);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox1.TabIndex = 5;
 			this.pictureBox1.TabStop = false;

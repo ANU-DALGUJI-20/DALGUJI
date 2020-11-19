@@ -30,6 +30,7 @@ namespace Dalgucci_ManagerPage
 
                 Program.data.insertValue(strProductCode, out_prod_pos);
                 Program.g_frmMain.AddConsoleOutput("출고기록 삽입");
+
             }
         }
 
@@ -48,20 +49,28 @@ namespace Dalgucci_ManagerPage
             while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
             {
                 data = Encoding.Default.GetString(bytes, 0, length);
-                //Program.g_frmMain.AddConsoleOutput(String.Format("수신 : {0}", data));
-                string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "NUMBER" }, StringSplitOptions.RemoveEmptyEntries);
+                Program.g_frmMain.AddConsoleOutput(String.Format("수신 : {0}", data));
+                //string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "NUMBER" }, StringSplitOptions.RemoveEmptyEntries);
 
-                productNo = sRcvMessage[2];
+                //productNo = sRcvMessage[2];
 
-                if (sRcvMessage[2] == WOMAN1001) in_prod_pos = WSTG01;
-                else if (sRcvMessage[2] == WOMAN1002) in_prod_pos = WSTG02;
-                else if (sRcvMessage[2] == WOMAN1003) in_prod_pos = WSTG03;
+                //if (sRcvMessage[2] == WOMAN1001) in_prod_pos = WSTG01;
+                //else if (sRcvMessage[2] == WOMAN1002) in_prod_pos = WSTG02;
+                //else if (sRcvMessage[2] == WOMAN1003) in_prod_pos = WSTG03;
                 
-                SendCmdToRobot(ref stream, cmd_in_order, in_prod_pos);
-                Woman_Order_Rev(ref stream);
+                //SendCmdToRobot(ref stream, cmd_in_order, in_prod_pos);
+                //Woman_Order_Rev(ref stream);
 
-                Program.data.insertValue(productNo,in_prod_pos);
-                Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
+                //Program.data.insertValue(productNo,in_prod_pos);
+                //Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
+
+                if(data.Contains("COMPLETE_INPUT"))
+				{
+					Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
+
+					Program.data.insertValue(WOMAN1001, in_prod_pos);
+					Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
+				}
             }
 		}
 
@@ -71,10 +80,11 @@ namespace Dalgucci_ManagerPage
             string data = "";
             byte[] bytes = new byte[256];
 
+
             while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
             {
                 data = Encoding.Default.GetString(bytes, 0, length);
-                string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "POS", "STATE"}, StringSplitOptions.RemoveEmptyEntries);
+                // string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "POS", "STATE"}, StringSplitOptions.RemoveEmptyEntries);
 
                 if (data.Contains("COMPLETE_OUTPUT"))
                 {
@@ -100,12 +110,13 @@ namespace Dalgucci_ManagerPage
 
                 //foreach (var p in dicWomanPos)
                 //{
-                //    if (data.Contains(p))
-                //    {
-                //        sPosition = p;
-                //    }
+                //	if (data.Contains(p))
+                //	{
+                //		sPosition = p;
+                //	}
                 //}
-            }
+
+			}
         }
 
         private static void RobotComProc_Woman()
