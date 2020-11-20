@@ -38,9 +38,9 @@ namespace Dalgucci_ManagerPage
             int length = 0;
             string data = "";
             byte[] bytes = new byte[256];
-            string cmd_in_order = "IN_ORDER";
-            string productNo = "";
-            string in_prod_pos = "";
+            //string cmd_in_order = "IN_ORDER";
+            //string productNo = "";
+            //string in_prod_pos = "";
 
             if (stream.CanRead != true)
                 return;
@@ -48,20 +48,29 @@ namespace Dalgucci_ManagerPage
             while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
             {
                 data = Encoding.Default.GetString(bytes, 0, length);
-                // Program.g_frmMain.AddConsoleOutput(string.Format("수신 : {0}", data));
-                string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "NUMBER" }, StringSplitOptions.RemoveEmptyEntries);
+                Program.g_frmMain.AddConsoleOutput(string.Format("수신 : {0}", data));
+                //string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "NUMBER" }, StringSplitOptions.RemoveEmptyEntries);
 
-                productNo = sRcvMessage[2];
+                //productNo = sRcvMessage[2];
 
-                if (sRcvMessage[2] == MAN2001) in_prod_pos = MSTG01;
-                else if (sRcvMessage[2] == MAN2001) in_prod_pos = MSTG02;
-                else if (sRcvMessage[2] == MAN2001) in_prod_pos = MSTG03;
+                //if (sRcvMessage[2] == MAN2001) in_prod_pos = MSTG01;
+                //else if (sRcvMessage[2] == MAN2001) in_prod_pos = MSTG02;
+                //else if (sRcvMessage[2] == MAN2001) in_prod_pos = MSTG03;
 
-                SendCmdToRobot(ref stream, cmd_in_order, in_prod_pos);
-                Man_Order_Rev(ref stream);
+                //SendCmdToRobot(ref stream, cmd_in_order, in_prod_pos);
+                //Man_Order_Rev(ref stream);
 
-                Program.data.insertValue(productNo,in_prod_pos);
-                Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
+                //Program.data.insertValue(productNo,in_prod_pos);
+                //Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
+
+                if (data.Contains("COMPLETE_INPUT"))
+                {
+                    Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
+
+                    // 수정 필요, QR코드에 따라 그에 맞는 값 삽입
+                    Program.data.insertValue(MAN2001, MSTG01);
+					Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
+				}
             }
         }
 
@@ -74,8 +83,8 @@ namespace Dalgucci_ManagerPage
             while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
             {
                 data = Encoding.Default.GetString(bytes, 0, length);
-                // Console.WriteLine(String.Format("수신 : {0}", data));
-                string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "POS", "STATE", }, StringSplitOptions.RemoveEmptyEntries);
+                //Console.WriteLine(String.Format("수신 : {0}", data));
+                //string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "POS", "STATE", }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (data.Contains("COMPLETE_OUTPUT"))
                 {
@@ -84,28 +93,26 @@ namespace Dalgucci_ManagerPage
                     Program.g_frmMain.AddConsoleOutput("주문 테이블 삭제");
                     break;
                 }
-                if (data.Contains("COMPLETE_INPUT"))
-                {
-                    Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
-                    break;
-                }
-
-                foreach( var k in dicManLog.Keys)
-				{
-                    if( data.Contains( k ))
-					{
-                        Program.g_frmMain.AddConsoleOutput(dicManLog[k]);
-                    }
-				}
-
-                //foreach (var p in dicManPos)
+                //if (data.Contains("COMPLETE_INPUT"))
                 //{
-                //    if (data.Contains(p))
-                //    {
-                //        sPosition = p;
-                //    }
+                //    Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
+                //    break;
                 //}
-            }
+
+				//foreach (var k in dicManLog.Keys)
+				//{
+				//	if (data.Contains(k))
+				//		Program.g_frmMain.AddConsoleOutput(dicManLog[k]);
+				//}
+
+				//foreach (var p in dicManPos)
+				//{
+				//    if (data.Contains(p))
+				//    {
+				//        sPosition = p;
+				//    }
+				//}
+			}
         }
 
         private static void RobotComProc_Man()

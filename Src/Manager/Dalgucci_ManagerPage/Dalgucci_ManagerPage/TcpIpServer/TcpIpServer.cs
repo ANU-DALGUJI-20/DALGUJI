@@ -56,10 +56,30 @@ namespace Dalgucci_ManagerPage
         private static string WOMAN1003 = "1003";
 
         private static Dictionary<string, string> dicManLog = new Dictionary<string, string>();
-        private static List<string> dicManPos = new List<string>();
+        //private static List<string> dicManPos = new List<string>();
 
         private static Dictionary<string, string> dicWomanLog = new Dictionary<string, string>();
-        private static List<string> dicWomanPos = new List<string>();
+        //private static List<string> dicWomanPos = new List<string>();
+
+        private static bool ServStart()
+        {
+            try
+            {
+                string bindIp = "192.168.0.49";
+                const int bindPort = 5425;
+                IPEndPoint localAddress = new IPEndPoint(IPAddress.Parse(bindIp), bindPort);
+                server = new TcpListener(localAddress);
+                server.Start();
+                Program.g_frmMain.AddConsoleOutput("서버 시작...");
+
+                return true;
+            }
+            catch (SocketException e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
 
         public TcpIpServer()
         {
@@ -71,6 +91,10 @@ namespace Dalgucci_ManagerPage
             }
 
             // 남자
+            dicManLog.Add("2001", "입고 시작 2001");
+            dicManLog.Add("2002", "입고 시작 2002");
+            dicManLog.Add("2003", "입고 시작 2003");
+
             dicManLog.Add("OK", "명령을 전달받음");
             dicManLog.Add("START", "작동 시작");
             dicManLog.Add("Going Pick-Up", "출고 작업/이동중 ...");
@@ -99,6 +123,9 @@ namespace Dalgucci_ManagerPage
 
             // 여자
             dicWomanLog.Add("1001", "입고 시작 1001");
+            dicWomanLog.Add("1002", "입고 시작 1002");
+            dicWomanLog.Add("1003", "입고 시작 1003");
+
             dicWomanLog.Add("OK", "명령을 전달받음");
             dicWomanLog.Add("START", "작동 시작");
             dicWomanLog.Add("Going Pick-Up", "출고 작업/이동중 ...");
@@ -189,26 +216,6 @@ namespace Dalgucci_ManagerPage
             }
         }
 
-        private static bool ServStart()
-        {
-            try
-            {
-                string bindIp = "192.168.0.49";
-                const int bindPort = 5425;
-                IPEndPoint localAddress = new IPEndPoint(IPAddress.Parse(bindIp), bindPort);
-                server = new TcpListener(localAddress);
-                server.Start();
-                Program.g_frmMain.AddConsoleOutput("서버 시작...");
-
-                return true;
-            }
-            catch (SocketException e)
-            {
-                Console.WriteLine(e);
-                return false;
-            }
-        }
-
         //static int nMsgId = 1;
         private static int SendCmdToRobot(ref NetworkStream stream, string sCMD, string sPosition)
         {
@@ -228,18 +235,48 @@ namespace Dalgucci_ManagerPage
             return 0;
         }
 
-        public static int SendCmdToMan(string sCMD, string sPosition)
-		{
-            NetworkStream s = GetManClient().GetStream();
-            SendCmdToRobot(ref s, sCMD, sPosition);
-            return 0;
-		}
-        
-        public static int SendCmdToWoman(string sCMD, string sPosition)
-		{
+        public static int SendInputQRNumToWoman(string sCMD, string number)
+        {
             NetworkStream s = GetWomanClient().GetStream();
-            SendCmdToRobot(ref s, sCMD, sPosition);
+            int nMsgId = 1;
+            string sMsgId = nMsgId.ToString().PadLeft(4, '0');
+
+            string sPacket = String.Format($"{{$MSGID={sMsgId}[!]CMD={sCMD}[!]NUMBER={number}$}}");
+            byte[] msg = Encoding.Default.GetBytes(sPacket);
+            s.Write(msg, 0, msg.Length);
+            Program.g_frmMain.AddConsoleOutput(String.Format("송신: {0}", sPacket));
+
+            //return nMsgId++;
             return 0;
+        }
+        
+        public static int SendInputQRNumToMan(string sCMD, string number)
+        {
+            NetworkStream s = GetManClient().GetStream();
+            int nMsgId = 1;
+            string sMsgId = nMsgId.ToString().PadLeft(4, '0');
+
+            string sPacket = String.Format($"{{$MSGID={sMsgId}[!]CMD={sCMD}[!]NUMBER={number}$}}");
+            byte[] msg = Encoding.Default.GetBytes(sPacket);
+            s.Write(msg, 0, msg.Length);
+            Program.g_frmMain.AddConsoleOutput(String.Format("송신: {0}", sPacket));
+
+            //return nMsgId++;
+            return 0;
+        }
+
+		public static int SendCmdToMan(string sCMD, string sPosition)
+		{
+			NetworkStream s = GetManClient().GetStream();
+			SendCmdToRobot(ref s, sCMD, sPosition);
+			return 0;
 		}
-    }
+
+		public static int SendCmdToWoman(string sCMD, string sPosition)
+		{
+			NetworkStream s = GetWomanClient().GetStream();
+			SendCmdToRobot(ref s, sCMD, sPosition);
+			return 0;
+		}
+	}
 }

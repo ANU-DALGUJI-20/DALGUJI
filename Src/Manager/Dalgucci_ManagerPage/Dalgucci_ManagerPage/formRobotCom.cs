@@ -88,6 +88,7 @@ namespace Dalgucci_ManagerPage
             sQRcode = "";
             return sQRcode;
         }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (CCTV.Image != null)
@@ -113,13 +114,22 @@ namespace Dalgucci_ManagerPage
             {
                 BarcodeReader barcodeReader = new BarcodeReader();
                 Result result = barcodeReader.Decode((Bitmap)CCTV2.Image);
+                string product_code = "PROD_CODE";
+
                 if (result != null)
                 {
                     TextTest2.Text = result.ToString();
                     sQRcode = result.ToString();
 
-                    if (sQRcode == "1001")
-                        TcpIpServer.SendCmdToWoman("PROD_CODE", sQRcode);
+					switch (sQRcode)
+					{
+                        case "1001": TcpIpServer.SendInputQRNumToWoman(product_code, sQRcode); break;
+                        case "1002": TcpIpServer.SendInputQRNumToWoman(product_code, sQRcode); break;
+                        case "1003": TcpIpServer.SendInputQRNumToWoman(product_code, sQRcode); break;
+                        case "2001": TcpIpServer.SendInputQRNumToMan(product_code, sQRcode); break;
+                        case "2002": TcpIpServer.SendInputQRNumToMan(product_code, sQRcode); break;
+                        case "2003": TcpIpServer.SendInputQRNumToMan(product_code, sQRcode); break;
+                    }
 
                     //timer1.Stop();
                     //if (stream.IsRunning)

@@ -39,9 +39,9 @@ namespace Dalgucci_ManagerPage
             int length = 0;
             string data = "";
             byte[] bytes = new byte[256];
-            string cmd_in_order = "IN_ORDER";
-            string productNo = "";
-            string in_prod_pos = "";
+            //string cmd_in_order = "IN_ORDER";
+            //string productNo = "";
+            //string in_prod_pos = "";
 
             if (stream.DataAvailable != true)
                 return;
@@ -68,7 +68,8 @@ namespace Dalgucci_ManagerPage
 				{
 					Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
 
-					Program.data.insertValue(WOMAN1001, in_prod_pos);
+                    // 수정 필요, QR코드에 따라 그에 맞는 값 삽입
+					Program.data.insertValue(WOMAN1001, WSTG01);
 					Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
 				}
             }
@@ -92,21 +93,21 @@ namespace Dalgucci_ManagerPage
                     Program.data.RowDelete();
                     Program.g_frmMain.AddConsoleOutput("주문 테이블 삭제");
 
-                    break;
+                    break;                                                  
                 }
-                if (data.Contains("COMPLETE_INPUT"))
-                {
-                    Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
-                    break;
-                }
+                //if (data.Contains("COMPLETE_INPUT"))
+                //{
+                //    Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
+                //    break;
+                //}
 
-                foreach (var k in dicWomanLog.Keys)
-                {
-                    if (data.Contains(k))
-                    {
-                        Program.g_frmMain.AddConsoleOutput(dicWomanLog[k]);
-                    }
-                }
+                //foreach (var k in dicWomanLog.Keys)
+                //{
+                //    if (data.Contains(k))
+                //    {
+                //        Program.g_frmMain.AddConsoleOutput(dicWomanLog[k]);
+                //    }
+                //}
 
                 //foreach (var p in dicWomanPos)
                 //{

@@ -20,12 +20,12 @@ namespace Dalgucci_ManagerPage
        
         private void Input_Click(object sender, EventArgs e)
         {
-            TcpIpServer.SendCmdToMan("SIMUL", "PROD_PLACEMENT");
+            //TcpIpServer.SendCmdToMan("SIMUL", "PROD_PLACEMENT");
         }
 
         private void Output_Click(object sender, EventArgs e)
         {
-            TcpIpServer.SendCmdToWoman("SIMUL", "PROD_PLACEMENT");
+            //TcpIpServer.SendCmdToWoman("SIMUL", "PROD_PLACEMENT");
         }
 
         private void Order_View_CellContentClick(object sender, DataGridViewCellEventArgs e)
