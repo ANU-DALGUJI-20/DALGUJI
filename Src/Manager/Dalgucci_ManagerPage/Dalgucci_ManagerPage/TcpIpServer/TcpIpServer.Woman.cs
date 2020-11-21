@@ -26,10 +26,12 @@ namespace Dalgucci_ManagerPage
                 //else if (strProductCode == WOMAN1003) out_prod_pos = WSTG03;
 
                 Program.formRobot.SendCommand_Woman("OUTPUT", strProductCode);
-                //SendCmdToRobot(ref stream, cmd_out_order, out_prod_pos);
-                //Woman_Order_Rev(ref stream, strProductCode, out_prod_pos);
+				//SendCmdToRobot(ref stream, cmd_out_order, out_prod_pos);
+				//Woman_Order_Rev(ref stream, strProductCode, out_prod_pos);
 
-            }
+				//Program.data.insertValue(product_code, out_product_position);
+				//Program.g_frmMain.AddConsoleOutput("출고기록 삽입");
+			}
         }
 
         //static void Woman_InOrder(NetworkStream stream)
@@ -83,10 +85,6 @@ namespace Dalgucci_ManagerPage
         //                Program.g_frmMain.AddConsoleOutput("작업 완료/출고 완료");
         //                Program.data.RowDelete();
         //                Program.g_frmMain.AddConsoleOutput("주문 테이블 삭제");
-
-        //                Program.data.insertValue(product_code, out_product_position);
-        //                Program.g_frmMain.AddConsoleOutput("출고기록 삽입");
-
         //                break;
         //            }
         //            //if (data.Contains("COMPLETE_INPUT"))

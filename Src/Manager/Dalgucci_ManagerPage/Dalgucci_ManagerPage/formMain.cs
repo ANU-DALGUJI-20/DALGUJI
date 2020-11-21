@@ -18,15 +18,14 @@ namespace Dalgucci_ManagerPage
     public partial class frmMain : MaterialForm
     {
        
-        private void Input_Click(object sender, EventArgs e)
+        private void Man_Input_Click(object sender, EventArgs e)
         {
-            //TcpIpServer.SendCmdToMan("SIMUL", "PROD_PLACEMENT");
-            TcpIpServer.SendCmdToMan("MOVE", "FORWARD");
+            //TcpIpServer.SendCmdToMan("MOVE", "FORWARD");
+            Robot_move_2("2001");
         }
 
         private void Output_Click(object sender, EventArgs e)
         {
-            //TcpIpServer.SendCmdToWoman("SIMUL", "PROD_PLACEMENT");
             TcpIpServer.SendCmdToWoman("MOVE", "FORWARD");
         }
 
@@ -55,6 +54,16 @@ namespace Dalgucci_ManagerPage
         }
 
         private void test_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void QRcode_Read_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Robot1_read_Click(object sender, EventArgs e)
         {
 
         }
@@ -93,18 +102,21 @@ namespace Dalgucci_ManagerPage
             m_Robot1_Location.Add("1002", new Point(1278, 174));
             m_Robot1_Location.Add("1003", new Point(1278, 174));
 
-            m_Robot1_Location.Add("WIN01", new Point(1160, 344));
-            m_Robot1_Location.Add("WOUT01", new Point(648, 344));
-            m_Robot1_Location.Add("WMS03", new Point(1000, 248));
-            m_Robot1_Location.Add("WMS02", new Point(912, 248));
-            m_Robot1_Location.Add("WMS01", new Point(708, 248));
-            m_Robot1_Location.Add("WSTG03", new Point(1000, 290));
-            m_Robot1_Location.Add("WSTG02", new Point(912, 290));
-            m_Robot1_Location.Add("WSTG01", new Point(708, 190));
+            m_Robot1_Location.Add("WIN01", new Point(1216, 246));
+            m_Robot1_Location.Add("WOUT01", new Point(518, 246));
+            m_Robot1_Location.Add("WMS03", new Point(1028, 246));
+            m_Robot1_Location.Add("WMS02", new Point(868, 246));
+            m_Robot1_Location.Add("WMS01", new Point(708, 246));
+            m_Robot1_Location.Add("WSTG03", new Point(1028, 200));
+            m_Robot1_Location.Add("WSTG02", new Point(868, 200));
+            m_Robot1_Location.Add("WSTG01", new Point(708, 200));
 
-            m_Robot2_Location.Add("2001", new Point(1408, 488));
-            m_Robot2_Location.Add("2002", new Point(648, 488));
-            m_Robot2_Location.Add("2003", new Point(1000, 344));
+            m_Robot1_Location.Add("RET01", new Point(518, 105));
+            m_Robot1_Location.Add("RET02", new Point(1216, 105));
+            /* ----------------------------------------------------------------------- */
+            m_Robot2_Location.Add("2001", new Point(1282, 495));
+            m_Robot2_Location.Add("2002", new Point(1282, 495));
+            m_Robot2_Location.Add("2003", new Point(1282, 495));
 
             m_Robot2_Location.Add("MIN01", new Point(1408, 488));
             m_Robot2_Location.Add("MOUT01", new Point(648, 488));
@@ -120,8 +132,8 @@ namespace Dalgucci_ManagerPage
         private void Form1_Load(object sender, EventArgs e)
         {
             Order_View.DataSource = Program.data.Orders();
-            timer1.Enabled = true;
-            timer1.Start();
+            Table_timer.Enabled = true;
+            Table_timer.Start();
             Grid_Style();
         }
 
@@ -129,19 +141,11 @@ namespace Dalgucci_ManagerPage
         {
             frmInOutHistory inOutHistory = new frmInOutHistory();
             inOutHistory.Show();
-
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Table_timer_Tick(object sender, EventArgs e)
         {
             Order_View.DataSource = Program.data.Orders();
-
-            //Robot_View.Rows.Clear();
-            //List<string[]> robot_list = Program.data.Robot();
-            //foreach (var item in robot_list)
-            //{
-            //    Robot_View.Rows.Add(item);
-            //}
         }
         private void CCTV_Click(object sender, EventArgs e)
         {
@@ -221,10 +225,10 @@ namespace Dalgucci_ManagerPage
 
 			// 여자 한복
 			string strWoman = formRobotCom.QRcode_Value();
-			Robot_move_1(strWoman);
+            Robot_move_1(strWoman);
 
-			// 남자 한복
-			string strMan = formRobotCom.QRcode_Value();
+            // 남자 한복
+            string strMan = formRobotCom.QRcode_Value();
 			Robot_move_2(strMan);
 
 			Robot1.Location = new Point(x1, y1);
@@ -308,16 +312,6 @@ namespace Dalgucci_ManagerPage
             e.Graphics.DrawString(Console_output.Items[e.Index].ToString(), e.Font, Brushes.Lime, e.Bounds, StringFormat.GenericDefault);
             // If the ListBox has focus, draw a focus rectangle around the selected item.
             e.DrawFocusRectangle();
-        }
-
-        private void QRcode_Read_Tick(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void Robot1_read_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)

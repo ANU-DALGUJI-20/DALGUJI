@@ -29,7 +29,7 @@ namespace Dalgucci_ManagerPage
             formRobot = new formRobotCom();
 
             Application.Run(g_frmMain);
-            Application.Run(formRobot);
+            //Application.Run(formRobot);
         }
     }
 }

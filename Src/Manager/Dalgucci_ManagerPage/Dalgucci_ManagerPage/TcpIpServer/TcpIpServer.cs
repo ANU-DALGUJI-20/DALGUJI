@@ -25,26 +25,26 @@ namespace Dalgucci_ManagerPage
 
         private static Dictionary<string, string> dicWorkLog = new Dictionary<string, string>();
 
-        private static Dictionary<string, string> dicManLog = new Dictionary<string, string>();
-        private static Dictionary<string, string> dicWomanLog = new Dictionary<string, string>();
+        //private static Dictionary<string, string> dicManLog = new Dictionary<string, string>();
+        //private static Dictionary<string, string> dicWomanLog = new Dictionary<string, string>();
         //private static List<string> dicManPos = new List<string>();
         //private static List<string> dicWomanPos = new List<string>();
 
         // 남자
-        private static string MIN01 = "MIN01";
-        private static string MOUT01 = "MOUT01";
+        //private static string MIN01 = "MIN01";
+        //private static string MOUT01 = "MOUT01";
 
-        private static string MMS01 = "MMS01";
-        private static string MMS02 = "MMS02";
-        private static string MMS03 = "MMS03";
+        //private static string MMS01 = "MMS01";
+        //private static string MMS02 = "MMS02";
+        //private static string MMS03 = "MMS03";
 
-        private static string MSTG01 = "MSTG01";
-        private static string MSTG02 = "MSTG02";
-        private static string MSTG03 = "MSTG03";
+        //private static string MSTG01 = "MSTG01";
+        //private static string MSTG02 = "MSTG02";
+        //private static string MSTG03 = "MSTG03";
 
-        private static string MAN2001 = "2001";
-        private static string MAN2002 = "2002";
-        private static string MAN2003 = "2003";
+        //private static string MAN2001 = "2001";
+        //private static string MAN2002 = "2002";
+        //private static string MAN2003 = "2003";
         
         // 여자
         //private static string WIN01 = "WIN01";
@@ -66,7 +66,7 @@ namespace Dalgucci_ManagerPage
         {
             try
             {
-                string bindIp = "192.168.0.156";
+                string bindIp = "192.168.0.153";
                 const int bindPort = 5425;
                 IPEndPoint localAddress = new IPEndPoint(IPAddress.Parse(bindIp), bindPort);
                 server = new TcpListener(localAddress);
@@ -91,87 +91,87 @@ namespace Dalgucci_ManagerPage
                 connThread.Start();
             }
 
-            dicWorkLog.Add("FORWARD", "전진");
-            dicWorkLog.Add("STOP", "정지");
-            dicWorkLog.Add("LEFT", "왼쪽으로 이동");
-            dicWorkLog.Add("RIGHT", "오른쪽으로 이동");
-            dicWorkLog.Add("UP", "제품을 들어올림");
-            dicWorkLog.Add("Down", "제품을 내려놓음");
+            dicWorkLog.Add("FORWARD", "Move forward...");
+            dicWorkLog.Add("STOP", "stop...");
+            dicWorkLog.Add("LEFT", "Move to the left...");
+            dicWorkLog.Add("RIGHT", "Move to the right...");
+            dicWorkLog.Add("UP", "Lift the product...");
+            dicWorkLog.Add("Down", "Put down the product...");
 
-            // 남자
-            //dicManLog.Add("2001", "입고 시작 2001");
-            //dicManLog.Add("2002", "입고 시작 2002");
-            //dicManLog.Add("2003", "입고 시작 2003");
+			// 남자
+			//dicManLog.Add("2001", "입고 시작 2001");
+			//dicManLog.Add("2002", "입고 시작 2002");
+			//dicManLog.Add("2003", "입고 시작 2003");
 
-            //dicManLog.Add("OK", "명령을 전달받음");
-            //dicManLog.Add("START", "작동 시작");
-            //dicManLog.Add("Going Pick-Up", "출고 작업/이동중 ...");
-            //dicManLog.Add("Pick End", "제품 내려놓음");
-            //dicManLog.Add("Going Place", "장소로 이동중...");
-            //dicManLog.Add("Place End", "도착 및 작업수행");
+			//dicManLog.Add("OK", "명령을 전달받음");
+			//dicManLog.Add("START", "작동 시작");
+			//dicManLog.Add("Going Pick-Up", "출고 작업/이동중 ...");
+			//dicManLog.Add("Pick End", "제품 내려놓음");
+			//dicManLog.Add("Going Place", "장소로 이동중...");
+			//dicManLog.Add("Place End", "도착 및 작업수행");
 
-            //dicManLog.Add(MIN01, "남자 한복 입고 시작 위치");
-            //dicManLog.Add(MOUT01, "남자 한복 출고 위치");
-            //dicManLog.Add(MMS01, "남자 한복 1번 창고 앞");
-            //dicManLog.Add(MMS02, "남자 한복 2번 창고 앞");
-            //dicManLog.Add(MMS03, "남자 한복 3번 창고 앞");
-            //dicManLog.Add(MSTG01, "남자 한복 1번 창고");
-            //dicManLog.Add(MSTG02, "남자 한복 2번 창고");
-            //dicManLog.Add(MSTG03, "남자 한복 3번 창고");
+			//dicManLog.Add(MIN01, "남자 한복 입고 시작 위치");
+			//dicManLog.Add(MOUT01, "남자 한복 출고 위치");
+			//dicManLog.Add(MMS01, "남자 한복 1번 창고 앞");
+			//dicManLog.Add(MMS02, "남자 한복 2번 창고 앞");
+			//dicManLog.Add(MMS03, "남자 한복 3번 창고 앞");
+			//dicManLog.Add(MSTG01, "남자 한복 1번 창고");
+			//dicManLog.Add(MSTG02, "남자 한복 2번 창고");
+			//dicManLog.Add(MSTG03, "남자 한복 3번 창고");
 
 
-            //dicManPos.Add(MIN01);
-            //dicManPos.Add(MOUT01);
-            //dicManPos.Add(MMS01);
-            //dicManPos.Add(MMS02);
-            //dicManPos.Add(MMS03);
-            //dicManPos.Add(MSTG01);
-            //dicManPos.Add(MSTG02);
-            //dicManPos.Add(MSTG03);
+			//dicManPos.Add(MIN01);
+			//dicManPos.Add(MOUT01);
+			//dicManPos.Add(MMS01);
+			//dicManPos.Add(MMS02);
+			//dicManPos.Add(MMS03);
+			//dicManPos.Add(MSTG01);
+			//dicManPos.Add(MSTG02);
+			//dicManPos.Add(MSTG03);
 
-            // 여자
-            //dicWomanLog.Add("1001", "입고 시작 1001");
-            //dicWomanLog.Add("1002", "입고 시작 1002");
-            //dicWomanLog.Add("1003", "입고 시작 1003");
+			// 여자
+			//dicWomanLog.Add("1001", "입고 시작 1001");
+			//dicWomanLog.Add("1002", "입고 시작 1002");
+			//dicWomanLog.Add("1003", "입고 시작 1003");
 
-            //dicWomanLog.Add("OK", "명령을 전달받음");
-            //dicWomanLog.Add("START", "작동 시작");
-            //dicWomanLog.Add("Going Pick-Up", "출고 작업/이동중 ...");
-            //dicWomanLog.Add("Pick End", "제품 내려놓음");
-            //dicWomanLog.Add("Going Place", "장소로 이동중...");
-            //dicWomanLog.Add("Place End", "도착 및 작업수행");
+			//dicWomanLog.Add("OK", "명령을 전달받음");
+			//dicWomanLog.Add("START", "작동 시작");
+			//dicWomanLog.Add("Going Pick-Up", "출고 작업/이동중 ...");
+			//dicWomanLog.Add("Pick End", "제품 내려놓음");
+			//dicWomanLog.Add("Going Place", "장소로 이동중...");
+			//dicWomanLog.Add("Place End", "도착 및 작업수행");
 
-            //dicWomanLog.Add(WIN01, "여자 한복 입고 시작 위치");
-            //dicWomanLog.Add(WOUT01, "여자 한복 출고 위치");
-            //dicWomanLog.Add(WMS01, "여자 한복 1번 창고 앞");
-            //dicWomanLog.Add(WMS02, "여자 한복 2번 창고 앞");
-            //dicWomanLog.Add(WMS03, "여자 한복 3번 창고 앞");
-            //dicWomanLog.Add(WSTG01, "여자 한복 1번 창고");
-            //dicWomanLog.Add(WSTG02, "여자 한복 2번 창고");
-            //dicWomanLog.Add(WSTG03, "여자 한복 3번 창고");
+			//dicWomanLog.Add(WIN01, "여자 한복 입고 시작 위치");
+			//dicWomanLog.Add(WOUT01, "여자 한복 출고 위치");
+			//dicWomanLog.Add(WMS01, "여자 한복 1번 창고 앞");
+			//dicWomanLog.Add(WMS02, "여자 한복 2번 창고 앞");
+			//dicWomanLog.Add(WMS03, "여자 한복 3번 창고 앞");
+			//dicWomanLog.Add(WSTG01, "여자 한복 1번 창고");
+			//dicWomanLog.Add(WSTG02, "여자 한복 2번 창고");
+			//dicWomanLog.Add(WSTG03, "여자 한복 3번 창고");
 
-            //dicWomanPos.Add(WIN01);
-            //dicWomanPos.Add(WOUT01);
-            //dicWomanPos.Add(WMS01);
-            //dicWomanPos.Add(WMS02);
-            //dicWomanPos.Add(WMS03);
-            //dicWomanPos.Add(WSTG01);
-            //dicWomanPos.Add(WSTG02);
-            //dicWomanPos.Add(WSTG03);
-        }
+			//dicWomanPos.Add(WIN01);
+			//dicWomanPos.Add(WOUT01);
+			//dicWomanPos.Add(WMS01);
+			//dicWomanPos.Add(WMS02);
+			//dicWomanPos.Add(WMS03);
+			//dicWomanPos.Add(WSTG01);
+			//dicWomanPos.Add(WSTG02);
+			//dicWomanPos.Add(WSTG03);
+		}
 
-        //private static string sPosition = "";
-        //public static string Position_Value()
-        //{
-        //    return sPosition;
-        //}
-        //public static string Position_End()
-        //{
-        //    sPosition = "";
-        //    return sPosition;
-        //}
+		//private static string sPosition = "";
+		//public static string Position_Value()
+		//{
+		//    return sPosition;
+		//}
+		//public static string Position_End()
+		//{
+		//    sPosition = "";
+		//    return sPosition;
+		//}
 
-        private static TcpClient GetWomanClient()
+		private static TcpClient GetWomanClient()
         {
             return woman_client;
         }
@@ -239,7 +239,7 @@ namespace Dalgucci_ManagerPage
                 byte[] msg = Encoding.Default.GetBytes(sPacket);
                 stream.Write(msg, 0, msg.Length);
                 //Program.g_frmMain.AddConsoleOutput(string.Format("송신 : {0}", sPacket));
-                foreach (var k in dicWomanLog.Keys)
+                foreach (var k in dicWorkLog.Keys)
                 {
                     if (sPacket.Contains(k))
                         Program.g_frmMain.AddConsoleOutput(dicWorkLog[k]);

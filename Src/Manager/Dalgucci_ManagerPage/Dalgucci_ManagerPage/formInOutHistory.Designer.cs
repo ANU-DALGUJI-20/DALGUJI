@@ -62,7 +62,7 @@ namespace Dalgucci_ManagerPage
 			// 
 			// INOUT_Timer
 			// 
-			this.INOUT_Timer.Interval = 200;
+			this.INOUT_Timer.Interval = 2000;
 			this.INOUT_Timer.Tick += new System.EventHandler(this.INOUT_Timer_Tick);
 			// 
 			// frmInOutHistory
