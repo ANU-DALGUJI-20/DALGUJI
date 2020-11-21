@@ -101,7 +101,11 @@ namespace Dalgucci_ManagerPage
             m_Robot1_Location.Add("WSTG03", new Point(1000, 290));
             m_Robot1_Location.Add("WSTG02", new Point(912, 290));
             m_Robot1_Location.Add("WSTG01", new Point(708, 190));
-            
+
+            m_Robot2_Location.Add("2001", new Point(1408, 488));
+            m_Robot2_Location.Add("2002", new Point(648, 488));
+            m_Robot2_Location.Add("2003", new Point(1000, 344));
+
             m_Robot2_Location.Add("MIN01", new Point(1408, 488));
             m_Robot2_Location.Add("MOUT01", new Point(648, 488));
             m_Robot2_Location.Add("MMS03", new Point(1000, 344));

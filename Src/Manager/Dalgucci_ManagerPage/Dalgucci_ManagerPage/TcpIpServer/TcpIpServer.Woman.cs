@@ -32,38 +32,38 @@ namespace Dalgucci_ManagerPage
             }
         }
 
-        static void Woman_InOrder(NetworkStream stream)
-        {
-            int length = 0;
-            string data = "";
-            byte[] bytes = new byte[256];
-            //string cmd_in_order = "IN_ORDER";
-            //string productNo = "";
-            //string in_prod_pos = "";
+        //static void Woman_InOrder(NetworkStream stream)
+        //{
+        //    int length = 0;
+        //    string data = "";
+        //    byte[] bytes = new byte[256];
+        //    //string cmd_in_order = "IN_ORDER";
+        //    //string productNo = "";
+        //    //string in_prod_pos = "";
 
-            if (stream.DataAvailable != true)
-                return;
+        //    if (stream.DataAvailable != true)
+        //        return;
 
-            while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
-            {
-                data = Encoding.Default.GetString(bytes, 0, length);
-                Program.g_frmMain.AddConsoleOutput(String.Format("수신 : {0}", data));
-                //string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "NUMBER" }, StringSplitOptions.RemoveEmptyEntries);
+        //    while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+        //    {
+        //        data = Encoding.Default.GetString(bytes, 0, length);
+        //        Program.g_frmMain.AddConsoleOutput(String.Format("수신 : {0}", data));
+        //        //string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "NUMBER" }, StringSplitOptions.RemoveEmptyEntries);
 
-                //productNo = sRcvMessage[2];
+        //        //productNo = sRcvMessage[2];
 
-                //if (sRcvMessage[2] == WOMAN1001) in_prod_pos = WSTG01;
-                //else if (sRcvMessage[2] == WOMAN1002) in_prod_pos = WSTG02;
-                //else if (sRcvMessage[2] == WOMAN1003) in_prod_pos = WSTG03;
-                
-                //SendCmdToRobot(ref stream, cmd_in_order, in_prod_pos);
-                //Woman_Order_Rev(ref stream);
+        //        //if (sRcvMessage[2] == WOMAN1001) in_prod_pos = WSTG01;
+        //        //else if (sRcvMessage[2] == WOMAN1002) in_prod_pos = WSTG02;
+        //        //else if (sRcvMessage[2] == WOMAN1003) in_prod_pos = WSTG03;
 
-                //Program.data.insertValue(productNo,in_prod_pos);
-                //Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
+        //        //SendCmdToRobot(ref stream, cmd_in_order, in_prod_pos);
+        //        //Woman_Order_Rev(ref stream);
 
-            }
-		}
+        //        //Program.data.insertValue(productNo,in_prod_pos);
+        //        //Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
+
+        //    }
+        //}
 
         //public static void Woman_Order_Rev(ref NetworkStream stream, string product_code, string out_product_position)
         //{
@@ -118,7 +118,7 @@ namespace Dalgucci_ManagerPage
 
         //    }
 
-            
+
         //}
 
         private static void RobotComProc_Woman()

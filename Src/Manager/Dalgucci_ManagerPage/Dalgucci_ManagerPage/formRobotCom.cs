@@ -121,6 +121,21 @@ namespace Dalgucci_ManagerPage
             return sQRcode;
         }
 
+        public void SendCommand_Woman(string _in_out, string _prod_code)
+        {
+            if (tmr_woman_seq.Enabled == false)
+            {
+                target_woman = DicWomanTarget[_prod_code];
+                woman_product_code = _prod_code;
+
+                woman_INPUT_OUTPUT = _in_out;
+
+                woman_seq_step = 0;
+                tmr_woman_seq.Enabled = true;
+                tmr_woman_seq.Start();
+            }
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             try
@@ -133,37 +148,13 @@ namespace Dalgucci_ManagerPage
                     {
                         testTextBox.Text = result.ToString();
                         sQRcode = result.ToString();
-
                         woman_route_code = sQRcode;
-
-
-
-
-                        //TcpIpServer.SendCmdToWoman("CUR_POS", sQRcode);
-                        //timer1.Stop();
-                        //if (stream.IsRunning)
-                        //    stream.Stop();
                     }
                 }
             }
             catch( Exception ex)
             {
 
-            }
-        }
-
-        public void SendCommand_Woman( string _in_out, string _prod_code)
-        {
-            if (tmr_woman_seq.Enabled == false)
-            {
-                target_woman = DicWomanTarget[_prod_code];
-                woman_product_code = _prod_code;
-
-                woman_INPUT_OUTPUT = _in_out;
-                
-                woman_seq_step = 0;
-                tmr_woman_seq.Enabled = true;
-                tmr_woman_seq.Start();
             }
         }
 
@@ -180,7 +171,6 @@ namespace Dalgucci_ManagerPage
                     {
                         TextTest2.Text = result.ToString();
                         sQRcode = result.ToString();
-
                         SendCommand_Woman("INPUT", sQRcode);
                     }
                 }
