@@ -34,15 +34,12 @@
             this.Output = new System.Windows.Forms.Button();
             this.Data = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.CCTV = new System.Windows.Forms.Button();
             this.tmr_RobotAnimation = new System.Windows.Forms.Timer(this.components);
             this.Console_output = new System.Windows.Forms.ListBox();
             this.trmConsloeOutput = new System.Windows.Forms.Timer(this.components);
             this.Robot2 = new System.Windows.Forms.PictureBox();
             this.Robot1 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Order_View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Robot2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Robot1)).BeginInit();
@@ -66,7 +63,7 @@
             this.Input.Name = "Input";
             this.Input.Size = new System.Drawing.Size(208, 40);
             this.Input.TabIndex = 2;
-            this.Input.Text = "남자 창고 입고";
+            this.Input.Text = "달구지 1호";
             this.Input.UseVisualStyleBackColor = true;
             this.Input.Click += new System.EventHandler(this.Input_Click);
             // 
@@ -76,7 +73,7 @@
             this.Output.Name = "Output";
             this.Output.Size = new System.Drawing.Size(208, 40);
             this.Output.TabIndex = 3;
-            this.Output.Text = "여자 창고 입고";
+            this.Output.Text = "달구지 2호";
             this.Output.UseVisualStyleBackColor = true;
             this.Output.Click += new System.EventHandler(this.Output_Click);
             // 
@@ -94,16 +91,6 @@
             // 
             this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // CCTV
-            // 
-            this.CCTV.Location = new System.Drawing.Point(1280, 88);
-            this.CCTV.Name = "CCTV";
-            this.CCTV.Size = new System.Drawing.Size(131, 40);
-            this.CCTV.TabIndex = 8;
-            this.CCTV.Text = "로봇 카메라";
-            this.CCTV.UseVisualStyleBackColor = true;
-            this.CCTV.Click += new System.EventHandler(this.CCTV_Click);
             // 
             // tmr_RobotAnimation
             // 
@@ -164,35 +151,12 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(488, 72);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 40);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "stop";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(624, 72);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 40);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "left";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1579, 789);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.Console_output);
-            this.Controls.Add(this.CCTV);
             this.Controls.Add(this.Robot2);
             this.Controls.Add(this.Robot1);
             this.Controls.Add(this.pictureBox1);
@@ -222,13 +186,10 @@
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.PictureBox Robot1;
 		private System.Windows.Forms.PictureBox Robot2;
-		private System.Windows.Forms.Button CCTV;
 		private System.Windows.Forms.Timer tmr_RobotAnimation;
 		private System.Windows.Forms.ListBox Console_output;
 		private System.Windows.Forms.Timer trmConsloeOutput;
         private System.Windows.Forms.Timer QRcode_Read;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
     }
 }
 

@@ -21,13 +21,13 @@ namespace Dalgucci_ManagerPage
         private void Input_Click(object sender, EventArgs e)
         {
             //TcpIpServer.SendCmdToMan("SIMUL", "PROD_PLACEMENT");
-            TcpIpServer.SendCmdToMan("MOVE", "FORWARD");
+            Program.formRobot.Show();
         }
 
         private void Output_Click(object sender, EventArgs e)
         {
             //TcpIpServer.SendCmdToWoman("SIMUL", "PROD_PLACEMENT");
-            TcpIpServer.SendCmdToWoman("MOVE", "FORWARD");
+            Program.formRobot2.Show();
         }
 
         private void Order_View_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -143,10 +143,7 @@ namespace Dalgucci_ManagerPage
             //    Robot_View.Rows.Add(item);
             //}
         }
-        private void CCTV_Click(object sender, EventArgs e)
-        {
-            Program.formRobot.Show();
-        }
+    
 
         private void tmr_RobotAnimation_Tick(object sender, EventArgs e)
         {
@@ -320,14 +317,6 @@ namespace Dalgucci_ManagerPage
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            TcpIpServer.SendCmdToWoman("MOVE", "STOP");
-        }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            TcpIpServer.SendCmdToWoman("MOVE", "LEFT");
-        }
     }
 }

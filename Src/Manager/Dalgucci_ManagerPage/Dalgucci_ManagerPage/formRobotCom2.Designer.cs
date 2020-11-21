@@ -1,6 +1,6 @@
 ﻿namespace Dalgucci_ManagerPage
 {
-    partial class formRobotCom
+    partial class formRobotCom2
     {
         /// <summary>
         /// Required designer variable.
@@ -55,7 +55,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(683, 551);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -105,7 +105,6 @@
             this.TextTest2.Size = new System.Drawing.Size(168, 25);
             this.TextTest2.TabIndex = 2;
             this.TextTest2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TextTest2.TextChanged += new System.EventHandler(this.TextTest2_TextChanged);
             // 
             // CCTV2
             // 
@@ -115,32 +114,24 @@
             this.CCTV2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.CCTV2.TabIndex = 1;
             this.CCTV2.TabStop = false;
-            this.CCTV2.Click += new System.EventHandler(this.CCTV2_Click);
             // 
             // timer1
             // 
             this.timer1.Interval = 4000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // timer2
             // 
             this.timer2.Interval = 4000;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // tmr_woman_seq
-            // 
-            this.tmr_woman_seq.Tick += new System.EventHandler(this.tmr_woman_seq_Tick);
-            // 
-            // formRobotCom
+            // formRobotCom2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(683, 551);
             this.Controls.Add(this.tabControl1);
-            this.Name = "formRobotCom";
-            this.Text = "formRobotCom";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formRobotCom_FormClosing);
-            this.Load += new System.EventHandler(this.formRobotCom_Load);
+            this.Name = "formRobotCom2";
+            this.Text = "formRobotCom2";
+            this.Load += new System.EventHandler(this.formRobotCom2_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -156,12 +147,12 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.PictureBox CCTV;
-        private System.Windows.Forms.PictureBox CCTV2;
         private System.Windows.Forms.TextBox testTextBox;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox CCTV;
+        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TextBox TextTest2;
+        private System.Windows.Forms.PictureBox CCTV2;
+        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer tmr_woman_seq;
     }
