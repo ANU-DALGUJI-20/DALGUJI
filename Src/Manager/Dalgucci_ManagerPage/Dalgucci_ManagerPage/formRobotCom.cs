@@ -16,12 +16,43 @@ namespace Dalgucci_ManagerPage
 {
     public partial class formRobotCom : Form
     {
+        BarcodeReader barcodeReader = new BarcodeReader();
+
         MJPEGStream Robot1;
         MJPEGStream Robot2;
+
+        struct stTarget
+        {
+            public string input;
+            public string Route;
+            public string Dest;
+            public string output;
+            public stTarget(string _input, string _Route, string _Dest, string _output)
+            {
+                input = _input;
+                Route = _Route;
+                Dest = _Dest;
+                output = _output;
+            }
+        }
+
+        Dictionary<string, stTarget> DicWomanTarget = new Dictionary<string, stTarget>();
+
+        stTarget target_woman = new stTarget();
+        string woman_route_code = "";
+        int woman_seq_step = 0;
+        int woman_tickcount_ms = 0;
+        string woman_INPUT_OUTPUT = "";
+
+
         public formRobotCom()
         {
+            DicWomanTarget.Add("1001", new stTarget("WIN01","WMS01", "WSTG01","WOUT01"));
+            DicWomanTarget.Add("1002", new stTarget("WIN01","WMS02", "WSTG02","WOUT01"));
+            DicWomanTarget.Add("1003", new stTarget("WIN01","WMS03", "WSTG03","WOUT01"));
+
             InitializeComponent();
-            Robot1 = new MJPEGStream("http://192.168.0.192:8081");
+            Robot1 = new MJPEGStream("http://192.168.0.154:8081");
             Robot1.NewFrame += Robot1_NewFrame;
             //captureDevice = new VideoCaptureDevice(filterInfoCollection[comboBox1.SelectedIndex].MonikerString);
             //stream.NewFrame += stream_NewFrame;
@@ -29,7 +60,7 @@ namespace Dalgucci_ManagerPage
             timer1.Start();
 
 
-            Robot2 = new MJPEGStream("http://192.168.0.192:8083");
+            Robot2 = new MJPEGStream("http://192.168.0.154:8083");
             Robot2.NewFrame += Robot2_NewFrame;
             //captureDevice = new VideoCaptureDevice(filterInfoCollection[comboBox1.SelectedIndex].MonikerString);
             //stream.NewFrame += stream_NewFrame;
@@ -91,50 +122,230 @@ namespace Dalgucci_ManagerPage
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (CCTV.Image != null)
+            try
             {
-                BarcodeReader barcodeReader = new BarcodeReader();
-                Result result = barcodeReader.Decode((Bitmap)CCTV.Image);
-                if (result != null)
+                // 바닥
+                if (CCTV.Image != null)
                 {
-                    testTextBox.Text = result.ToString();
-                    sQRcode = result.ToString();
-                        
-                    TcpIpServer.SendCmdToWoman("CUR_POS", sQRcode);
-                    //timer1.Stop();
-                    //if (stream.IsRunning)
-                    //    stream.Stop();
+                    Result result = barcodeReader.Decode((Bitmap)CCTV.Image);
+                    if (result != null)
+                    {
+                        testTextBox.Text = result.ToString();
+                        sQRcode = result.ToString();
+
+                        woman_route_code = sQRcode;
+
+
+
+
+                        //TcpIpServer.SendCmdToWoman("CUR_POS", sQRcode);
+                        //timer1.Stop();
+                        //if (stream.IsRunning)
+                        //    stream.Stop();
+                    }
                 }
             }
+            catch( Exception ex)
+            {
 
+            }
         }
+
+        public void SendCommand_Woman( string _in_out, string _prod_code)
+        {
+            if (tmr_woman_seq.Enabled == false)
+            {
+                target_woman = DicWomanTarget[_prod_code];
+                woman_seq_step = 0;
+                woman_INPUT_OUTPUT = _in_out;
+                tmr_woman_seq.Enabled = true;
+                tmr_woman_seq.Start();
+            }
+        }
+
         private void timer2_Tick(object sender, EventArgs e)
         {
-            if (CCTV2.Image != null)
+            try
             {
-                BarcodeReader barcodeReader = new BarcodeReader();
-                Result result = barcodeReader.Decode((Bitmap)CCTV2.Image);
-                string product_code = "PROD_CODE";
-
-                if (result != null)
+                // 물품
+                if (CCTV2.Image != null)
                 {
-                    TextTest2.Text = result.ToString();
-                    sQRcode = result.ToString();
+                    Result result = barcodeReader.Decode((Bitmap)CCTV2.Image);
+                    string product_code = "PROD_CODE";
 
-					switch (sQRcode)
-					{
-                        case "1001": TcpIpServer.SendInputQRNumToWoman(product_code, sQRcode); break;
-                        case "1002": TcpIpServer.SendInputQRNumToWoman(product_code, sQRcode); break;
-                        case "1003": TcpIpServer.SendInputQRNumToWoman(product_code, sQRcode); break;
-                        case "2001": TcpIpServer.SendInputQRNumToMan(product_code, sQRcode); break;
-                        case "2002": TcpIpServer.SendInputQRNumToMan(product_code, sQRcode); break;
-                        case "2003": TcpIpServer.SendInputQRNumToMan(product_code, sQRcode); break;
+                    if (result != null)
+                    {
+                        TextTest2.Text = result.ToString();
+                        sQRcode = result.ToString();
+
+                        SendCommand_Woman("INPUT", sQRcode);
                     }
-
-                    //timer1.Stop();
-                    //if (stream.IsRunning)
-                    //    stream.Stop();
                 }
+            }
+            catch( Exception ex)
+            {
+
+            }
+        }
+
+        private void tmr_woman_seq_Tick(object sender, EventArgs e)
+        {
+            switch(woman_seq_step)
+            {
+                case 0:
+                    {
+                        if (target_woman.Route == null || target_woman.Dest == null)
+                        {
+                            tmr_woman_seq.Enabled = false;
+                            tmr_woman_seq.Stop();
+                        }
+
+                        if (target_woman.Route == "" || target_woman.Dest == "")
+                        {
+                            tmr_woman_seq.Enabled = false;
+                            tmr_woman_seq.Stop();
+                        }
+
+                        woman_seq_step = 5;
+                    }
+                    break;
+                case 5:
+                    {
+                        if(woman_INPUT_OUTPUT == "INPUT")
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "UP");
+                        }
+                        else if (woman_INPUT_OUTPUT == "OUTPUT")
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "DOWN");
+                        }
+                        
+                        woman_tickcount_ms = Environment.TickCount;
+                        woman_seq_step = 6;
+                    }
+                    break;
+                case 6:
+                    {
+                        int now_tickcount = Environment.TickCount;
+                        if (now_tickcount > woman_tickcount_ms + 3000)
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "FORWARD");
+                            woman_seq_step = 20;
+                        }
+                    }
+                    break;
+                case 20:
+                    {
+                        if(woman_route_code == target_woman.Route)
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "STOP");
+                            woman_seq_step = 30;
+                        }
+                    }
+                    break;
+                case 30:
+                    {
+                        TcpIpServer.SendCmdToWoman("MOVE", "RIGHT");
+                        woman_seq_step = 40;
+                    }
+                    break;
+                case 40:
+                    {
+                        if (woman_route_code == target_woman.Dest)
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "STOP");
+                            woman_seq_step = 50;
+                        }
+                    }
+                    break;
+                case 50:
+                    {
+                        if (woman_INPUT_OUTPUT == "INPUT")
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "DOWN");
+                        }
+                        else if (woman_INPUT_OUTPUT == "OUTPUT")
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "UP");
+                        }
+                        
+                        woman_tickcount_ms = Environment.TickCount;
+                        woman_seq_step = 60;
+                    }
+                    break;
+                case 60:
+                    {
+                        int now_tickcount = Environment.TickCount;
+                        if (now_tickcount > woman_tickcount_ms + 3000)
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "LEFT");
+                            woman_seq_step = 70;
+                        }
+                    }break;
+                case 70:
+                    {
+                        if (woman_route_code == target_woman.Route)
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "STOP");
+                            woman_seq_step = 80;
+                        }
+                    }
+                    break;
+                case 80:
+                    {
+                        TcpIpServer.SendCmdToWoman("MOVE", "FORWARD");
+                        woman_seq_step = 90;
+                    }
+                    break;
+                case 90:
+                    {
+                        if (woman_INPUT_OUTPUT == "INPUT")
+                        {
+                            if (woman_route_code == target_woman.input)
+                            {
+                                TcpIpServer.SendCmdToWoman("MOVE", "STOP");
+                                tmr_woman_seq.Enabled = false;
+                                tmr_woman_seq.Stop();
+                            }
+                        }
+                        else if (woman_INPUT_OUTPUT == "OUTPUT")
+                        {
+                            if (woman_route_code == target_woman.output)
+                            {
+                                TcpIpServer.SendCmdToWoman("MOVE", "STOP");
+                                woman_seq_step = 100;
+                            }
+                        }
+                    }
+                    break;
+                case 100:
+                    {
+                        TcpIpServer.SendCmdToWoman("MOVE", "DOWN");
+
+                        woman_tickcount_ms = Environment.TickCount;
+                        woman_seq_step = 110;
+                    }
+                    break;
+                case 110:
+                    {
+                        int now_tickcount = Environment.TickCount;
+                        if (now_tickcount > woman_tickcount_ms + 3000)
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "FORWARD");
+                            woman_seq_step = 120;
+                        }
+                    }
+                    break;
+                case 120:
+                    {
+                        if (woman_route_code == target_woman.input)
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "STOP");
+                            tmr_woman_seq.Enabled = false;
+                            tmr_woman_seq.Stop();
+                        }
+                    }
+                    break;
             }
         }
     }

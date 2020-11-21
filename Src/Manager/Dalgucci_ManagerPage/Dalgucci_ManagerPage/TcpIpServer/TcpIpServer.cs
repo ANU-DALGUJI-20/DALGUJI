@@ -65,7 +65,7 @@ namespace Dalgucci_ManagerPage
         {
             try
             {
-                string bindIp = "192.168.0.49";
+                string bindIp = "192.168.0.156";
                 const int bindPort = 5425;
                 IPEndPoint localAddress = new IPEndPoint(IPAddress.Parse(bindIp), bindPort);
                 server = new TcpListener(localAddress);
@@ -219,18 +219,25 @@ namespace Dalgucci_ManagerPage
         //static int nMsgId = 1;
         private static int SendCmdToRobot(ref NetworkStream stream, string sCMD, string sPosition)
         {
-            string Token_Start = "{{$";
-            string Token_End = "$}}";
-            string my_splitor = "[!]";
+            try
+            {
+                string Token_Start = "{{$";
+                string Token_End = "$}}";
+                string my_splitor = "[!]";
 
-            int nMsgId = 1;
-            string sMsgId = nMsgId.ToString().PadLeft(4, '0');
+                int nMsgId = 1;
+                string sMsgId = nMsgId.ToString().PadLeft(4, '0');
 
-            string sPacket = String.Format($"{Token_Start}MSGID={sMsgId}{my_splitor}CMD={sCMD}{my_splitor}POS={sPosition}{Token_End}");
-            byte[] msg = Encoding.Default.GetBytes(sPacket);
-            stream.Write(msg, 0, msg.Length);
-            Program.g_frmMain.AddConsoleOutput(String.Format("송신: {0}", sPacket));
+                string sPacket = String.Format($"{Token_Start}MSGID={sMsgId}{my_splitor}CMD={sCMD}{my_splitor}POS={sPosition}{Token_End}");
+                byte[] msg = Encoding.Default.GetBytes(sPacket);
+                stream.Write(msg, 0, msg.Length);
+                Program.g_frmMain.AddConsoleOutput(String.Format("송신: {0}", sPacket));
+            }
+            catch( Exception ex )
+            {
 
+            }
+            
             //return nMsgId++;
             return 0;
         }

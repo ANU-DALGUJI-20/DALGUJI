@@ -21,11 +21,13 @@ namespace Dalgucci_ManagerPage
         private void Input_Click(object sender, EventArgs e)
         {
             //TcpIpServer.SendCmdToMan("SIMUL", "PROD_PLACEMENT");
+            TcpIpServer.SendCmdToMan("MOVE", "FORWARD");
         }
 
         private void Output_Click(object sender, EventArgs e)
         {
             //TcpIpServer.SendCmdToWoman("SIMUL", "PROD_PLACEMENT");
+            TcpIpServer.SendCmdToWoman("MOVE", "FORWARD");
         }
 
         private void Order_View_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -139,8 +141,7 @@ namespace Dalgucci_ManagerPage
         }
         private void CCTV_Click(object sender, EventArgs e)
         {
-            formRobotCom Form = new formRobotCom();
-            Form.Show();
+            Program.formRobot.Show();
         }
 
         private void tmr_RobotAnimation_Tick(object sender, EventArgs e)
@@ -229,15 +230,23 @@ namespace Dalgucci_ManagerPage
 
         private void Robot_move_1(string position)
         {
-            if (position == "" || position == null)
-                return;
+            try
+            {
+                if (position == "" || position == null)
+                    return;
 
-            string Robot1_location = position;
-            Robot1_Current_Location = Robot1.Location;
-            Robot1_Target_Location = m_Robot1_Location[Robot1_location];
+                string Robot1_location = position;
+                Robot1_Current_Location = Robot1.Location;
+                Robot1_Target_Location = m_Robot1_Location[Robot1_location];
 
-            formRobotCom.QRcode_End();
-            //TcpIpServer.Position_End();
+                formRobotCom.QRcode_End();
+                //TcpIpServer.Position_End();
+            }
+            catch ( Exception ex )
+            {
+
+            }
+            
         }
         
         private void Robot_move_2(string position)
@@ -305,6 +314,16 @@ namespace Dalgucci_ManagerPage
         private void Robot1_read_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TcpIpServer.SendCmdToWoman("MOVE", "STOP");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TcpIpServer.SendCmdToWoman("MOVE", "LEFT");
         }
     }
 }
