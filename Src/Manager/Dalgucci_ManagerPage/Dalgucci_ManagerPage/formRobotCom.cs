@@ -43,6 +43,7 @@ namespace Dalgucci_ManagerPage
         int woman_seq_step = 0;
         int woman_tickcount_ms = 0;
         string woman_INPUT_OUTPUT = "";
+        string woman_product_code = "";
 
 
         public formRobotCom()
@@ -156,8 +157,11 @@ namespace Dalgucci_ManagerPage
             if (tmr_woman_seq.Enabled == false)
             {
                 target_woman = DicWomanTarget[_prod_code];
-                woman_seq_step = 0;
+                woman_product_code = _prod_code;
+
                 woman_INPUT_OUTPUT = _in_out;
+                
+                woman_seq_step = 0;
                 tmr_woman_seq.Enabled = true;
                 tmr_woman_seq.Start();
             }
@@ -171,7 +175,6 @@ namespace Dalgucci_ManagerPage
                 if (CCTV2.Image != null)
                 {
                     Result result = barcodeReader.Decode((Bitmap)CCTV2.Image);
-                    string product_code = "PROD_CODE";
 
                     if (result != null)
                     {
@@ -306,6 +309,10 @@ namespace Dalgucci_ManagerPage
                                 TcpIpServer.SendCmdToWoman("MOVE", "STOP");
                                 tmr_woman_seq.Enabled = false;
                                 tmr_woman_seq.Stop();
+                                Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
+
+                                Program.data.insertValue(woman_product_code, target_woman.Dest);
+                                Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
                             }
                         }
                         else if (woman_INPUT_OUTPUT == "OUTPUT")
@@ -343,6 +350,13 @@ namespace Dalgucci_ManagerPage
                             TcpIpServer.SendCmdToWoman("MOVE", "STOP");
                             tmr_woman_seq.Enabled = false;
                             tmr_woman_seq.Stop();
+                            Program.g_frmMain.AddConsoleOutput("작업 완료/출고 완료");
+
+                            Program.data.RowDelete();
+                            Program.g_frmMain.AddConsoleOutput("주문 테이블 삭제");
+
+                            Program.data.insertValue(woman_product_code, target_woman.Dest);
+                            Program.g_frmMain.AddConsoleOutput("출고기록 삽입");
                         }
                     }
                     break;

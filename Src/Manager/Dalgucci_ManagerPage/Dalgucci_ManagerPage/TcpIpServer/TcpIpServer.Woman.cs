@@ -14,22 +14,20 @@ namespace Dalgucci_ManagerPage
 	{
         static void Woman_OutOrder(NetworkStream stream)
         {
-            string cmd_out_order = "OUT_ORDER";
+            //string cmd_out_order = "OUT_ORDER";
             int nOrderCnt = Program.data.OrdersCountResult();
             if (nOrderCnt > 0)
             {
-                string out_prod_pos = "";
+                //string out_prod_pos = "";
                 string strProductCode = Program.data.OrderSelectResult();
 
-                if (strProductCode == WOMAN1001) out_prod_pos = WSTG01;
-                else if (strProductCode == WOMAN1002) out_prod_pos = WSTG02;
-                else if (strProductCode == WOMAN1003) out_prod_pos = WSTG03;
+                //if (strProductCode == WOMAN1001) out_prod_pos = WSTG01;
+                //else if (strProductCode == WOMAN1002) out_prod_pos = WSTG02;
+                //else if (strProductCode == WOMAN1003) out_prod_pos = WSTG03;
 
                 Program.formRobot.SendCommand_Woman("OUTPUT", strProductCode);
                 //SendCmdToRobot(ref stream, cmd_out_order, out_prod_pos);
-                Woman_Order_Rev(ref stream);
-
-                
+                //Woman_Order_Rev(ref stream, strProductCode, out_prod_pos);
 
             }
         }
@@ -64,72 +62,64 @@ namespace Dalgucci_ManagerPage
                 //Program.data.insertValue(productNo,in_prod_pos);
                 //Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
 
-                if(data.Contains("COMPLETE_INPUT"))
-				{
-					Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
-
-                    // 수정 필요, QR코드에 따라 그에 맞는 값 삽입
-					Program.data.insertValue(WOMAN1001, WSTG01);
-					Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
-				}
             }
 		}
 
-        public static void Woman_Order_Rev(ref NetworkStream stream)
-        {
-            int length = 0;
-            string data = "";
-            byte[] bytes = new byte[256];
+        //public static void Woman_Order_Rev(ref NetworkStream stream, string product_code, string out_product_position)
+        //{
+        //    int length = 0;
+        //    string data = "";
+        //    byte[] bytes = new byte[256];
 
-            try
-            {
-                while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
-                {
-                    data = Encoding.Default.GetString(bytes, 0, length);
-                    // string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "POS", "STATE"}, StringSplitOptions.RemoveEmptyEntries);
+        //    try
+        //    {
+        //        while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+        //        {
+        //            data = Encoding.Default.GetString(bytes, 0, length);
+        //            // string[] sRcvMessage = data.Split(new string[] { "{{$", "=", "[!]", "$}}", "MSGID", "CMD", "POS", "STATE"}, StringSplitOptions.RemoveEmptyEntries);
 
-                    if (data.Contains("COMPLETE_OUTPUT"))
-                    {
-                        Program.g_frmMain.AddConsoleOutput("작업 완료/출고 완료");
-                        Program.data.RowDelete();
-                        Program.g_frmMain.AddConsoleOutput("주문 테이블 삭제");
+        //            if (data.Contains("COMPLETE_OUTPUT"))
+        //            {
+        //                Program.g_frmMain.AddConsoleOutput("작업 완료/출고 완료");
+        //                Program.data.RowDelete();
+        //                Program.g_frmMain.AddConsoleOutput("주문 테이블 삭제");
 
-                        //Program.data.insertValue(strProductCode, out_prod_pos);
-                        Program.g_frmMain.AddConsoleOutput("출고기록 삽입");
+        //                Program.data.insertValue(product_code, out_product_position);
+        //                Program.g_frmMain.AddConsoleOutput("출고기록 삽입");
 
-                        break;
-                    }
-                    //if (data.Contains("COMPLETE_INPUT"))
-                    //{
-                    //    Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
-                    //    break;
-                    //}
+        //                break;
+        //            }
+        //            //if (data.Contains("COMPLETE_INPUT"))
+        //            //{
+        //            //    Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
+        //            //    break;
+        //            //}
 
-                    //foreach (var k in dicWomanLog.Keys)
-                    //{
-                    //    if (data.Contains(k))
-                    //    {
-                    //        Program.g_frmMain.AddConsoleOutput(dicWomanLog[k]);
-                    //    }
-                    //}
+        //            //foreach (var k in dicWomanLog.Keys)
+        //            //{
+        //            //    if (data.Contains(k))
+        //            //    {
+        //            //        Program.g_frmMain.AddConsoleOutput(dicWomanLog[k]);
+        //            //    }
+        //            //}
 
-                    //foreach (var p in dicWomanPos)
-                    //{
-                    //	if (data.Contains(p))
-                    //	{
-                    //		sPosition = p;
-                    //	}
-                    //}
+        //            //foreach (var p in dicWomanPos)
+        //            //{
+        //            //	if (data.Contains(p))
+        //            //	{
+        //            //		sPosition = p;
+        //            //	}
+        //            //}
 
-                }
-            }
-            catch( Exception ex )
-            {
+        //        }
+        //    }
+        //    catch( Exception ex )
+        //    {
 
-            }
+        //    }
 
             
-        }
+        //}
 
         private static void RobotComProc_Woman()
         {
@@ -143,7 +133,7 @@ namespace Dalgucci_ManagerPage
 
                 Woman_OutOrder(stream);
 
-                Woman_InOrder(stream);
+                //Woman_InOrder(stream);
             }
             //stream.Close();
             //client.Close();

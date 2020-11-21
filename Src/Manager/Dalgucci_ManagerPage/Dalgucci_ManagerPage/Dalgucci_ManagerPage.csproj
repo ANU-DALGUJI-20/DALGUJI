@@ -172,5 +172,8 @@
   <ItemGroup>
     <None Include="Resources\Robot.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\창고 구성도%28찐찐막%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
