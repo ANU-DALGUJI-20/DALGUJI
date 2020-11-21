@@ -23,6 +23,13 @@ namespace Dalgucci_ManagerPage
 
         public static ManualResetEvent tcpClientConnected = new ManualResetEvent(false);
 
+        private static Dictionary<string, string> dicWorkLog = new Dictionary<string, string>();
+
+        private static Dictionary<string, string> dicManLog = new Dictionary<string, string>();
+        private static Dictionary<string, string> dicWomanLog = new Dictionary<string, string>();
+        //private static List<string> dicManPos = new List<string>();
+        //private static List<string> dicWomanPos = new List<string>();
+
         // 남자
         private static string MIN01 = "MIN01";
         private static string MOUT01 = "MOUT01";
@@ -55,13 +62,6 @@ namespace Dalgucci_ManagerPage
         //private static string WOMAN1002 = "1002";
         //private static string WOMAN1003 = "1003";
 
-        private static Dictionary<string, string> dicManLog = new Dictionary<string, string>();
-        private static Dictionary<string, string> dicWomanLog = new Dictionary<string, string>();
-
-        private static Dictionary<string, string> dicWorkLog = new Dictionary<string, string>();
-        //private static List<string> dicManPos = new List<string>();
-        //private static List<string> dicWomanPos = new List<string>();
-
         private static bool ServStart()
         {
             try
@@ -90,6 +90,13 @@ namespace Dalgucci_ManagerPage
                 // 서버 시작
                 connThread.Start();
             }
+
+            dicWorkLog.Add("FORWARD", "전진");
+            dicWorkLog.Add("STOP", "정지");
+            dicWorkLog.Add("LEFT", "왼쪽으로 이동");
+            dicWorkLog.Add("RIGHT", "오른쪽으로 이동");
+            dicWorkLog.Add("UP", "제품을 들어올림");
+            dicWorkLog.Add("Down", "제품을 내려놓음");
 
             // 남자
             //dicManLog.Add("2001", "입고 시작 2001");
@@ -151,13 +158,6 @@ namespace Dalgucci_ManagerPage
             //dicWomanPos.Add(WSTG01);
             //dicWomanPos.Add(WSTG02);
             //dicWomanPos.Add(WSTG03);
-
-            dicWorkLog.Add("FORWARD","전진");
-            dicWorkLog.Add("STOP", "정지");
-            dicWorkLog.Add("LEFT","왼쪽으로 이동");
-            dicWorkLog.Add("RIGHT", "오른쪽으로 이동");
-            dicWorkLog.Add("UP", "제품을 들어올림");
-            dicWorkLog.Add("Down", "제품을 내려놓음");
         }
 
         //private static string sPosition = "";
@@ -238,7 +238,7 @@ namespace Dalgucci_ManagerPage
                 string sPacket = String.Format($"{Token_Start}MSGID={sMsgId}{my_splitor}CMD={sCMD}{my_splitor}WORK={sPosition}{Token_End}");
                 byte[] msg = Encoding.Default.GetBytes(sPacket);
                 stream.Write(msg, 0, msg.Length);
-                // Program.g_frmMain.AddConsoleOutput(string.Format("송신 : {0}", sPacket));
+                //Program.g_frmMain.AddConsoleOutput(string.Format("송신 : {0}", sPacket));
                 foreach (var k in dicWomanLog.Keys)
                 {
                     if (sPacket.Contains(k))
