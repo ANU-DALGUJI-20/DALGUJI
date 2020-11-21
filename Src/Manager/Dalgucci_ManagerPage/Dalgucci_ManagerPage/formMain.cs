@@ -21,7 +21,7 @@ namespace Dalgucci_ManagerPage
         private void Man_Input_Click(object sender, EventArgs e)
         {
             //TcpIpServer.SendCmdToMan("MOVE", "FORWARD");
-            Robot_move_2("2001");
+            Robot_move_2("MMS03");
         }
 
         private void Output_Click(object sender, EventArgs e)
@@ -114,18 +114,18 @@ namespace Dalgucci_ManagerPage
             m_Robot1_Location.Add("RET01", new Point(518, 105));
             m_Robot1_Location.Add("RET02", new Point(1216, 105));
             /* ----------------------------------------------------------------------- */
-            m_Robot2_Location.Add("2001", new Point(1282, 495));
-            m_Robot2_Location.Add("2002", new Point(1282, 495));
-            m_Robot2_Location.Add("2003", new Point(1282, 495));
+            m_Robot2_Location.Add("2001", new Point(1281, 499));
+            m_Robot2_Location.Add("2002", new Point(1281, 499));
+            m_Robot2_Location.Add("2003", new Point(1281, 499));
 
-            m_Robot2_Location.Add("MIN01", new Point(1408, 488));
-            m_Robot2_Location.Add("MOUT01", new Point(648, 488));
-            m_Robot2_Location.Add("MMS03", new Point(1000, 344));
-            m_Robot2_Location.Add("MMS02", new Point(912, 344));
-            m_Robot2_Location.Add("MMS01", new Point(816, 344));
-            m_Robot2_Location.Add("MSTG03", new Point(1000, 290));
-            m_Robot2_Location.Add("MSTG02", new Point(912, 290));
-            m_Robot2_Location.Add("MSTG01", new Point(816, 290));
+            m_Robot2_Location.Add("MIN01", new Point(1216, 380));
+            m_Robot2_Location.Add("MOUT01", new Point(518, 380));
+            m_Robot2_Location.Add("MMS03", new Point(1028, 380));
+            m_Robot2_Location.Add("MMS02", new Point(868, 380));
+            m_Robot2_Location.Add("MMS01", new Point(708, 380));
+            m_Robot2_Location.Add("MSTG03", new Point(1028, 474));
+            m_Robot2_Location.Add("MSTG02", new Point(868, 474));
+            m_Robot2_Location.Add("MSTG01", new Point(708, 474));
 
         }
 
