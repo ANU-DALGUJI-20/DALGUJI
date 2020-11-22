@@ -34,7 +34,7 @@
 			this.Output = new System.Windows.Forms.Button();
 			this.Data = new System.Windows.Forms.Button();
 			this.Table_timer = new System.Windows.Forms.Timer(this.components);
-			this.CCTV = new System.Windows.Forms.Button();
+			this.D1_Cam = new System.Windows.Forms.Button();
 			this.tmr_RobotAnimation = new System.Windows.Forms.Timer(this.components);
 			this.Console_output = new System.Windows.Forms.ListBox();
 			this.trmConsloeOutput = new System.Windows.Forms.Timer(this.components);
@@ -43,6 +43,7 @@
 			this.Robot2 = new System.Windows.Forms.PictureBox();
 			this.Robot1 = new System.Windows.Forms.PictureBox();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.D2_CAM = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.Order_View)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.Robot2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.Robot1)).BeginInit();
@@ -52,17 +53,17 @@
 			// Order_View
 			// 
 			this.Order_View.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.Order_View.Location = new System.Drawing.Point(16, 440);
+			this.Order_View.Location = new System.Drawing.Point(16, 528);
 			this.Order_View.Name = "Order_View";
 			this.Order_View.RowHeadersWidth = 51;
 			this.Order_View.RowTemplate.Height = 27;
-			this.Order_View.Size = new System.Drawing.Size(432, 320);
+			this.Order_View.Size = new System.Drawing.Size(432, 232);
 			this.Order_View.TabIndex = 0;
 			this.Order_View.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Order_View_CellContentClick);
 			// 
 			// Man_Input
 			// 
-			this.Man_Input.Location = new System.Drawing.Point(480, 88);
+			this.Man_Input.Location = new System.Drawing.Point(488, 144);
 			this.Man_Input.Name = "Man_Input";
 			this.Man_Input.Size = new System.Drawing.Size(208, 40);
 			this.Man_Input.TabIndex = 2;
@@ -72,7 +73,7 @@
 			// 
 			// Output
 			// 
-			this.Output.Location = new System.Drawing.Point(696, 88);
+			this.Output.Location = new System.Drawing.Point(704, 144);
 			this.Output.Name = "Output";
 			this.Output.Size = new System.Drawing.Size(208, 40);
 			this.Output.TabIndex = 3;
@@ -82,9 +83,9 @@
 			// 
 			// Data
 			// 
-			this.Data.Location = new System.Drawing.Point(232, 88);
+			this.Data.Location = new System.Drawing.Point(16, 184);
 			this.Data.Name = "Data";
-			this.Data.Size = new System.Drawing.Size(208, 40);
+			this.Data.Size = new System.Drawing.Size(432, 40);
 			this.Data.TabIndex = 4;
 			this.Data.Text = "입출고 로그";
 			this.Data.UseVisualStyleBackColor = true;
@@ -95,15 +96,15 @@
 			this.Table_timer.Interval = 2000;
 			this.Table_timer.Tick += new System.EventHandler(this.Table_timer_Tick);
 			// 
-			// CCTV
+			// D1_Cam
 			// 
-			this.CCTV.Location = new System.Drawing.Point(16, 88);
-			this.CCTV.Name = "CCTV";
-			this.CCTV.Size = new System.Drawing.Size(208, 40);
-			this.CCTV.TabIndex = 8;
-			this.CCTV.Text = "로봇 카메라";
-			this.CCTV.UseVisualStyleBackColor = true;
-			this.CCTV.Click += new System.EventHandler(this.CCTV_Click);
+			this.D1_Cam.Location = new System.Drawing.Point(16, 88);
+			this.D1_Cam.Name = "D1_Cam";
+			this.D1_Cam.Size = new System.Drawing.Size(208, 88);
+			this.D1_Cam.TabIndex = 8;
+			this.D1_Cam.Text = "달구지 1호 Cam";
+			this.D1_Cam.UseVisualStyleBackColor = true;
+			this.D1_Cam.Click += new System.EventHandler(this.D1_Cam_Click);
 			// 
 			// tmr_RobotAnimation
 			// 
@@ -118,7 +119,7 @@
 			this.Console_output.ForeColor = System.Drawing.Color.Lime;
 			this.Console_output.FormattingEnabled = true;
 			this.Console_output.ItemHeight = 15;
-			this.Console_output.Location = new System.Drawing.Point(16, 136);
+			this.Console_output.Location = new System.Drawing.Point(16, 232);
 			this.Console_output.Name = "Console_output";
 			this.Console_output.Size = new System.Drawing.Size(432, 289);
 			this.Console_output.TabIndex = 10;
@@ -131,7 +132,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(912, 88);
+			this.button1.Location = new System.Drawing.Point(920, 144);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(208, 40);
 			this.button1.TabIndex = 11;
@@ -141,7 +142,7 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(1128, 88);
+			this.button2.Location = new System.Drawing.Point(1136, 144);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(208, 40);
 			this.button2.TabIndex = 12;
@@ -184,21 +185,32 @@
 			this.pictureBox1.TabStop = false;
 			this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
 			// 
+			// D2_CAM
+			// 
+			this.D2_CAM.Location = new System.Drawing.Point(240, 88);
+			this.D2_CAM.Name = "D2_CAM";
+			this.D2_CAM.Size = new System.Drawing.Size(208, 88);
+			this.D2_CAM.TabIndex = 13;
+			this.D2_CAM.Text = "달구지 2호 Cam";
+			this.D2_CAM.UseVisualStyleBackColor = true;
+			this.D2_CAM.Click += new System.EventHandler(this.D2_CAM_Click);
+			// 
 			// frmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1579, 789);
+			this.Controls.Add(this.D2_CAM);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
+			this.Controls.Add(this.Output);
+			this.Controls.Add(this.Man_Input);
 			this.Controls.Add(this.Console_output);
-			this.Controls.Add(this.CCTV);
+			this.Controls.Add(this.D1_Cam);
 			this.Controls.Add(this.Robot2);
 			this.Controls.Add(this.Robot1);
 			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.Data);
-			this.Controls.Add(this.Output);
-			this.Controls.Add(this.Man_Input);
 			this.Controls.Add(this.Order_View);
 			this.Name = "frmMain";
 			this.Text = "관리자 메인페이지";
@@ -222,13 +234,14 @@
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.PictureBox Robot1;
 		private System.Windows.Forms.PictureBox Robot2;
-		private System.Windows.Forms.Button CCTV;
+		private System.Windows.Forms.Button D1_Cam;
 		private System.Windows.Forms.Timer tmr_RobotAnimation;
 		private System.Windows.Forms.ListBox Console_output;
 		private System.Windows.Forms.Timer trmConsloeOutput;
         private System.Windows.Forms.Timer QRcode_Read;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-    }
+		private System.Windows.Forms.Button D2_CAM;
+	}
 }
 

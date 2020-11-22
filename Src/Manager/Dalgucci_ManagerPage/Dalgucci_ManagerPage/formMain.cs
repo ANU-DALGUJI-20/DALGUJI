@@ -147,9 +147,27 @@ namespace Dalgucci_ManagerPage
         {
             Order_View.DataSource = Program.data.Orders();
         }
-        private void CCTV_Click(object sender, EventArgs e)
+        private void D1_Cam_Click(object sender, EventArgs e)
         {
-            Program.formRobot.Show();
+			try
+			{
+                Program.formRobot_1.Show();
+            }
+			catch (Exception ex)
+			{
+
+			}
+        }
+        private void D2_CAM_Click(object sender, EventArgs e)
+        {
+			try
+			{
+                Program.formRobot_2.Show();
+            }
+			catch (Exception ex)
+			{
+
+            }
         }
 
         private void tmr_RobotAnimation_Tick(object sender, EventArgs e)
@@ -224,11 +242,11 @@ namespace Dalgucci_ManagerPage
 			//Robot_move_2(strMan);
 
 			// 여자 한복
-			string strWoman = formRobotCom.QRcode_Value();
+			string strWoman = formRobotCom_1.QRcode_Value();
             Robot_move_1(strWoman);
 
             // 남자 한복
-            string strMan = formRobotCom.QRcode_Value();
+            string strMan = formRobotCom_1.QRcode_Value();
 			Robot_move_2(strMan);
 
 			Robot1.Location = new Point(x1, y1);
@@ -247,7 +265,7 @@ namespace Dalgucci_ManagerPage
                 Robot1_Current_Location = Robot1.Location;
                 Robot1_Target_Location = m_Robot1_Location[Robot1_location];
 
-                formRobotCom.QRcode_End();
+                formRobotCom_1.QRcode_End();
                 //TcpIpServer.Position_End();
             }
             catch ( Exception ex )
@@ -266,7 +284,7 @@ namespace Dalgucci_ManagerPage
             Robot2_Current_Location = Robot2.Location;
             Robot2_Target_Location = m_Robot2_Location[Robot2_location];
 
-            formRobotCom.QRcode_End();
+            formRobotCom_1.QRcode_End();
             //TcpIpServer.Position_End();
         }
 
@@ -323,5 +341,7 @@ namespace Dalgucci_ManagerPage
         {
             TcpIpServer.SendCmdToWoman("MOVE", "LEFT");
         }
-    }
+
+		
+	}
 }

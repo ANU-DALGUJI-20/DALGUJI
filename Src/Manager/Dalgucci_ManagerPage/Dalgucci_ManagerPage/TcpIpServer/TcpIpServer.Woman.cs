@@ -25,7 +25,7 @@ namespace Dalgucci_ManagerPage
                 //else if (strProductCode == WOMAN1002) out_prod_pos = WSTG02;
                 //else if (strProductCode == WOMAN1003) out_prod_pos = WSTG03;
 
-                Program.formRobot.SendCommand_Woman("OUTPUT", strProductCode);
+                Program.formRobot_1.SendCommand_Woman("OUTPUT", strProductCode);
 				//SendCmdToRobot(ref stream, cmd_out_order, out_prod_pos);
 				//Woman_Order_Rev(ref stream, strProductCode, out_prod_pos);
 
