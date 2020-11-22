@@ -14,7 +14,7 @@ namespace Dalgucci_ManagerPage
     {
         static void Man_OutOrder(NetworkStream stream)
         {
-            string cmd_out_order = "OUT_ORDER";
+            //string cmd_out_order = "OUT_ORDER";
             int nOrderCnt = Program.data.OrdersCountResult();
             if (nOrderCnt > 0)
             {
