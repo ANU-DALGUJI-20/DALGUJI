@@ -16,5 +16,10 @@ namespace Dalgucci_ManagerPage
 		{
 			InitializeComponent();
 		}
+
+		private void formRobotCom_2_Load(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

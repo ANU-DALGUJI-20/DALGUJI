@@ -37,7 +37,6 @@
 			this.TextTest2 = new System.Windows.Forms.TextBox();
 			this.CCTV2 = new System.Windows.Forms.PictureBox();
 			this.Robot1_floor_timer = new System.Windows.Forms.Timer(this.components);
-			this.timer2 = new System.Windows.Forms.Timer(this.components);
 			this.tmr_woman_seq = new System.Windows.Forms.Timer(this.components);
 			this.Robot1_prod_timer = new System.Windows.Forms.Timer(this.components);
 			this.tabControl1.SuspendLayout();
@@ -120,13 +119,7 @@
 			// 
 			// Robot1_floor_timer
 			// 
-			this.Robot1_floor_timer.Interval = 4000;
 			this.Robot1_floor_timer.Tick += new System.EventHandler(this.Robot1_floor_timer_Tick);
-			// 
-			// timer2
-			// 
-			this.timer2.Interval = 4000;
-			this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
 			// 
 			// tmr_woman_seq
 			// 
@@ -144,8 +137,8 @@
 			this.Controls.Add(this.tabControl1);
 			this.Name = "formRobotCom_1";
 			this.Text = "달구지 1호 Cam";
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formRobotCom_FormClosing);
-			this.Load += new System.EventHandler(this.formRobotCom_Load);
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formRobotCom_1_FormClosing);
+			this.Load += new System.EventHandler(this.formRobotCom_1_Load);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
@@ -167,7 +160,6 @@
         private System.Windows.Forms.TextBox testTextBox;
         private System.Windows.Forms.Timer Robot1_floor_timer;
         private System.Windows.Forms.TextBox TextTest2;
-        private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer tmr_woman_seq;
 		private System.Windows.Forms.Timer Robot1_prod_timer;
 	}

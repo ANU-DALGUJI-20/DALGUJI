@@ -31,7 +31,8 @@ namespace Dalgucci_ManagerPage
             formRobot_2 = new formRobotCom_2();
 
             Application.Run(g_frmMain);
-            //Application.Run(formRobot);
+            //Application.Run(formRobot_1);
+            //Application.Run(formRobot_2);
         }
     }
 }

@@ -149,25 +149,13 @@ namespace Dalgucci_ManagerPage
         }
         private void D1_Cam_Click(object sender, EventArgs e)
         {
-			try
-			{
-                Program.formRobot_1.Show();
-            }
-			catch (Exception ex)
-			{
-
-			}
+            formRobotCom_1 formRobot_1 = new formRobotCom_1();
+            formRobot_1.Show();
         }
         private void D2_CAM_Click(object sender, EventArgs e)
         {
-			try
-			{
-                Program.formRobot_2.Show();
-            }
-			catch (Exception ex)
-			{
-
-            }
+            formRobotCom_2 formRobot_2 = new formRobotCom_2();
+            formRobot_2.Show();
         }
 
         private void tmr_RobotAnimation_Tick(object sender, EventArgs e)
@@ -341,7 +329,5 @@ namespace Dalgucci_ManagerPage
         {
             TcpIpServer.SendCmdToWoman("MOVE", "LEFT");
         }
-
-		
 	}
 }

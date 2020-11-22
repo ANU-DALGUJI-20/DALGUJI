@@ -119,6 +119,7 @@
 			this.Controls.Add(this.tabControl1);
 			this.Name = "formRobotCom_2";
 			this.Text = "달구지 2호 Cam";
+			this.Load += new System.EventHandler(this.formRobotCom_2_Load);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();

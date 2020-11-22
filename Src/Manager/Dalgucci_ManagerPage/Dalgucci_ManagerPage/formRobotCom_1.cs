@@ -78,12 +78,12 @@ namespace Dalgucci_ManagerPage
             CCTV2.Image = (Bitmap)eventArgs.Frame.Clone();
         }
 
-        private void formRobotCom_Load(object sender, EventArgs e)
+        private void formRobotCom_1_Load(object sender, EventArgs e)
         {
             filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
         }
 
-        private void formRobotCom_FormClosing(object sender, FormClosingEventArgs e)
+        private void formRobotCom_1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (Robot1.IsRunning)
                 Robot1.Stop();
@@ -98,11 +98,6 @@ namespace Dalgucci_ManagerPage
         }
 
         private void TextTest2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void timer2_Tick(object sender, EventArgs e)
         {
 
         }
