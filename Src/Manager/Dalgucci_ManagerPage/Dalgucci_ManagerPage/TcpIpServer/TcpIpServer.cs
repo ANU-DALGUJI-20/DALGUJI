@@ -66,7 +66,7 @@ namespace Dalgucci_ManagerPage
         {
             try
             {
-                string bindIp = "192.168.0.153";
+                string bindIp = "127.0.0.1";
                 const int bindPort = 5425;
                 IPEndPoint localAddress = new IPEndPoint(IPAddress.Parse(bindIp), bindPort);
                 server = new TcpListener(localAddress);
@@ -264,6 +264,31 @@ namespace Dalgucci_ManagerPage
 		{
 			NetworkStream s = GetWomanClient().GetStream();
 			SendCmdToRobot(ref s, sCMD, sPosition);
+            return 0;
+		}
+        
+        public static int SendCmdToRobotOutput(string sCMD, string sPosition)
+		{
+			NetworkStream s = GetWomanClient().GetStream();
+            try
+            {
+                string Token_Start = "{{$";
+                string Token_End = "$}}";
+                string my_splitor = "[!]";
+
+                int nMsgId = 1;
+                string sMsgId = nMsgId.ToString().PadLeft(4, '0');
+
+                string sPacket = String.Format($"{Token_Start}MSGID={sMsgId}{my_splitor}CMD={sCMD}{my_splitor}NUMBER={sPosition}{Token_End}");
+                byte[] msg = Encoding.Default.GetBytes(sPacket);
+                s.Write(msg, 0, msg.Length);
+                Program.g_frmMain.AddConsoleOutput(string.Format("송신 : {0}", sPacket));
+
+            }
+            catch (Exception ex)
+            {
+
+            }
             return 0;
 		}
 	}

@@ -53,16 +53,17 @@ namespace Dalgucci_ManagerPage
             DicWomanTarget.Add("1003", new stTarget("WIN01","WMS03", "WSTG03","WOUT01"));
 
             InitializeComponent();
-            Robot1 = new MJPEGStream("http://192.168.0.154:8081");
+            Robot1 = new MJPEGStream("http://192.168.0.4:8081");
             Robot1.NewFrame += Robot1_NewFrame;
             Robot1.Start();
             Robot1_floor_timer.Start();
 
 
-            Robot2 = new MJPEGStream("http://192.168.0.154:8083");
+            Robot2 = new MJPEGStream("http://192.168.0.4:8083");
             Robot2.NewFrame += Robot2_NewFrame;
             Robot2.Start();
             Robot1_prod_timer.Start();
+
         }
 
         FilterInfoCollection filterInfoCollection;
@@ -115,11 +116,12 @@ namespace Dalgucci_ManagerPage
 
         public void SendCommand_Woman(string _in_out, string _prod_code)
         {
+            
             if (tmr_woman_seq.Enabled == false)
             {
                 target_woman = DicWomanTarget[_prod_code];
-                woman_product_code = _prod_code;
 
+                woman_product_code = _prod_code;
                 woman_INPUT_OUTPUT = _in_out;
 
                 woman_seq_step = 0;
@@ -175,7 +177,8 @@ namespace Dalgucci_ManagerPage
 
         private void tmr_woman_seq_Tick(object sender, EventArgs e)
         {
-            switch(woman_seq_step)
+            //Console.WriteLine("test");
+            switch (woman_seq_step)
             {
                 case 0:
                     {

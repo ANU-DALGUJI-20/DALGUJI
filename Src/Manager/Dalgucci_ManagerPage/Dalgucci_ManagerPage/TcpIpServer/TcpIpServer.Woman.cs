@@ -24,7 +24,6 @@ namespace Dalgucci_ManagerPage
                 //if (strProductCode == WOMAN1001) out_prod_pos = WSTG01;
                 //else if (strProductCode == WOMAN1002) out_prod_pos = WSTG02;
                 //else if (strProductCode == WOMAN1003) out_prod_pos = WSTG03;
-
                 Program.formRobot_1.SendCommand_Woman("OUTPUT", strProductCode);
 				//SendCmdToRobot(ref stream, cmd_out_order, out_prod_pos);
 				//Woman_Order_Rev(ref stream, strProductCode, out_prod_pos);
@@ -124,6 +123,7 @@ namespace Dalgucci_ManagerPage
             TcpClient client = TcpIpServer.GetWomanClient();
             Program.g_frmMain.AddConsoleOutput(string.Format("Woman 로봇 :{0}", ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString()));
             NetworkStream stream = client.GetStream();
+            
 
             while (true)
             {

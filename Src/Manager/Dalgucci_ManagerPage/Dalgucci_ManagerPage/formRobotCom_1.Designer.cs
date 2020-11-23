@@ -76,6 +76,7 @@
 			this.testTextBox.Name = "testTextBox";
 			this.testTextBox.Size = new System.Drawing.Size(168, 25);
 			this.testTextBox.TabIndex = 1;
+			this.testTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// CCTV
 			// 

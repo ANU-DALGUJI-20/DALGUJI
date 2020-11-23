@@ -21,7 +21,7 @@ namespace Dalgucci_ManagerPage
         private void Man_Input_Click(object sender, EventArgs e)
         {
             //TcpIpServer.SendCmdToMan("MOVE", "FORWARD");
-            Robot_move_2("MMS03");
+            Program.formRobot_1.SendCommand_Woman("INPUT", "1001");
         }
 
         private void Output_Click(object sender, EventArgs e)
