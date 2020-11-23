@@ -39,6 +39,7 @@
 			this.Robot1_floor_timer = new System.Windows.Forms.Timer(this.components);
 			this.tmr_woman_seq = new System.Windows.Forms.Timer(this.components);
 			this.Robot1_prod_timer = new System.Windows.Forms.Timer(this.components);
+			this.tmr_woman = new System.Windows.Forms.Timer(this.components);
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.CCTV)).BeginInit();
@@ -130,6 +131,11 @@
 			// 
 			this.Robot1_prod_timer.Tick += new System.EventHandler(this.Robot1_prod_timer_Tick);
 			// 
+			// tmr_woman
+			// 
+			this.tmr_woman.Enabled = true;
+			this.tmr_woman.Tick += new System.EventHandler(this.tmr_woman_Tick);
+			// 
 			// formRobotCom_1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -163,5 +169,6 @@
         private System.Windows.Forms.TextBox TextTest2;
         private System.Windows.Forms.Timer tmr_woman_seq;
 		private System.Windows.Forms.Timer Robot1_prod_timer;
+		public System.Windows.Forms.Timer tmr_woman;
 	}
 }

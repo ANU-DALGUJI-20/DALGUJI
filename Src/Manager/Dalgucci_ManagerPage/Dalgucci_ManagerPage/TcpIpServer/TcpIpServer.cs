@@ -66,7 +66,7 @@ namespace Dalgucci_ManagerPage
         {
             try
             {
-                string bindIp = "127.0.0.1";
+                string bindIp = "192.168.0.49";
                 const int bindPort = 5425;
                 IPEndPoint localAddress = new IPEndPoint(IPAddress.Parse(bindIp), bindPort);
                 server = new TcpListener(localAddress);
@@ -96,7 +96,7 @@ namespace Dalgucci_ManagerPage
             dicWorkLog.Add("LEFT", "Move to the left...");
             dicWorkLog.Add("RIGHT", "Move to the right...");
             dicWorkLog.Add("UP", "Lift the product...");
-            dicWorkLog.Add("Down", "Put down the product...");
+            dicWorkLog.Add("DOWN", "Put down the product...");
 
 			// 남자
 			//dicManLog.Add("2001", "입고 시작 2001");

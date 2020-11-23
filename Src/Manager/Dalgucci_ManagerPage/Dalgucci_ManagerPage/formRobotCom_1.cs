@@ -42,9 +42,13 @@ namespace Dalgucci_ManagerPage
         string woman_route_code = "";
         int woman_seq_step = 0;
         int woman_tickcount_ms = 0;
-        string woman_INPUT_OUTPUT = "";
-        string woman_product_code = "";
 
+        public bool woman_tick_start = false;
+        public string woman_INPUT_OUTPUT = "";
+        public string woman_product_code = "";
+
+        public delegate void Del_SendCommand_Woman(string _in_out, string _prod_code);
+        public Del_SendCommand_Woman fnSendCommand_WomanCallback;
 
         public formRobotCom_1()
         {
@@ -53,17 +57,19 @@ namespace Dalgucci_ManagerPage
             DicWomanTarget.Add("1003", new stTarget("WIN01","WMS03", "WSTG03","WOUT01"));
 
             InitializeComponent();
-            Robot1 = new MJPEGStream("http://192.168.0.4:8081");
+            Robot1 = new MJPEGStream("http://192.168.0.176:8081");
             Robot1.NewFrame += Robot1_NewFrame;
             Robot1.Start();
             Robot1_floor_timer.Start();
 
 
-            Robot2 = new MJPEGStream("http://192.168.0.4:8083");
+            Robot2 = new MJPEGStream("http://192.168.0.176:8083");
             Robot2.NewFrame += Robot2_NewFrame;
             Robot2.Start();
             Robot1_prod_timer.Start();
 
+
+            fnSendCommand_WomanCallback += SendCommand_Woman;
         }
 
         FilterInfoCollection filterInfoCollection;
@@ -114,11 +120,15 @@ namespace Dalgucci_ManagerPage
             return sQRcode;
         }
 
+
+
         public void SendCommand_Woman(string _in_out, string _prod_code)
         {
-            
             if (tmr_woman_seq.Enabled == false)
             {
+                tmr_woman_seq.Stop();
+                tmr_woman_seq.Enabled = false;
+
                 target_woman = DicWomanTarget[_prod_code];
 
                 woman_product_code = _prod_code;
@@ -126,6 +136,9 @@ namespace Dalgucci_ManagerPage
 
                 woman_seq_step = 0;
                 tmr_woman_seq.Enabled = true;
+
+                tmr_woman_seq.Interval = 100;
+
                 tmr_woman_seq.Start();
             }
         }
@@ -347,5 +360,14 @@ namespace Dalgucci_ManagerPage
                     break;
             }
         }
+
+		private void tmr_woman_Tick(object sender, EventArgs e)
+		{
+            if( woman_tick_start == true && tmr_woman_seq.Enabled == false )
+			{
+                woman_tick_start = false;
+                SendCommand_Woman(woman_INPUT_OUTPUT, woman_product_code);
+			}
+		}
 	}
 }
