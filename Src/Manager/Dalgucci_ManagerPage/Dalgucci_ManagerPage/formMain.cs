@@ -330,5 +330,10 @@ namespace Dalgucci_ManagerPage
         {
             TcpIpServer.SendCmdToWoman("MOVE", "LEFT");
         }
+
+		private void Console_output_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
