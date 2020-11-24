@@ -57,13 +57,13 @@ namespace Dalgucci_ManagerPage
             DicWomanTarget.Add("1003", new stTarget("WIN01","WMS03", "WSTG03","WOUT01"));
 
             InitializeComponent();
-            Robot1 = new MJPEGStream("http://192.168.0.176:8081");
+            Robot1 = new MJPEGStream("http://192.168.0.4:8081");
             Robot1.NewFrame += Robot1_NewFrame;
             Robot1.Start();
             Robot1_floor_timer.Start();
 
 
-            Robot2 = new MJPEGStream("http://192.168.0.176:8083");
+            Robot2 = new MJPEGStream("http://192.168.0.4:8083");
             Robot2.NewFrame += Robot2_NewFrame;
             Robot2.Start();
             Robot1_prod_timer.Start();
