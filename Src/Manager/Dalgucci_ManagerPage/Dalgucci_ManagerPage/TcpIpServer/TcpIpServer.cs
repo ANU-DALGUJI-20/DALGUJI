@@ -66,7 +66,7 @@ namespace Dalgucci_ManagerPage
         {
             try
             {
-                string bindIp = "192.168.0.49";
+                string bindIp = "127.0.0.1";
                 const int bindPort = 5425;
                 IPEndPoint localAddress = new IPEndPoint(IPAddress.Parse(bindIp), bindPort);
                 server = new TcpListener(localAddress);

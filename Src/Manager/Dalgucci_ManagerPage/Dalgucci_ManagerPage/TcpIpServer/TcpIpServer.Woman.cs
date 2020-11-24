@@ -20,17 +20,15 @@ namespace Dalgucci_ManagerPage
             {
                 //string out_prod_pos = "";
                 string strProductCode = Program.data.OrderSelectResult();
+
                 Program.formRobot_1.woman_INPUT_OUTPUT = "OUTPUT";
                 Program.formRobot_1.woman_product_code = strProductCode;
                 Program.formRobot_1.woman_tick_start = true;
                
-
-                //Program.formRobot_1.SendCommand_Woman("OUTPUT", strProductCode);
-
                 //if (strProductCode == WOMAN1001) out_prod_pos = WSTG01;
                 //else if (strProductCode == WOMAN1002) out_prod_pos = WSTG02;
                 //else if (strProductCode == WOMAN1003) out_prod_pos = WSTG03;
-                //Program.formRobot_1.SendCommand_Woman("OUTPUT", strProductCode);
+
                 //SendCmdToRobot(ref stream, cmd_out_order, out_prod_pos);
                 //Woman_Order_Rev(ref stream, strProductCode, out_prod_pos);
 
