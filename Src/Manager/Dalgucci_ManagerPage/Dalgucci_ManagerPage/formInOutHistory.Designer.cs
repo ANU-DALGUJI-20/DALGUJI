@@ -73,7 +73,7 @@ namespace Dalgucci_ManagerPage
 			this.Controls.Add(this.Out_Log);
 			this.Controls.Add(this.In_Log);
 			this.Name = "frmInOutHistory";
-			this.Text = "formInOutHistory";
+			this.Text = "입/출고 로그";
 			this.Load += new System.EventHandler(this.formInOutHistory_Load);
 			((System.ComponentModel.ISupportInitialize)(this.In_Log)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.Out_Log)).EndInit();

@@ -99,34 +99,34 @@ namespace Dalgucci_ManagerPage
             InitializeComponent();
 
             // 그림 바뀌면 좌표 수정!!!!!!!!!!!!!!!!!!
-            m_Robot1_Location.Add("1001", new Point(1278, 174));
-            m_Robot1_Location.Add("1002", new Point(1278, 174));
-            m_Robot1_Location.Add("1003", new Point(1278, 174));
+            m_Robot1_Location.Add("1001", new Point(588, 141));
+            m_Robot1_Location.Add("1002", new Point(588, 141));
+            m_Robot1_Location.Add("1003", new Point(588, 141));
 
-            m_Robot1_Location.Add("WIN01", new Point(1216, 246));
-            m_Robot1_Location.Add("WOUT01", new Point(518, 246));
-            m_Robot1_Location.Add("WMS03", new Point(1028, 246));
-            m_Robot1_Location.Add("WMS02", new Point(868, 246));
-            m_Robot1_Location.Add("WMS01", new Point(708, 246));
-            m_Robot1_Location.Add("WSTG03", new Point(1028, 200));
-            m_Robot1_Location.Add("WSTG02", new Point(868, 200));
-            m_Robot1_Location.Add("WSTG01", new Point(708, 200));
+            m_Robot1_Location.Add("WIN01", new Point(588, 141));
+            m_Robot1_Location.Add("WOUT01", new Point(84, 141));
+            m_Robot1_Location.Add("WMS03", new Point(453, 141));
+            m_Robot1_Location.Add("WMS02", new Point(337, 141));
+            m_Robot1_Location.Add("WMS01", new Point(221, 141));
+            m_Robot1_Location.Add("WSTG03", new Point(453, 95));
+            m_Robot1_Location.Add("WSTG02", new Point(337, 95));
+            m_Robot1_Location.Add("WSTG01", new Point(221, 95));
 
-            m_Robot1_Location.Add("RET01", new Point(518, 105));
-            m_Robot1_Location.Add("RET02", new Point(1216, 105));
+            m_Robot1_Location.Add("RET01", new Point(588, 19));
+            m_Robot1_Location.Add("RET02", new Point(84, 19));
             /* ----------------------------------------------------------------------- */
-            m_Robot2_Location.Add("2001", new Point(1281, 499));
-            m_Robot2_Location.Add("2002", new Point(1281, 499));
-            m_Robot2_Location.Add("2003", new Point(1281, 499));
+            m_Robot2_Location.Add("2001", new Point(588, 256));
+            m_Robot2_Location.Add("2002", new Point(588, 256));
+            m_Robot2_Location.Add("2003", new Point(588, 256));
 
-            m_Robot2_Location.Add("MIN01", new Point(1216, 380));
-            m_Robot2_Location.Add("MOUT01", new Point(518, 380));
-            m_Robot2_Location.Add("MMS03", new Point(1028, 380));
-            m_Robot2_Location.Add("MMS02", new Point(868, 380));
-            m_Robot2_Location.Add("MMS01", new Point(708, 380));
-            m_Robot2_Location.Add("MSTG03", new Point(1028, 474));
-            m_Robot2_Location.Add("MSTG02", new Point(868, 474));
-            m_Robot2_Location.Add("MSTG01", new Point(708, 474));
+            m_Robot2_Location.Add("MIN01", new Point(588, 256));
+            m_Robot2_Location.Add("MOUT01", new Point(84, 256));
+            m_Robot2_Location.Add("MMS03", new Point(453, 256));
+            m_Robot2_Location.Add("MMS02", new Point(337, 256));
+            m_Robot2_Location.Add("MMS01", new Point(221, 256));
+            m_Robot2_Location.Add("MSTG03", new Point(453, 330));
+            m_Robot2_Location.Add("MSTG02", new Point(337, 330));
+            m_Robot2_Location.Add("MSTG01", new Point(221, 330));
 
         }
 
@@ -238,7 +238,7 @@ namespace Dalgucci_ManagerPage
             string strMan = formRobotCom_1.QRcode_Value();
 			Robot_move_2(strMan);
 
-			Robot1.Location = new Point(x1, y1);
+            Robot1.Location = new Point(x1, y1);
             Robot2.Location = new Point(x2, y2);
             Update();
         }
@@ -335,5 +335,6 @@ namespace Dalgucci_ManagerPage
 		{
 
 		}
+
 	}
 }
