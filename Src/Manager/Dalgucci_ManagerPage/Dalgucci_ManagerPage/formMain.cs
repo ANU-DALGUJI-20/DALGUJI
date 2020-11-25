@@ -112,8 +112,8 @@ namespace Dalgucci_ManagerPage
             m_Robot1_Location.Add("WSTG02", new Point(337, 95));
             m_Robot1_Location.Add("WSTG01", new Point(221, 95));
 
-            m_Robot1_Location.Add("RET01", new Point(588, 19));
-            m_Robot1_Location.Add("RET02", new Point(84, 19));
+            m_Robot1_Location.Add("WRET01", new Point(588, 19));
+            m_Robot1_Location.Add("WRET02", new Point(84, 19));
             /* ----------------------------------------------------------------------- */
             m_Robot2_Location.Add("2001", new Point(588, 256));
             m_Robot2_Location.Add("2002", new Point(588, 256));
@@ -127,6 +127,9 @@ namespace Dalgucci_ManagerPage
             m_Robot2_Location.Add("MSTG03", new Point(453, 330));
             m_Robot2_Location.Add("MSTG02", new Point(337, 330));
             m_Robot2_Location.Add("MSTG01", new Point(221, 330));
+
+            m_Robot2_Location.Add("MRET01", new Point(588, 368));
+            m_Robot2_Location.Add("MRET02", new Point(84, 368));
 
         }
 
@@ -335,6 +338,5 @@ namespace Dalgucci_ManagerPage
 		{
 
 		}
-
 	}
 }
