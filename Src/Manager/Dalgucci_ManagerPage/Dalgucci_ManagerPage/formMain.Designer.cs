@@ -125,7 +125,7 @@
 			// 
 			this.Robot2.BackColor = System.Drawing.Color.White;
 			this.Robot2.Image = global::Dalgucci_ManagerPage.Properties.Resources.Robot_찐막_;
-			this.Robot2.Location = new System.Drawing.Point(672, 296);
+			this.Robot2.Location = new System.Drawing.Point(672, 320);
 			this.Robot2.Name = "Robot2";
 			this.Robot2.Size = new System.Drawing.Size(38, 45);
 			this.Robot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -137,7 +137,7 @@
 			// 
 			this.Robot1.BackColor = System.Drawing.Color.White;
 			this.Robot1.Image = global::Dalgucci_ManagerPage.Properties.Resources.Robot_찐막_;
-			this.Robot1.Location = new System.Drawing.Point(672, 152);
+			this.Robot1.Location = new System.Drawing.Point(672, 176);
 			this.Robot1.Name = "Robot1";
 			this.Robot1.Size = new System.Drawing.Size(38, 45);
 			this.Robot1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
