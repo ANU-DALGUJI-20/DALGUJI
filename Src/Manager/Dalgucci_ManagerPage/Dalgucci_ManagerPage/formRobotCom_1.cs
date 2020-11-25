@@ -57,13 +57,13 @@ namespace Dalgucci_ManagerPage
             DicWomanTarget.Add("1003", new stTarget("WIN01","WMS03", "WSTG03","WOUT01"));
 
             InitializeComponent();
-            Robot1 = new MJPEGStream("http://192.168.0.4:8081");
+            Robot1 = new MJPEGStream("http://192.168.0.9:8081");
             Robot1.NewFrame += Robot1_NewFrame;
             Robot1.Start();
             Robot1_floor_timer.Start();
 
 
-            Robot2 = new MJPEGStream("http://192.168.0.4:8083");
+            Robot2 = new MJPEGStream("http://192.168.0.9:8083");
             Robot2.NewFrame += Robot2_NewFrame;
             Robot2.Start();
             Robot1_prod_timer.Start();
@@ -246,10 +246,12 @@ namespace Dalgucci_ManagerPage
                     break;
                 case 30:
                     {
-                        TcpIpServer.SendCmdToWoman("MOVE", "RIGHT");
-                        woman_seq_step = 40;
+                        TcpIpServer.SendCmdToWoman("MOVE", "RIGHT_TURN");
+                        woman_seq_step = 45;
                     }
                     break;
+
+                
                 case 40:
                     {
                         if (woman_route_code == target_woman.Dest)
@@ -279,7 +281,7 @@ namespace Dalgucci_ManagerPage
                         int now_tickcount = Environment.TickCount;
                         if (now_tickcount > woman_tickcount_ms + 3000)
                         {
-                            TcpIpServer.SendCmdToWoman("MOVE", "LEFT");
+                            TcpIpServer.SendCmdToWoman("MOVE", "LEFT_TURN");
                             woman_seq_step = 70;
                         }
                     }break;

@@ -56,13 +56,13 @@ namespace Dalgucci_ManagerPage
             DicmanTarget.Add("2003", new stTarget("MIN01", "MMS03", "MSTG03", "MOUT01"));
 
             InitializeComponent();
-            Robot1 = new MJPEGStream("http://192.168.0.4:8081");
+            Robot1 = new MJPEGStream("http://192.168.0.9:8081");
             Robot1.NewFrame += Robot1_NewFrame;
             Robot1.Start();
             Robot2_floor_timer.Start();
 
 
-            Robot2 = new MJPEGStream("http://192.168.0.4:8083");
+            Robot2 = new MJPEGStream("http://192.168.0.9:8083");
             Robot2.NewFrame += Robot2_NewFrame;
             Robot2.Start();
             Robot2_prod_timer.Start();
