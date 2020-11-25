@@ -246,7 +246,7 @@ namespace Dalgucci_ManagerPage
                     break;
                 case 30:
                     {
-                        TcpIpServer.SendCmdToWoman("MOVE", "RIGHT_TURN");
+                        TcpIpServer.SendCmdToWoman("MOVE", "RIGHT_TURN_90");
                         woman_seq_step = 45;
                     }
                     break;
@@ -281,7 +281,7 @@ namespace Dalgucci_ManagerPage
                         int now_tickcount = Environment.TickCount;
                         if (now_tickcount > woman_tickcount_ms + 3000)
                         {
-                            TcpIpServer.SendCmdToWoman("MOVE", "LEFT_TURN");
+                            TcpIpServer.SendCmdToWoman("MOVE", "LEFT_TURN_180");
                             woman_seq_step = 70;
                         }
                     }break;
@@ -290,8 +290,21 @@ namespace Dalgucci_ManagerPage
                         if (woman_route_code == target_woman.Route)
                         {
                             TcpIpServer.SendCmdToWoman("MOVE", "STOP");
-                            woman_seq_step = 80;
+                            woman_seq_step = 75;
                         }
+                    }
+                    break;
+                case 75:
+                    {
+                        if (woman_INPUT_OUTPUT == "INPUT")
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "LEFT_TURN_90");
+                        }
+                        else if (woman_INPUT_OUTPUT == "OUTPUT")
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "RIGHT_TURN_90");
+                        }
+                        woman_seq_step = 80;
                     }
                     break;
                 case 80:
@@ -330,6 +343,12 @@ namespace Dalgucci_ManagerPage
                         TcpIpServer.SendCmdToWoman("MOVE", "DOWN");
 
                         woman_tickcount_ms = Environment.TickCount;
+                        woman_seq_step = 105;
+                    }
+                    break;
+                case 105:
+                    {
+                        TcpIpServer.SendCmdToWoman("MOVE", "RIGHT_TURN");
                         woman_seq_step = 110;
                     }
                     break;
