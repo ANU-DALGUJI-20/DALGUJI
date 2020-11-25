@@ -21,13 +21,13 @@ namespace Dalgucci_ManagerPage
         MJPEGStream Robot1;
         MJPEGStream Robot2;
 
-        struct stTarget
+        struct stTarget_01
         {
             public string input;
             public string Route;
             public string Dest;
             public string output;
-            public stTarget(string _input, string _Route, string _Dest, string _output)
+            public stTarget_01(string _input, string _Route, string _Dest, string _output)
             {
                 input = _input;
                 Route = _Route;
@@ -36,9 +36,9 @@ namespace Dalgucci_ManagerPage
             }
         }
 
-        Dictionary<string, stTarget> DicWomanTarget = new Dictionary<string, stTarget>();
+        Dictionary<string, stTarget_01> DicWomanTarget = new Dictionary<string, stTarget_01>();
 
-        stTarget target_woman = new stTarget();
+        stTarget_01 target_woman = new stTarget_01();
         string woman_route_code = "";
         int woman_seq_step = 0;
         int woman_tickcount_ms = 0;
@@ -52,9 +52,9 @@ namespace Dalgucci_ManagerPage
 
         public formRobotCom_1()
         {
-            DicWomanTarget.Add("1001", new stTarget("WIN01","WMS01", "WSTG01","WOUT01"));
-            DicWomanTarget.Add("1002", new stTarget("WIN01","WMS02", "WSTG02","WOUT01"));
-            DicWomanTarget.Add("1003", new stTarget("WIN01","WMS03", "WSTG03","WOUT01"));
+            DicWomanTarget.Add("1001", new stTarget_01("WIN01","WMS01", "WSTG01","WOUT01"));
+            DicWomanTarget.Add("1002", new stTarget_01("WIN01","WMS02", "WSTG02","WOUT01"));
+            DicWomanTarget.Add("1003", new stTarget_01("WIN01","WMS03", "WSTG03","WOUT01"));
 
             InitializeComponent();
             Robot1 = new MJPEGStream("http://192.168.0.9:8081");
@@ -190,7 +190,6 @@ namespace Dalgucci_ManagerPage
 
         private void tmr_woman_seq_Tick(object sender, EventArgs e)
         {
-            //Console.WriteLine("test");
             switch (woman_seq_step)
             {
                 case 0:

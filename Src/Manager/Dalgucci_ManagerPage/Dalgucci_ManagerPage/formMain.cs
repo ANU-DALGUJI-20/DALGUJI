@@ -238,7 +238,7 @@ namespace Dalgucci_ManagerPage
             Robot_move_1(strWoman);
 
             // 남자 한복
-            string strMan = formRobotCom_1.QRcode_Value();
+            string strMan = formRobotCom_2.QRcode_Value();
 			Robot_move_2(strMan);
 
             Robot1.Location = new Point(x1, y1);
@@ -276,7 +276,7 @@ namespace Dalgucci_ManagerPage
             Robot2_Current_Location = Robot2.Location;
             Robot2_Target_Location = m_Robot2_Location[Robot2_location];
 
-            formRobotCom_1.QRcode_End();
+            formRobotCom_2.QRcode_End();
             //TcpIpServer.Position_End();
         }
 
