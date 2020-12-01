@@ -112,7 +112,7 @@ namespace Dalgucci
             }
         }
 
-        public void insertValue(string product_code, string product_place)
+        public void insertValue(string table,string product_code, string product_place)
 		{
             try
             {
@@ -123,7 +123,7 @@ namespace Dalgucci
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
 
-                cmd.CommandText = $"insert into Output_Log values ((select ISNULL(max(Output_No) + 1,1) from Output_Log),'{product_code}','{product_place}',GETDATE());";
+                cmd.CommandText = $"insert into {table} values ((select ISNULL(max(Output_No) + 1,1) from Output_Log),'{product_code}','{product_place}',GETDATE());";
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)

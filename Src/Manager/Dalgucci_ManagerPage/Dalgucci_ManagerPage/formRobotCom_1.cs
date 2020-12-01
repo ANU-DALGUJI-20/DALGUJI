@@ -21,13 +21,13 @@ namespace Dalgucci_ManagerPage
         MJPEGStream Robot1;
         MJPEGStream Robot2;
 
-        struct stTarget_01
+        struct stTarget
         {
             public string input;
             public string Route;
             public string Dest;
             public string output;
-            public stTarget_01(string _input, string _Route, string _Dest, string _output)
+            public stTarget(string _input, string _Route, string _Dest, string _output)
             {
                 input = _input;
                 Route = _Route;
@@ -36,9 +36,9 @@ namespace Dalgucci_ManagerPage
             }
         }
 
-        Dictionary<string, stTarget_01> DicWomanTarget = new Dictionary<string, stTarget_01>();
+        Dictionary<string, stTarget> DicWomanTarget = new Dictionary<string, stTarget>();
 
-        stTarget_01 target_woman = new stTarget_01();
+        stTarget target_woman = new stTarget();
         string woman_route_code = "";
         int woman_seq_step = 0;
         int woman_tickcount_ms = 0;
@@ -46,24 +46,26 @@ namespace Dalgucci_ManagerPage
         public bool woman_tick_start = false;
         public string woman_INPUT_OUTPUT = "";
         public string woman_product_code = "";
+        public string Input_Log = "Input_Log";
+        public string Output_Log = "Output_Log";
 
         public delegate void Del_SendCommand_Woman(string _in_out, string _prod_code);
         public Del_SendCommand_Woman fnSendCommand_WomanCallback;
 
         public formRobotCom_1()
         {
-            DicWomanTarget.Add("1001", new stTarget_01("WIN01","WMS01", "WSTG01","WOUT01"));
-            DicWomanTarget.Add("1002", new stTarget_01("WIN01","WMS02", "WSTG02","WOUT01"));
-            DicWomanTarget.Add("1003", new stTarget_01("WIN01","WMS03", "WSTG03","WOUT01"));
+            DicWomanTarget.Add("1001", new stTarget("WIN01", "WMS01", "WSTG01", "WOUT01"));
+            DicWomanTarget.Add("1002", new stTarget("WIN01", "WMS02", "WSTG02", "WOUT01"));
+            DicWomanTarget.Add("1003", new stTarget("WIN01", "WMS03", "WSTG03", "WOUT01"));
 
             InitializeComponent();
-            Robot1 = new MJPEGStream("http://192.168.0.9:8081");
+            Robot1 = new MJPEGStream("http://192.168.0.8:8083");
             Robot1.NewFrame += Robot1_NewFrame;
             Robot1.Start();
             Robot1_floor_timer.Start();
 
 
-            Robot2 = new MJPEGStream("http://192.168.0.9:8083");
+            Robot2 = new MJPEGStream("http://192.168.0.8:8081");
             Robot2.NewFrame += Robot2_NewFrame;
             Robot2.Start();
             Robot1_prod_timer.Start();
@@ -132,7 +134,21 @@ namespace Dalgucci_ManagerPage
                 target_woman = DicWomanTarget[_prod_code];
 
                 woman_product_code = _prod_code;
+
+                /*try
+                {
+                    if (woman_product_code == null)
+                    {
+                        woman_product_code = Program.data.OrderSelectResult();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    
+                }*/
+
                 woman_INPUT_OUTPUT = _in_out;
+
 
                 woman_seq_step = 0;
                 tmr_woman_seq.Enabled = true;
@@ -159,7 +175,7 @@ namespace Dalgucci_ManagerPage
                     }
                 }
             }
-            catch( Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -211,7 +227,7 @@ namespace Dalgucci_ManagerPage
                     break;
                 case 5:
                     {
-                        if(woman_INPUT_OUTPUT == "INPUT")
+                        if (woman_INPUT_OUTPUT == "INPUT")
                         {
                             TcpIpServer.SendCmdToWoman("MOVE", "UP");
                         }
@@ -219,7 +235,7 @@ namespace Dalgucci_ManagerPage
                         {
                             TcpIpServer.SendCmdToWoman("MOVE", "DOWN");
                         }
-                        
+
                         woman_tickcount_ms = Environment.TickCount;
                         woman_seq_step = 6;
                     }
@@ -236,7 +252,7 @@ namespace Dalgucci_ManagerPage
                     break;
                 case 20:
                     {
-                        if(woman_route_code == target_woman.Route)
+                        if (woman_route_code == target_woman.Route)
                         {
                             TcpIpServer.SendCmdToWoman("MOVE", "STOP");
                             woman_seq_step = 30;
@@ -246,11 +262,16 @@ namespace Dalgucci_ManagerPage
                 case 30:
                     {
                         TcpIpServer.SendCmdToWoman("MOVE", "RIGHT_TURN_90");
-                        woman_seq_step = 45;
+                        woman_seq_step = 35;
                     }
                     break;
 
-                
+                case 35:
+                    {
+                        TcpIpServer.SendCmdToWoman("MOVE", "FORWARD");
+                        woman_seq_step = 40;
+                    }
+                    break;
                 case 40:
                     {
                         if (woman_route_code == target_woman.Dest)
@@ -270,7 +291,7 @@ namespace Dalgucci_ManagerPage
                         {
                             TcpIpServer.SendCmdToWoman("MOVE", "UP");
                         }
-                        
+
                         woman_tickcount_ms = Environment.TickCount;
                         woman_seq_step = 60;
                     }
@@ -281,9 +302,18 @@ namespace Dalgucci_ManagerPage
                         if (now_tickcount > woman_tickcount_ms + 3000)
                         {
                             TcpIpServer.SendCmdToWoman("MOVE", "LEFT_TURN_180");
-                            woman_seq_step = 70;
+                            woman_seq_step = 65;
                         }
-                    }break;
+                    }
+                    break;
+
+                case 65:
+                    {
+                        TcpIpServer.SendCmdToWoman("MOVE", "FORWARD");
+                        woman_seq_step = 70;
+                    }
+                    break;
+
                 case 70:
                     {
                         if (woman_route_code == target_woman.Route)
@@ -295,14 +325,7 @@ namespace Dalgucci_ManagerPage
                     break;
                 case 75:
                     {
-                        if (woman_INPUT_OUTPUT == "INPUT")
-                        {
-                            TcpIpServer.SendCmdToWoman("MOVE", "LEFT_TURN_90");
-                        }
-                        else if (woman_INPUT_OUTPUT == "OUTPUT")
-                        {
-                            TcpIpServer.SendCmdToWoman("MOVE", "RIGHT_TURN_90");
-                        }
+                        TcpIpServer.SendCmdToWoman("MOVE", "RIGHT_TURN_90");
                         woman_seq_step = 80;
                     }
                     break;
@@ -314,20 +337,15 @@ namespace Dalgucci_ManagerPage
                     break;
                 case 90:
                     {
-                        if (woman_INPUT_OUTPUT == "INPUT")
+                        if (woman_INPUT_OUTPUT == "OUTPUT")
                         {
-                            if (woman_route_code == target_woman.input)
+                            if (woman_route_code == target_woman.output)
                             {
                                 TcpIpServer.SendCmdToWoman("MOVE", "STOP");
-                                tmr_woman_seq.Enabled = false;
-                                tmr_woman_seq.Stop();
-                                Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
-
-                                Program.data.insertValue(woman_product_code, target_woman.Dest);
-                                Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
+                                woman_seq_step = 100;
                             }
                         }
-                        else if (woman_INPUT_OUTPUT == "OUTPUT")
+                        else if (woman_INPUT_OUTPUT == "INPUT")
                         {
                             if (woman_route_code == target_woman.output)
                             {
@@ -339,22 +357,37 @@ namespace Dalgucci_ManagerPage
                     break;
                 case 100:
                     {
-                        TcpIpServer.SendCmdToWoman("MOVE", "DOWN");
-
-                        woman_tickcount_ms = Environment.TickCount;
-                        woman_seq_step = 105;
+                        if (woman_INPUT_OUTPUT == "INPUT")
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "RIGHT_TURN_90");
+                            woman_seq_step = 110;
+                        }
+                        else if (woman_INPUT_OUTPUT == "OUTPUT")
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "DOWN");
+                            woman_tickcount_ms = Environment.TickCount;
+                            woman_seq_step = 105;
+                        }
                     }
                     break;
                 case 105:
                     {
-                        TcpIpServer.SendCmdToWoman("MOVE", "RIGHT_TURN");
-                        woman_seq_step = 110;
+                        int now_tickcount = Environment.TickCount;
+                        if (now_tickcount > woman_tickcount_ms + 3000)
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "RIGHT_TURN_90");
+                            woman_seq_step = 110;
+                        }
                     }
                     break;
                 case 110:
                     {
-                        int now_tickcount = Environment.TickCount;
-                        if (now_tickcount > woman_tickcount_ms + 3000)
+                        if (woman_INPUT_OUTPUT == "OUTPUT")
+                        {
+                            TcpIpServer.SendCmdToWoman("MOVE", "FORWARD");
+                            woman_seq_step = 120;
+                        }
+                        else if (woman_INPUT_OUTPUT == "INPUT")
                         {
                             TcpIpServer.SendCmdToWoman("MOVE", "FORWARD");
                             woman_seq_step = 120;
@@ -363,31 +396,70 @@ namespace Dalgucci_ManagerPage
                     break;
                 case 120:
                     {
-                        if (woman_route_code == target_woman.input)
+                        if (woman_INPUT_OUTPUT == "INPUT")
                         {
-                            TcpIpServer.SendCmdToWoman("MOVE", "STOP");
-                            tmr_woman_seq.Enabled = false;
-                            tmr_woman_seq.Stop();
-                            Program.g_frmMain.AddConsoleOutput("작업 완료/출고 완료");
+                            if (woman_route_code == target_woman.input)
+                            {
+                                TcpIpServer.SendCmdToWoman("MOVE", "STOP");
+                                woman_seq_step = 121;
+                                Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
 
-                            Program.data.RowDelete();
-                            Program.g_frmMain.AddConsoleOutput("주문 테이블 삭제");
+                                //Program.data.insertValue(woman_product_code, target_woman.Dest);
+                                //Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
 
-                            Program.data.insertValue(woman_product_code, target_woman.Dest);
-                            Program.g_frmMain.AddConsoleOutput("출고기록 삽입");
+                                //TcpIpServer.SendCmdToWoman("MOVE", "RIGHT_TURN_90");
+
+                                //tmr_woman_seq.Enabled = false;
+                                //tmr_woman_seq.Stop();
+
+                            }
                         }
+                        else if (woman_INPUT_OUTPUT == "OUTPUT")
+                        {
+                            if (woman_route_code == target_woman.input)
+                            {
+                                TcpIpServer.SendCmdToWoman("MOVE", "STOP");
+                                TcpIpServer.SendCmdToWoman("MOVE", "RIGHT_TURN_90");
+
+                                tmr_woman_seq.Enabled = false;
+                                tmr_woman_seq.Stop();
+
+                                Program.g_frmMain.AddConsoleOutput("작업 완료/출고 완료");
+                                Program.data.RowDelete();
+                                Program.g_frmMain.AddConsoleOutput("주문 테이블 삭제");
+
+                                Program.data.insertValue(Output_Log, woman_product_code, target_woman.Dest);
+                                Program.g_frmMain.AddConsoleOutput("출고기록 삽입");
+
+                                tmr_woman.Enabled = false;
+                                tmr_woman.Stop();
+                            }
+                        }
+                    }
+                    break;
+                case 121:
+                    {
+                        TcpIpServer.SendCmdToWoman("MOVE", "RIGHT_TURN_90");
+
+                        Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
+
+                        Program.data.insertValue(Input_Log, woman_product_code, target_woman.Dest);
+                        Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
+
+                        tmr_woman_seq.Enabled = false;
+                        tmr_woman_seq.Stop();
                     }
                     break;
             }
         }
 
-		private void tmr_woman_Tick(object sender, EventArgs e)
-		{
-            if( woman_tick_start == true && tmr_woman_seq.Enabled == false )
-			{
+        private void tmr_woman_Tick(object sender, EventArgs e)
+        {
+            if (woman_tick_start == true && tmr_woman_seq.Enabled == false)
+            {
                 woman_tick_start = false;
                 SendCommand_Woman(woman_INPUT_OUTPUT, woman_product_code);
-			}
-		}
-	}
+            }
+        }
+    }
 }

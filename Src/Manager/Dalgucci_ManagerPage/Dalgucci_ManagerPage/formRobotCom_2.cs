@@ -13,20 +13,20 @@ using ZXing;
 
 namespace Dalgucci_ManagerPage
 {
-	public partial class formRobotCom_2 : Form
-	{
+    public partial class formRobotCom_2 : Form
+    {
         BarcodeReader barcodeReader = new BarcodeReader();
 
-        MJPEGStream Robot3;
-        MJPEGStream Robot4;
+        MJPEGStream Robot1;
+        MJPEGStream Robot2;
 
-        struct stTarget_02
+        struct stTarget
         {
             public string input;
             public string Route;
             public string Dest;
             public string output;
-            public stTarget_02(string _input, string _Route, string _Dest, string _output)
+            public stTarget(string _input, string _Route, string _Dest, string _output)
             {
                 input = _input;
                 Route = _Route;
@@ -35,9 +35,9 @@ namespace Dalgucci_ManagerPage
             }
 
         }
-        Dictionary<string, stTarget_02> DicmanTarget = new Dictionary<string, stTarget_02>();
+        Dictionary<string, stTarget> DicmanTarget = new Dictionary<string, stTarget>();
 
-        stTarget_02 target_man = new stTarget_02();
+        stTarget target_man = new stTarget();
         string man_route_code = "";
         int man_seq_step = 0;
         int man_tickcount_ms = 0;
@@ -45,26 +45,28 @@ namespace Dalgucci_ManagerPage
         public bool man_tick_start = false;
         public string man_INPUT_OUTPUT = "";
         public string man_product_code = "";
+        public string Input_Log = "Input_Log";
+        public string Output_Log = "Output_Log";
 
         public delegate void Del_SendCommand_man(string _in_out, string _prod_code);
         public Del_SendCommand_man fnSendCommand_manCallback;
 
         public formRobotCom_2()
-		{
-            DicmanTarget.Add("2001", new stTarget_02("MIN01", "MMS01", "MSTG01", "MOUT01"));
-            DicmanTarget.Add("2002", new stTarget_02("MIN01", "MMS02", "MSTG02", "MOUT01"));
-            DicmanTarget.Add("2003", new stTarget_02("MIN01", "MMS03", "MSTG03", "MOUT01"));
+        {
+            DicmanTarget.Add("2001", new stTarget("MIN01", "MMS01", "MSTG01", "MOUT01"));
+            DicmanTarget.Add("2002", new stTarget("MIN01", "MMS02", "MSTG02", "MOUT01"));
+            DicmanTarget.Add("2003", new stTarget("MIN01", "MMS03", "MSTG03", "MOUT01"));
 
             InitializeComponent();
-            Robot3 = new MJPEGStream("http://192.168.0.9:8081");
-            Robot3.NewFrame += Robot1_NewFrame;
-            Robot3.Start();
+            Robot1 = new MJPEGStream("http://192.168.0.6:8081");
+            Robot1.NewFrame += Robot1_NewFrame;
+            Robot1.Start();
             Robot2_floor_timer.Start();
 
 
-            Robot4 = new MJPEGStream("http://192.168.0.9:8083");
-            Robot4.NewFrame += Robot2_NewFrame;
-            Robot4.Start();
+            Robot2 = new MJPEGStream("http://192.168.0.6:8083");
+            Robot2.NewFrame += Robot2_NewFrame;
+            Robot2.Start();
             Robot2_prod_timer.Start();
 
 
@@ -85,7 +87,7 @@ namespace Dalgucci_ManagerPage
         }
 
         private void formRobotCom_2_Load(object sender, EventArgs e)
-		{
+        {
             filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
         }
 
@@ -94,15 +96,15 @@ namespace Dalgucci_ManagerPage
 
         }
 
-  
+
 
         private void formRobotCom_2_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Robot3.IsRunning)
-                Robot3.Stop();
+            if (Robot1.IsRunning)
+                Robot1.Stop();
 
-            else if (Robot4.IsRunning)
-                Robot4.Stop();
+            else if (Robot2.IsRunning)
+                Robot2.Stop();
         }
 
         private static string sQRcode = "";
@@ -240,6 +242,12 @@ namespace Dalgucci_ManagerPage
                 case 30:
                     {
                         TcpIpServer.SendCmdToMan("MOVE", "LEFT_TURN_90");
+                        man_seq_step = 35;
+                    }
+                    break;
+                case 35:
+                    {
+                        TcpIpServer.SendCmdToMan("MOVE", "FORWARD");
                         man_seq_step = 40;
                     }
                     break;
@@ -272,9 +280,15 @@ namespace Dalgucci_ManagerPage
                         int now_tickcount = Environment.TickCount;
                         if (now_tickcount > man_tickcount_ms + 3000)
                         {
-                            TcpIpServer.SendCmdToMan("MOVE", "RIGHT_TURN_180");
-                            man_seq_step = 70;
+                            TcpIpServer.SendCmdToMan("MOVE", "LEFT_TURN_180");
+                            man_seq_step = 65;
                         }
+                    }
+                    break;
+                case 65:
+                    {
+                        TcpIpServer.SendCmdToMan("MOVE", "FORWARD");
+                        man_seq_step = 70;
                     }
                     break;
                 case 70:
@@ -288,14 +302,8 @@ namespace Dalgucci_ManagerPage
                     break;
                 case 75:
                     {
-                        if (man_INPUT_OUTPUT == "INPUT")
-                        {
-                            TcpIpServer.SendCmdToMan("MOVE", "RIGHT_TURN_90");
-                        }
-                        else if (man_INPUT_OUTPUT == "OUTPUT")
-                        {
-                            TcpIpServer.SendCmdToMan("MOVE", "LEFT_TURN_90");
-                        }
+                        TcpIpServer.SendCmdToMan("MOVE", "LEFT_TURN_90");
+                        man_seq_step = 80;
                     }
                     break;
                 case 80:
@@ -306,20 +314,15 @@ namespace Dalgucci_ManagerPage
                     break;
                 case 90:
                     {
-                        if (man_INPUT_OUTPUT == "INPUT")
+                        if (man_INPUT_OUTPUT == "OUTPUT")
                         {
-                            if (man_route_code == target_man.input)
+                            if (man_route_code == target_man.output)
                             {
                                 TcpIpServer.SendCmdToMan("MOVE", "STOP");
-                                tmr_man_seq.Enabled = false;
-                                tmr_man_seq.Stop();
-                                Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
-
-                                Program.data.insertValue(man_product_code, target_man.Dest);
-                                Program.g_frmMain.AddConsoleOutput("입고기록 삽입");
+                                man_seq_step = 100;
                             }
                         }
-                        else if (man_INPUT_OUTPUT == "OUTPUT")
+                        else if (man_INPUT_OUTPUT == "INPUT")
                         {
                             if (man_route_code == target_man.output)
                             {
@@ -331,22 +334,37 @@ namespace Dalgucci_ManagerPage
                     break;
                 case 100:
                     {
-                        TcpIpServer.SendCmdToMan("MOVE", "DOWN");
-
-                        man_tickcount_ms = Environment.TickCount;
-                        man_seq_step = 105;
+                        if (man_INPUT_OUTPUT == "INPUT")
+                        {
+                            TcpIpServer.SendCmdToMan("MOVE", "LEFT_TURN_90");
+                            man_seq_step = 110;
+                        }
+                        else if (man_INPUT_OUTPUT == "OUTPUT")
+                        {
+                            TcpIpServer.SendCmdToMan("MOVE", "DOWN");
+                            man_tickcount_ms = Environment.TickCount;
+                            man_seq_step = 105;
+                        }
                     }
                     break;
                 case 105:
                     {
-                        TcpIpServer.SendCmdToMan("MOVE", "LEFT_TURN_90");
-                        man_seq_step = 110;
+                        int now_tickcount = Environment.TickCount;
+                        if (now_tickcount > man_tickcount_ms + 3000)
+                        {
+                            TcpIpServer.SendCmdToMan("MOVE", "LEFT_TURN_90");
+                            man_seq_step = 110;
+                        }
                     }
                     break;
                 case 110:
                     {
-                        int now_tickcount = Environment.TickCount;
-                        if (now_tickcount > man_tickcount_ms + 3000)
+                        if (man_INPUT_OUTPUT == "OUTPUT")
+                        {
+                            TcpIpServer.SendCmdToMan("MOVE", "FORWARD");
+                            man_seq_step = 120;
+                        }
+                        else if (man_INPUT_OUTPUT == "INPUT")
                         {
                             TcpIpServer.SendCmdToMan("MOVE", "FORWARD");
                             man_seq_step = 120;
@@ -355,19 +373,39 @@ namespace Dalgucci_ManagerPage
                     break;
                 case 120:
                     {
-                        if (man_route_code == target_man.input)
+                        if (man_INPUT_OUTPUT == "INPUT")
                         {
-                            TcpIpServer.SendCmdToMan("MOVE", "STOP");
-                            tmr_man_seq.Enabled = false;
-                            tmr_man_seq.Stop();
-                            Program.g_frmMain.AddConsoleOutput("작업 완료/출고 완료");
-
-                            Program.data.RowDelete();
-                            Program.g_frmMain.AddConsoleOutput("주문 테이블 삭제");
-
-                            Program.data.insertValue(man_product_code, target_man.Dest);
-                            Program.g_frmMain.AddConsoleOutput("출고기록 삽입");
+                            if (man_route_code == target_man.input)
+                            {
+                                TcpIpServer.SendCmdToWoman("MOVE", "STOP");
+                                man_seq_step = 121;
+                            }
                         }
+                        else if (man_INPUT_OUTPUT == "OUTPUT")
+                        {
+                            if (man_route_code == target_man.input)
+                            {
+                                TcpIpServer.SendCmdToWoman("MOVE", "STOP");
+
+                                TcpIpServer.SendCmdToWoman("MOVE", "LEFT_TURN_90");
+
+                                Program.g_frmMain.AddConsoleOutput("작업 완료/출고 완료");
+
+                                tmr_man.Enabled = false;
+                                tmr_man.Stop();
+
+                                tmr_man_seq.Enabled = false;
+                                tmr_man_seq.Stop();
+                            }
+                        }
+                    }
+                    break;
+                case 121:
+                    {
+                        TcpIpServer.SendCmdToWoman("MOVE", "LEFT_TURN_90");
+                        Program.g_frmMain.AddConsoleOutput("작업 완료/입고 완료");
+                        tmr_man_seq.Enabled = false;
+                        tmr_man_seq.Stop();
                     }
                     break;
             }
